@@ -1,0 +1,197 @@
+GAS LISTING /tmp/ccbB60Z4.s 			page 1
+
+
+   1               		.file	"Test_twi.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.section	.rodata.str1.1,"aMS",@progbits,1
+   8               	.LC0:
+   9 0000 2054 6869 		.string	" This is the test for TWI "
+   9      7320 6973 
+   9      2074 6865 
+   9      2074 6573 
+   9      7420 666F 
+  10               	.LC1:
+  11 001b 2053 656E 		.string	" Sending Start condition "
+  11      6469 6E67 
+  11      2053 7461 
+  11      7274 2063 
+  11      6F6E 6469 
+  12               	.LC2:
+  13 0035 2061 6464 		.string	" address= %x "
+  13      7265 7373 
+  13      3D20 2578 
+  13      2000 
+  14               	.LC3:
+  15 0043 2077 7269 		.string	" writing register = %x "
+  15      7469 6E67 
+  15      2072 6567 
+  15      6973 7465 
+  15      7220 3D20 
+  16               	.LC4:
+  17 005b 2052 6570 		.string	" Repeat Start "
+  17      6561 7420 
+  17      5374 6172 
+  17      7420 00
+  18               	.LC5:
+  19 006a 2061 6464 		.string	" address read= %x "
+  19      7265 7373 
+  19      2072 6561 
+  19      643D 2025 
+  19      7820 00
+  20               	.LC6:
+  21 007d 2072 6561 		.string	" read Data "
+  21      6420 4461 
+  21      7461 2000 
+  22               	.LC7:
+  23 0089 2054 6869 		.string	" This is the value of the register= %x  "
+  23      7320 6973 
+  23      2074 6865 
+  23      2076 616C 
+  23      7565 206F 
+  24               		.text
+  25               	.global	main
+  26               		.type	main, @function
+  27               	main:
+  28 0000 CF93      		push r28
+  29               	/* prologue: function */
+GAS LISTING /tmp/ccbB60Z4.s 			page 2
+
+
+  30               	/* frame size = 0 */
+  31               	/* stack size = 1 */
+  32               	.L__stack_usage = 1
+  33 0002 0E94 0000 		call USART_init
+  34 0006 80E0      		ldi r24,lo8(.LC0)
+  35 0008 90E0      		ldi r25,hi8(.LC0)
+  36 000a 9F93      		push r25
+  37 000c 8F93      		push r24
+  38 000e 0E94 0000 		call print_UART
+  39 0012 2FEF      		ldi r18,lo8(1599999)
+  40 0014 89E6      		ldi r24,hi8(1599999)
+  41 0016 98E1      		ldi r25,hlo8(1599999)
+  42 0018 2150      		1: subi r18,1
+  43 001a 8040      		sbci r24,0
+  44 001c 9040      		sbci r25,0
+  45 001e 01F4      		brne 1b
+  46 0020 00C0      		rjmp .
+  47 0022 0000      		nop
+  48 0024 979A      		sbi 0x12,7
+  49 0026 2FEF      		ldi r18,lo8(159999)
+  50 0028 80E7      		ldi r24,hi8(159999)
+  51 002a 92E0      		ldi r25,hlo8(159999)
+  52 002c 2150      		1: subi r18,1
+  53 002e 8040      		sbci r24,0
+  54 0030 9040      		sbci r25,0
+  55 0032 01F4      		brne 1b
+  56 0034 00C0      		rjmp .
+  57 0036 0000      		nop
+  58 0038 0E94 0000 		call TWI_init_master
+  59               	/* #APP */
+  60               	 ;  28 "Test_twi.c" 1
+  61 003c 7894      		sei
+  62               	 ;  0 "" 2
+  63               	/* #NOAPP */
+  64 003e 80E0      		ldi r24,lo8(.LC1)
+  65 0040 90E0      		ldi r25,hi8(.LC1)
+  66 0042 9F93      		push r25
+  67 0044 8F93      		push r24
+  68 0046 0E94 0000 		call print_UART
+  69 004a 0E94 0000 		call TWI_start
+  70 004e 1F92      		push __zero_reg__
+  71 0050 80ED      		ldi r24,lo8(-48)
+  72 0052 8F93      		push r24
+  73 0054 80E0      		ldi r24,lo8(.LC2)
+  74 0056 90E0      		ldi r25,hi8(.LC2)
+  75 0058 9F93      		push r25
+  76 005a 8F93      		push r24
+  77 005c 0E94 0000 		call print_UART
+  78 0060 80ED      		ldi r24,lo8(-48)
+  79 0062 0E94 0000 		call TWI_write_address
+  80 0066 1F92      		push __zero_reg__
+  81 0068 85E7      		ldi r24,lo8(117)
+  82 006a 8F93      		push r24
+  83 006c 80E0      		ldi r24,lo8(.LC3)
+  84 006e 90E0      		ldi r25,hi8(.LC3)
+  85 0070 9F93      		push r25
+  86 0072 8F93      		push r24
+GAS LISTING /tmp/ccbB60Z4.s 			page 3
+
+
+  87 0074 0E94 0000 		call print_UART
+  88 0078 85E7      		ldi r24,lo8(117)
+  89 007a 0E94 0000 		call TWI_write_byte
+  90 007e 80E0      		ldi r24,lo8(.LC4)
+  91 0080 90E0      		ldi r25,hi8(.LC4)
+  92 0082 9F93      		push r25
+  93 0084 8F93      		push r24
+  94 0086 0E94 0000 		call print_UART
+  95 008a 0E94 0000 		call TWI_start
+  96 008e 1F92      		push __zero_reg__
+  97 0090 81ED      		ldi r24,lo8(-47)
+  98 0092 8F93      		push r24
+  99 0094 80E0      		ldi r24,lo8(.LC5)
+ 100 0096 90E0      		ldi r25,hi8(.LC5)
+ 101 0098 9F93      		push r25
+ 102 009a 8F93      		push r24
+ 103 009c 0E94 0000 		call print_UART
+ 104 00a0 81ED      		ldi r24,lo8(-47)
+ 105 00a2 0E94 0000 		call TWI_write_address
+ 106 00a6 80E0      		ldi r24,lo8(.LC6)
+ 107 00a8 90E0      		ldi r25,hi8(.LC6)
+ 108 00aa 9F93      		push r25
+ 109 00ac 8F93      		push r24
+ 110 00ae 0E94 0000 		call print_UART
+ 111 00b2 81E0      		ldi r24,lo8(1)
+ 112 00b4 0E94 0000 		call TWI_read_byte
+ 113 00b8 C82F      		mov r28,r24
+ 114 00ba 0E94 0000 		call TWI_stop
+ 115 00be 1F92      		push __zero_reg__
+ 116 00c0 CF93      		push r28
+ 117 00c2 80E0      		ldi r24,lo8(.LC7)
+ 118 00c4 90E0      		ldi r25,hi8(.LC7)
+ 119 00c6 9F93      		push r25
+ 120 00c8 8F93      		push r24
+ 121 00ca 0E94 0000 		call print_UART
+ 122 00ce 9798      		cbi 0x12,7
+ 123 00d0 8DB7      		in r24,__SP_L__
+ 124 00d2 9EB7      		in r25,__SP_H__
+ 125 00d4 4896      		adiw r24,24
+ 126 00d6 0FB6      		in __tmp_reg__,__SREG__
+ 127 00d8 F894      		cli
+ 128 00da 9EBF      		out __SP_H__,r25
+ 129 00dc 0FBE      		out __SREG__,__tmp_reg__
+ 130 00de 8DBF      		out __SP_L__,r24
+ 131 00e0 80E0      		ldi r24,0
+ 132 00e2 90E0      		ldi r25,0
+ 133               	/* epilogue start */
+ 134 00e4 CF91      		pop r28
+ 135 00e6 0895      		ret
+ 136               		.size	main, .-main
+ 137               		.ident	"GCC: (GNU) 4.8.2"
+ 138               	.global __do_copy_data
+GAS LISTING /tmp/ccbB60Z4.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 Test_twi.c
+     /tmp/ccbB60Z4.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccbB60Z4.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccbB60Z4.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccbB60Z4.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccbB60Z4.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccbB60Z4.s:27     .text:0000000000000000 main
+
+UNDEFINED SYMBOLS
+USART_init
+print_UART
+TWI_init_master
+TWI_start
+TWI_write_address
+TWI_write_byte
+TWI_read_byte
+TWI_stop
+__do_copy_data

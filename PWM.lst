@@ -1,0 +1,218 @@
+GAS LISTING /tmp/ccsuZMsZ.s 			page 1
+
+
+   1               		.file	"PWM.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.text
+   8               	.global	servoStart
+   9               		.type	servoStart, @function
+  10               	servoStart:
+  11               	/* prologue: function */
+  12               	/* frame size = 0 */
+  13               	/* stack size = 0 */
+  14               	.L__stack_usage = 0
+  15 0000 8AB3      		in r24,0x1a
+  16 0002 8FEF      		ldi r24,lo8(-1)
+  17 0004 8ABB      		out 0x1a,r24
+  18 0006 8CB5      		in r24,0x2c
+  19 0008 9DB5      		in r25,0x2c+1
+  20 000a 805E      		subi r24,-32
+  21 000c 9C4F      		sbci r25,-4
+  22 000e 9BBD      		out 0x2a+1,r25
+  23 0010 8ABD      		out 0x2a,r24
+  24 0012 89B7      		in r24,0x39
+  25 0014 8061      		ori r24,lo8(16)
+  26 0016 89BF      		out 0x39,r24
+  27 0018 0895      		ret
+  28               		.size	servoStart, .-servoStart
+  29               	.global	servoSet
+  30               		.type	servoSet, @function
+  31               	servoSet:
+  32               	/* prologue: function */
+  33               	/* frame size = 0 */
+  34               	/* stack size = 0 */
+  35               	.L__stack_usage = 0
+  36 001a 660F      		lsl r22
+  37 001c 771F      		rol r23
+  38 001e 660F      		lsl r22
+  39 0020 771F      		rol r23
+  40 0022 660F      		lsl r22
+  41 0024 771F      		rol r23
+  42               	/* #APP */
+  43               	 ;  34 "PWM.c" 1
+  44 0026 F894      		cli
+  45               	 ;  0 "" 2
+  46               	/* #NOAPP */
+  47 0028 E82F      		mov r30,r24
+  48 002a F0E0      		ldi r31,0
+  49 002c EE0F      		lsl r30
+  50 002e FF1F      		rol r31
+  51 0030 E050      		subi r30,lo8(-(servoTime))
+  52 0032 F040      		sbci r31,hi8(-(servoTime))
+  53 0034 7183      		std Z+1,r23
+  54 0036 6083      		st Z,r22
+  55               	/* #APP */
+  56               	 ;  36 "PWM.c" 1
+  57 0038 7894      		sei
+GAS LISTING /tmp/ccsuZMsZ.s 			page 2
+
+
+  58               	 ;  0 "" 2
+  59               	/* #NOAPP */
+  60 003a 0895      		ret
+  61               		.size	servoSet, .-servoSet
+  62               	.global	servoResetPos
+  63               		.type	servoResetPos, @function
+  64               	servoResetPos:
+  65               	/* prologue: function */
+  66               	/* frame size = 0 */
+  67               	/* stack size = 0 */
+  68               	.L__stack_usage = 0
+  69 003c 88EA      		ldi r24,lo8(-88)
+  70 003e 95E3      		ldi r25,lo8(53)
+  71 0040 9093 0000 		sts servoTime+1,r25
+  72 0044 8093 0000 		sts servoTime,r24
+  73 0048 9093 0000 		sts servoTime+2+1,r25
+  74 004c 8093 0000 		sts servoTime+2,r24
+  75 0050 9093 0000 		sts servoTime+4+1,r25
+  76 0054 8093 0000 		sts servoTime+4,r24
+  77 0058 0895      		ret
+  78               		.size	servoResetPos, .-servoResetPos
+  79               	.global	__vector_7
+  80               		.type	__vector_7, @function
+  81               	__vector_7:
+  82 005a 1F92      		push r1
+  83 005c 0F92      		push r0
+  84 005e 0FB6      		in r0,__SREG__
+  85 0060 0F92      		push r0
+  86 0062 1124      		clr __zero_reg__
+  87 0064 2F93      		push r18
+  88 0066 3F93      		push r19
+  89 0068 8F93      		push r24
+  90 006a 9F93      		push r25
+  91 006c EF93      		push r30
+  92 006e FF93      		push r31
+  93               	/* prologue: Signal */
+  94               	/* frame size = 0 */
+  95               	/* stack size = 9 */
+  96               	.L__stack_usage = 9
+  97 0070 8AB5      		in r24,0x2a
+  98 0072 9BB5      		in r25,0x2a+1
+  99 0074 E091 0000 		lds r30,servo.1651
+ 100 0078 F0E0      		ldi r31,0
+ 101 007a E050      		subi r30,lo8(-(servoOutMask))
+ 102 007c F040      		sbci r31,hi8(-(servoOutMask))
+ 103 007e 2081      		ld r18,Z
+ 104 0080 3091 0000 		lds r19,outputHigh.1652
+ 105 0084 3323      		tst r19
+ 106 0086 01F0      		breq .L5
+ 107 0088 3BB3      		in r19,0x1b
+ 108 008a 232B      		or r18,r19
+ 109 008c 2BBB      		out 0x1b,r18
+ 110 008e E091 0000 		lds r30,servo.1651
+ 111 0092 F0E0      		ldi r31,0
+ 112 0094 EE0F      		lsl r30
+ 113 0096 FF1F      		rol r31
+ 114 0098 E050      		subi r30,lo8(-(servoTime))
+GAS LISTING /tmp/ccsuZMsZ.s 			page 3
+
+
+ 115 009a F040      		sbci r31,hi8(-(servoTime))
+ 116 009c 2081      		ld r18,Z
+ 117 009e 3181      		ldd r19,Z+1
+ 118 00a0 280F      		add r18,r24
+ 119 00a2 391F      		adc r19,r25
+ 120 00a4 3BBD      		out 0x2a+1,r19
+ 121 00a6 2ABD      		out 0x2a,r18
+ 122 00a8 805B      		subi r24,-80
+ 123 00aa 9F42      		sbci r25,47
+ 124 00ac 9093 0000 		sts nextStart.1650+1,r25
+ 125 00b0 8093 0000 		sts nextStart.1650,r24
+ 126 00b4 00C0      		rjmp .L6
+ 127               	.L5:
+ 128 00b6 8BB3      		in r24,0x1b
+ 129 00b8 2095      		com r18
+ 130 00ba 2823      		and r18,r24
+ 131 00bc 2BBB      		out 0x1b,r18
+ 132 00be 8091 0000 		lds r24,servo.1651
+ 133 00c2 8F5F      		subi r24,lo8(-(1))
+ 134 00c4 8330      		cpi r24,lo8(3)
+ 135 00c6 01F0      		breq .L7
+ 136 00c8 8093 0000 		sts servo.1651,r24
+ 137 00cc 00C0      		rjmp .L8
+ 138               	.L7:
+ 139 00ce 1092 0000 		sts servo.1651,__zero_reg__
+ 140               	.L8:
+ 141 00d2 8091 0000 		lds r24,nextStart.1650
+ 142 00d6 9091 0000 		lds r25,nextStart.1650+1
+ 143 00da 9BBD      		out 0x2a+1,r25
+ 144 00dc 8ABD      		out 0x2a,r24
+ 145               	.L6:
+ 146 00de 9091 0000 		lds r25,outputHigh.1652
+ 147 00e2 81E0      		ldi r24,lo8(1)
+ 148 00e4 8927      		eor r24,r25
+ 149 00e6 8093 0000 		sts outputHigh.1652,r24
+ 150               	/* epilogue start */
+ 151 00ea FF91      		pop r31
+ 152 00ec EF91      		pop r30
+ 153 00ee 9F91      		pop r25
+ 154 00f0 8F91      		pop r24
+ 155 00f2 3F91      		pop r19
+ 156 00f4 2F91      		pop r18
+ 157 00f6 0F90      		pop r0
+ 158 00f8 0FBE      		out __SREG__,r0
+ 159 00fa 0F90      		pop r0
+ 160 00fc 1F90      		pop r1
+ 161 00fe 1895      		reti
+ 162               		.size	__vector_7, .-__vector_7
+ 163               		.local	nextStart.1650
+ 164               		.comm	nextStart.1650,2,1
+ 165               		.data
+ 166               		.type	outputHigh.1652, @object
+ 167               		.size	outputHigh.1652, 1
+ 168               	outputHigh.1652:
+ 169 0000 01        		.byte	1
+ 170               		.local	servo.1651
+ 171               		.comm	servo.1651,1,1
+GAS LISTING /tmp/ccsuZMsZ.s 			page 4
+
+
+ 172               		.section	.rodata
+ 173               		.type	servoOutMask, @object
+ 174               		.size	servoOutMask, 3
+ 175               	servoOutMask:
+ 176 0000 01        		.byte	1
+ 177 0001 02        		.byte	2
+ 178 0002 04        		.byte	4
+ 179               		.local	servoTime
+ 180               		.comm	servoTime,6,1
+ 181               		.ident	"GCC: (GNU) 4.8.2"
+ 182               	.global __do_copy_data
+ 183               	.global __do_clear_bss
+GAS LISTING /tmp/ccsuZMsZ.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 PWM.c
+     /tmp/ccsuZMsZ.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccsuZMsZ.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccsuZMsZ.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccsuZMsZ.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccsuZMsZ.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccsuZMsZ.s:10     .text:0000000000000000 servoStart
+     /tmp/ccsuZMsZ.s:31     .text:000000000000001a servoSet
+     /tmp/ccsuZMsZ.s:171    .bss:0000000000000003 servoTime
+     /tmp/ccsuZMsZ.s:64     .text:000000000000003c servoResetPos
+     /tmp/ccsuZMsZ.s:81     .text:000000000000005a __vector_7
+     /tmp/ccsuZMsZ.s:164    .bss:0000000000000002 servo.1651
+     /tmp/ccsuZMsZ.s:175    .rodata:0000000000000000 servoOutMask
+     /tmp/ccsuZMsZ.s:168    .data:0000000000000000 outputHigh.1652
+                             .bss:0000000000000000 nextStart.1650
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss

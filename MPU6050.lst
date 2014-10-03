@@ -1,0 +1,752 @@
+GAS LISTING /tmp/ccMZBTXc.s 			page 1
+
+
+   1               		.file	"MPU6050.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.text
+   8               	.global	MPU_setClockSource
+   9               		.type	MPU_setClockSource, @function
+  10               	MPU_setClockSource:
+  11 0000 0F93      		push r16
+  12               	/* prologue: function */
+  13               	/* frame size = 0 */
+  14               	/* stack size = 1 */
+  15               	.L__stack_usage = 1
+  16 0002 082F      		mov r16,r24
+  17 0004 23E0      		ldi r18,lo8(3)
+  18 0006 42E0      		ldi r20,lo8(2)
+  19 0008 6BE6      		ldi r22,lo8(107)
+  20 000a 88E6      		ldi r24,lo8(104)
+  21 000c 0E94 0000 		call TWI_write_bits
+  22               	/* epilogue start */
+  23 0010 0F91      		pop r16
+  24 0012 0895      		ret
+  25               		.size	MPU_setClockSource, .-MPU_setClockSource
+  26               	.global	MPU_setFullScaleGyroRange
+  27               		.type	MPU_setFullScaleGyroRange, @function
+  28               	MPU_setFullScaleGyroRange:
+  29 0014 0F93      		push r16
+  30               	/* prologue: function */
+  31               	/* frame size = 0 */
+  32               	/* stack size = 1 */
+  33               	.L__stack_usage = 1
+  34 0016 082F      		mov r16,r24
+  35 0018 22E0      		ldi r18,lo8(2)
+  36 001a 44E0      		ldi r20,lo8(4)
+  37 001c 6BE1      		ldi r22,lo8(27)
+  38 001e 88E6      		ldi r24,lo8(104)
+  39 0020 0E94 0000 		call TWI_write_bits
+  40               	/* epilogue start */
+  41 0024 0F91      		pop r16
+  42 0026 0895      		ret
+  43               		.size	MPU_setFullScaleGyroRange, .-MPU_setFullScaleGyroRange
+  44               	.global	MPU_setFullScaleAccelRange
+  45               		.type	MPU_setFullScaleAccelRange, @function
+  46               	MPU_setFullScaleAccelRange:
+  47 0028 0F93      		push r16
+  48               	/* prologue: function */
+  49               	/* frame size = 0 */
+  50               	/* stack size = 1 */
+  51               	.L__stack_usage = 1
+  52 002a 082F      		mov r16,r24
+  53 002c 22E0      		ldi r18,lo8(2)
+  54 002e 44E0      		ldi r20,lo8(4)
+  55 0030 6CE1      		ldi r22,lo8(28)
+  56 0032 88E6      		ldi r24,lo8(104)
+  57 0034 0E94 0000 		call TWI_write_bits
+GAS LISTING /tmp/ccMZBTXc.s 			page 2
+
+
+  58               	/* epilogue start */
+  59 0038 0F91      		pop r16
+  60 003a 0895      		ret
+  61               		.size	MPU_setFullScaleAccelRange, .-MPU_setFullScaleAccelRange
+  62               	.global	MPU_setSleepEnabled
+  63               		.type	MPU_setSleepEnabled, @function
+  64               	MPU_setSleepEnabled:
+  65               	/* prologue: function */
+  66               	/* frame size = 0 */
+  67               	/* stack size = 0 */
+  68               	.L__stack_usage = 0
+  69 003c 282F      		mov r18,r24
+  70 003e 46E0      		ldi r20,lo8(6)
+  71 0040 6BE6      		ldi r22,lo8(107)
+  72 0042 88E6      		ldi r24,lo8(104)
+  73 0044 0E94 0000 		call TWI_write_bit
+  74 0048 0895      		ret
+  75               		.size	MPU_setSleepEnabled, .-MPU_setSleepEnabled
+  76               	.global	MPU_setI2CMasterModeEnabled
+  77               		.type	MPU_setI2CMasterModeEnabled, @function
+  78               	MPU_setI2CMasterModeEnabled:
+  79               	/* prologue: function */
+  80               	/* frame size = 0 */
+  81               	/* stack size = 0 */
+  82               	.L__stack_usage = 0
+  83 004a 282F      		mov r18,r24
+  84 004c 45E0      		ldi r20,lo8(5)
+  85 004e 6AE6      		ldi r22,lo8(106)
+  86 0050 88E6      		ldi r24,lo8(104)
+  87 0052 0E94 0000 		call TWI_write_bit
+  88 0056 0895      		ret
+  89               		.size	MPU_setI2CMasterModeEnabled, .-MPU_setI2CMasterModeEnabled
+  90               	.global	MPU_testConnection
+  91               		.type	MPU_testConnection, @function
+  92               	MPU_testConnection:
+  93               	/* prologue: function */
+  94               	/* frame size = 0 */
+  95               	/* stack size = 0 */
+  96               	.L__stack_usage = 0
+  97 0058 20E0      		ldi r18,lo8(buffer)
+  98 005a 30E0      		ldi r19,hi8(buffer)
+  99 005c 41E0      		ldi r20,lo8(1)
+ 100 005e 65E7      		ldi r22,lo8(117)
+ 101 0060 88E6      		ldi r24,lo8(104)
+ 102 0062 0E94 0000 		call TWI_read_bytes
+ 103 0066 81E0      		ldi r24,lo8(1)
+ 104 0068 9091 0000 		lds r25,buffer
+ 105 006c 9836      		cpi r25,lo8(104)
+ 106 006e 01F4      		brne .L7
+ 107 0070 80E0      		ldi r24,0
+ 108               	.L7:
+ 109 0072 0895      		ret
+ 110               		.size	MPU_testConnection, .-MPU_testConnection
+ 111               	.global	MPU_getMotion6
+ 112               		.type	MPU_getMotion6, @function
+ 113               	MPU_getMotion6:
+ 114 0074 8F92      		push r8
+GAS LISTING /tmp/ccMZBTXc.s 			page 3
+
+
+ 115 0076 9F92      		push r9
+ 116 0078 AF92      		push r10
+ 117 007a BF92      		push r11
+ 118 007c CF92      		push r12
+ 119 007e DF92      		push r13
+ 120 0080 EF92      		push r14
+ 121 0082 FF92      		push r15
+ 122 0084 0F93      		push r16
+ 123 0086 1F93      		push r17
+ 124 0088 CF93      		push r28
+ 125 008a DF93      		push r29
+ 126               	/* prologue: function */
+ 127               	/* frame size = 0 */
+ 128               	/* stack size = 12 */
+ 129               	.L__stack_usage = 12
+ 130 008c 4C01      		movw r8,r24
+ 131 008e 5B01      		movw r10,r22
+ 132 0090 6A01      		movw r12,r20
+ 133 0092 E901      		movw r28,r18
+ 134 0094 20E0      		ldi r18,lo8(buffer)
+ 135 0096 30E0      		ldi r19,hi8(buffer)
+ 136 0098 4EE0      		ldi r20,lo8(14)
+ 137 009a 6BE3      		ldi r22,lo8(59)
+ 138 009c 88E6      		ldi r24,lo8(104)
+ 139 009e 0E94 0000 		call TWI_read_bytes
+ 140 00a2 8091 0000 		lds r24,buffer
+ 141 00a6 90E0      		ldi r25,0
+ 142 00a8 982F      		mov r25,r24
+ 143 00aa 8827      		clr r24
+ 144 00ac 2091 0000 		lds r18,buffer+1
+ 145 00b0 822B      		or r24,r18
+ 146 00b2 F401      		movw r30,r8
+ 147 00b4 9183      		std Z+1,r25
+ 148 00b6 8083      		st Z,r24
+ 149 00b8 8091 0000 		lds r24,buffer+2
+ 150 00bc 90E0      		ldi r25,0
+ 151 00be 982F      		mov r25,r24
+ 152 00c0 8827      		clr r24
+ 153 00c2 2091 0000 		lds r18,buffer+3
+ 154 00c6 822B      		or r24,r18
+ 155 00c8 F501      		movw r30,r10
+ 156 00ca 9183      		std Z+1,r25
+ 157 00cc 8083      		st Z,r24
+ 158 00ce 8091 0000 		lds r24,buffer+4
+ 159 00d2 90E0      		ldi r25,0
+ 160 00d4 982F      		mov r25,r24
+ 161 00d6 8827      		clr r24
+ 162 00d8 2091 0000 		lds r18,buffer+5
+ 163 00dc 822B      		or r24,r18
+ 164 00de F601      		movw r30,r12
+ 165 00e0 9183      		std Z+1,r25
+ 166 00e2 8083      		st Z,r24
+ 167 00e4 8091 0000 		lds r24,buffer+8
+ 168 00e8 90E0      		ldi r25,0
+ 169 00ea 982F      		mov r25,r24
+ 170 00ec 8827      		clr r24
+ 171 00ee 2091 0000 		lds r18,buffer+9
+GAS LISTING /tmp/ccMZBTXc.s 			page 4
+
+
+ 172 00f2 822B      		or r24,r18
+ 173 00f4 2091 0000 		lds r18,Gx_offset
+ 174 00f8 3091 0000 		lds r19,Gx_offset+1
+ 175 00fc 821B      		sub r24,r18
+ 176 00fe 930B      		sbc r25,r19
+ 177 0100 9983      		std Y+1,r25
+ 178 0102 8883      		st Y,r24
+ 179 0104 8091 0000 		lds r24,buffer+10
+ 180 0108 90E0      		ldi r25,0
+ 181 010a 982F      		mov r25,r24
+ 182 010c 8827      		clr r24
+ 183 010e 2091 0000 		lds r18,buffer+11
+ 184 0112 822B      		or r24,r18
+ 185 0114 2091 0000 		lds r18,Gy_offset
+ 186 0118 3091 0000 		lds r19,Gy_offset+1
+ 187 011c 821B      		sub r24,r18
+ 188 011e 930B      		sbc r25,r19
+ 189 0120 F801      		movw r30,r16
+ 190 0122 9183      		std Z+1,r25
+ 191 0124 8083      		st Z,r24
+ 192 0126 8091 0000 		lds r24,buffer+12
+ 193 012a 90E0      		ldi r25,0
+ 194 012c 982F      		mov r25,r24
+ 195 012e 8827      		clr r24
+ 196 0130 2091 0000 		lds r18,buffer+13
+ 197 0134 822B      		or r24,r18
+ 198 0136 2091 0000 		lds r18,Gz_offset
+ 199 013a 3091 0000 		lds r19,Gz_offset+1
+ 200 013e 821B      		sub r24,r18
+ 201 0140 930B      		sbc r25,r19
+ 202 0142 F701      		movw r30,r14
+ 203 0144 9183      		std Z+1,r25
+ 204 0146 8083      		st Z,r24
+ 205               	/* epilogue start */
+ 206 0148 DF91      		pop r29
+ 207 014a CF91      		pop r28
+ 208 014c 1F91      		pop r17
+ 209 014e 0F91      		pop r16
+ 210 0150 FF90      		pop r15
+ 211 0152 EF90      		pop r14
+ 212 0154 DF90      		pop r13
+ 213 0156 CF90      		pop r12
+ 214 0158 BF90      		pop r11
+ 215 015a AF90      		pop r10
+ 216 015c 9F90      		pop r9
+ 217 015e 8F90      		pop r8
+ 218 0160 0895      		ret
+ 219               		.size	MPU_getMotion6, .-MPU_getMotion6
+ 220               	.global	MPU_Calibrate_Gyros
+ 221               		.type	MPU_Calibrate_Gyros, @function
+ 222               	MPU_Calibrate_Gyros:
+ 223 0162 4F92      		push r4
+ 224 0164 5F92      		push r5
+ 225 0166 6F92      		push r6
+ 226 0168 7F92      		push r7
+ 227 016a 8F92      		push r8
+ 228 016c 9F92      		push r9
+GAS LISTING /tmp/ccMZBTXc.s 			page 5
+
+
+ 229 016e AF92      		push r10
+ 230 0170 BF92      		push r11
+ 231 0172 CF92      		push r12
+ 232 0174 DF92      		push r13
+ 233 0176 EF92      		push r14
+ 234 0178 FF92      		push r15
+ 235 017a 0F93      		push r16
+ 236 017c 1F93      		push r17
+ 237 017e CF93      		push r28
+ 238 0180 DF93      		push r29
+ 239 0182 CDB7      		in r28,__SP_L__
+ 240 0184 DEB7      		in r29,__SP_H__
+ 241 0186 6097      		sbiw r28,16
+ 242 0188 0FB6      		in __tmp_reg__,__SREG__
+ 243 018a F894      		cli
+ 244 018c DEBF      		out __SP_H__,r29
+ 245 018e 0FBE      		out __SREG__,__tmp_reg__
+ 246 0190 CDBF      		out __SP_L__,r28
+ 247               	/* prologue: function */
+ 248               	/* frame size = 16 */
+ 249               	/* stack size = 32 */
+ 250               	.L__stack_usage = 32
+ 251 0192 0F2E      		mov __tmp_reg__,r31
+ 252 0194 F4E6      		ldi r31,lo8(100)
+ 253 0196 DF2E      		mov r13,r31
+ 254 0198 F02D      		mov r31,__tmp_reg__
+ 255 019a 812C      		mov r8,__zero_reg__
+ 256 019c 912C      		mov r9,__zero_reg__
+ 257 019e 5401      		movw r10,r8
+ 258 01a0 412C      		mov r4,__zero_reg__
+ 259 01a2 512C      		mov r5,__zero_reg__
+ 260 01a4 3201      		movw r6,r4
+ 261 01a6 1D86      		std Y+13,__zero_reg__
+ 262 01a8 1E86      		std Y+14,__zero_reg__
+ 263 01aa 1F86      		std Y+15,__zero_reg__
+ 264 01ac 188A      		std Y+16,__zero_reg__
+ 265               	.L11:
+ 266 01ae 9E01      		movw r18,r28
+ 267 01b0 255F      		subi r18,-11
+ 268 01b2 3F4F      		sbci r19,-1
+ 269 01b4 7901      		movw r14,r18
+ 270 01b6 8E01      		movw r16,r28
+ 271 01b8 075F      		subi r16,-9
+ 272 01ba 1F4F      		sbci r17,-1
+ 273 01bc 9E01      		movw r18,r28
+ 274 01be 295F      		subi r18,-7
+ 275 01c0 3F4F      		sbci r19,-1
+ 276 01c2 AE01      		movw r20,r28
+ 277 01c4 4B5F      		subi r20,-5
+ 278 01c6 5F4F      		sbci r21,-1
+ 279 01c8 BE01      		movw r22,r28
+ 280 01ca 6D5F      		subi r22,-3
+ 281 01cc 7F4F      		sbci r23,-1
+ 282 01ce CE01      		movw r24,r28
+ 283 01d0 0196      		adiw r24,1
+ 284 01d2 0E94 0000 		call MPU_getMotion6
+ 285 01d6 8F81      		ldd r24,Y+7
+GAS LISTING /tmp/ccMZBTXc.s 			page 6
+
+
+ 286 01d8 9885      		ldd r25,Y+8
+ 287 01da AA27      		clr r26
+ 288 01dc 97FD      		sbrc r25,7
+ 289 01de A095      		com r26
+ 290 01e0 BA2F      		mov r27,r26
+ 291 01e2 2D85      		ldd r18,Y+13
+ 292 01e4 3E85      		ldd r19,Y+14
+ 293 01e6 4F85      		ldd r20,Y+15
+ 294 01e8 5889      		ldd r21,Y+16
+ 295 01ea 280F      		add r18,r24
+ 296 01ec 391F      		adc r19,r25
+ 297 01ee 4A1F      		adc r20,r26
+ 298 01f0 5B1F      		adc r21,r27
+ 299 01f2 2D87      		std Y+13,r18
+ 300 01f4 3E87      		std Y+14,r19
+ 301 01f6 4F87      		std Y+15,r20
+ 302 01f8 588B      		std Y+16,r21
+ 303 01fa 8985      		ldd r24,Y+9
+ 304 01fc 9A85      		ldd r25,Y+10
+ 305 01fe AA27      		clr r26
+ 306 0200 97FD      		sbrc r25,7
+ 307 0202 A095      		com r26
+ 308 0204 BA2F      		mov r27,r26
+ 309 0206 480E      		add r4,r24
+ 310 0208 591E      		adc r5,r25
+ 311 020a 6A1E      		adc r6,r26
+ 312 020c 7B1E      		adc r7,r27
+ 313 020e 8B85      		ldd r24,Y+11
+ 314 0210 9C85      		ldd r25,Y+12
+ 315 0212 AA27      		clr r26
+ 316 0214 97FD      		sbrc r25,7
+ 317 0216 A095      		com r26
+ 318 0218 BA2F      		mov r27,r26
+ 319 021a 880E      		add r8,r24
+ 320 021c 991E      		adc r9,r25
+ 321 021e AA1E      		adc r10,r26
+ 322 0220 BB1E      		adc r11,r27
+ 323 0222 8FE3      		ldi r24,lo8(-25537)
+ 324 0224 9CE9      		ldi r25,hi8(-25537)
+ 325 0226 0197      		1: sbiw r24,1
+ 326 0228 01F4      		brne 1b
+ 327 022a 00C0      		rjmp .
+ 328 022c 0000      		nop
+ 329 022e DA94      		dec r13
+ 330 0230 01F0      		breq .+2
+ 331 0232 00C0      		rjmp .L11
+ 332 0234 0F2E      		mov __tmp_reg__,r31
+ 333 0236 F4E6      		ldi r31,lo8(100)
+ 334 0238 CF2E      		mov r12,r31
+ 335 023a D12C      		mov r13,__zero_reg__
+ 336 023c E12C      		mov r14,__zero_reg__
+ 337 023e F12C      		mov r15,__zero_reg__
+ 338 0240 F02D      		mov r31,__tmp_reg__
+ 339 0242 6D85      		ldd r22,Y+13
+ 340 0244 7E85      		ldd r23,Y+14
+ 341 0246 8F85      		ldd r24,Y+15
+ 342 0248 9889      		ldd r25,Y+16
+GAS LISTING /tmp/ccMZBTXc.s 			page 7
+
+
+ 343 024a A701      		movw r20,r14
+ 344 024c 9601      		movw r18,r12
+ 345 024e 0E94 0000 		call __divmodsi4
+ 346 0252 3093 0000 		sts Gx_offset+1,r19
+ 347 0256 2093 0000 		sts Gx_offset,r18
+ 348 025a C301      		movw r24,r6
+ 349 025c B201      		movw r22,r4
+ 350 025e A701      		movw r20,r14
+ 351 0260 9601      		movw r18,r12
+ 352 0262 0E94 0000 		call __divmodsi4
+ 353 0266 3093 0000 		sts Gy_offset+1,r19
+ 354 026a 2093 0000 		sts Gy_offset,r18
+ 355 026e C501      		movw r24,r10
+ 356 0270 B401      		movw r22,r8
+ 357 0272 A701      		movw r20,r14
+ 358 0274 9601      		movw r18,r12
+ 359 0276 0E94 0000 		call __divmodsi4
+ 360 027a 3093 0000 		sts Gz_offset+1,r19
+ 361 027e 2093 0000 		sts Gz_offset,r18
+ 362               	/* epilogue start */
+ 363 0282 6096      		adiw r28,16
+ 364 0284 0FB6      		in __tmp_reg__,__SREG__
+ 365 0286 F894      		cli
+ 366 0288 DEBF      		out __SP_H__,r29
+ 367 028a 0FBE      		out __SREG__,__tmp_reg__
+ 368 028c CDBF      		out __SP_L__,r28
+ 369 028e DF91      		pop r29
+ 370 0290 CF91      		pop r28
+ 371 0292 1F91      		pop r17
+ 372 0294 0F91      		pop r16
+ 373 0296 FF90      		pop r15
+ 374 0298 EF90      		pop r14
+ 375 029a DF90      		pop r13
+ 376 029c CF90      		pop r12
+ 377 029e BF90      		pop r11
+ 378 02a0 AF90      		pop r10
+ 379 02a2 9F90      		pop r9
+ 380 02a4 8F90      		pop r8
+ 381 02a6 7F90      		pop r7
+ 382 02a8 6F90      		pop r6
+ 383 02aa 5F90      		pop r5
+ 384 02ac 4F90      		pop r4
+ 385 02ae 0895      		ret
+ 386               		.size	MPU_Calibrate_Gyros, .-MPU_Calibrate_Gyros
+ 387               	.global	MPU_initialize
+ 388               		.type	MPU_initialize, @function
+ 389               	MPU_initialize:
+ 390               	/* prologue: function */
+ 391               	/* frame size = 0 */
+ 392               	/* stack size = 0 */
+ 393               	.L__stack_usage = 0
+ 394 02b0 81E0      		ldi r24,lo8(1)
+ 395 02b2 0E94 0000 		call MPU_setClockSource
+ 396 02b6 80E0      		ldi r24,0
+ 397 02b8 0E94 0000 		call MPU_setFullScaleGyroRange
+ 398 02bc 80E0      		ldi r24,0
+ 399 02be 0E94 0000 		call MPU_setFullScaleAccelRange
+GAS LISTING /tmp/ccMZBTXc.s 			page 8
+
+
+ 400 02c2 80E0      		ldi r24,0
+ 401 02c4 0E94 0000 		call MPU_setSleepEnabled
+ 402 02c8 80E0      		ldi r24,0
+ 403 02ca 0E94 0000 		call MPU_setI2CMasterModeEnabled
+ 404 02ce 21E0      		ldi r18,lo8(1)
+ 405 02d0 41E0      		ldi r20,lo8(1)
+ 406 02d2 67E3      		ldi r22,lo8(55)
+ 407 02d4 88E6      		ldi r24,lo8(104)
+ 408 02d6 0E94 0000 		call TWI_write_bit
+ 409 02da 0E94 0000 		call MPU_Calibrate_Gyros
+ 410 02de 0895      		ret
+ 411               		.size	MPU_initialize, .-MPU_initialize
+ 412               	.global	__floatsisf
+ 413               	.global	__divsf3
+ 414               	.global	MPU_Get_Gyro_Rates
+ 415               		.type	MPU_Get_Gyro_Rates, @function
+ 416               	MPU_Get_Gyro_Rates:
+ 417 02e0 AF92      		push r10
+ 418 02e2 BF92      		push r11
+ 419 02e4 CF92      		push r12
+ 420 02e6 DF92      		push r13
+ 421 02e8 EF92      		push r14
+ 422 02ea FF92      		push r15
+ 423 02ec 0F93      		push r16
+ 424 02ee 1F93      		push r17
+ 425 02f0 CF93      		push r28
+ 426 02f2 DF93      		push r29
+ 427               	/* prologue: function */
+ 428               	/* frame size = 0 */
+ 429               	/* stack size = 10 */
+ 430               	.L__stack_usage = 10
+ 431 02f4 5C01      		movw r10,r24
+ 432 02f6 7B01      		movw r14,r22
+ 433 02f8 EA01      		movw r28,r20
+ 434 02fa 20E0      		ldi r18,lo8(buffer)
+ 435 02fc 30E0      		ldi r19,hi8(buffer)
+ 436 02fe 46E0      		ldi r20,lo8(6)
+ 437 0300 63E4      		ldi r22,lo8(67)
+ 438 0302 88E6      		ldi r24,lo8(104)
+ 439 0304 0E94 0000 		call TWI_read_bytes
+ 440 0308 C090 0000 		lds r12,buffer+2
+ 441 030c D12C      		mov r13,__zero_reg__
+ 442 030e DC2C      		mov r13,r12
+ 443 0310 CC24      		clr r12
+ 444 0312 8091 0000 		lds r24,buffer+3
+ 445 0316 C82A      		or r12,r24
+ 446 0318 8091 0000 		lds r24,Gy_offset
+ 447 031c 9091 0000 		lds r25,Gy_offset+1
+ 448 0320 C81A      		sub r12,r24
+ 449 0322 D90A      		sbc r13,r25
+ 450 0324 0091 0000 		lds r16,buffer+4
+ 451 0328 10E0      		ldi r17,0
+ 452 032a 102F      		mov r17,r16
+ 453 032c 0027      		clr r16
+ 454 032e 8091 0000 		lds r24,buffer+5
+ 455 0332 082B      		or r16,r24
+ 456 0334 8091 0000 		lds r24,Gz_offset
+GAS LISTING /tmp/ccMZBTXc.s 			page 9
+
+
+ 457 0338 9091 0000 		lds r25,Gz_offset+1
+ 458 033c 081B      		sub r16,r24
+ 459 033e 190B      		sbc r17,r25
+ 460 0340 6091 0000 		lds r22,buffer
+ 461 0344 70E0      		ldi r23,0
+ 462 0346 762F      		mov r23,r22
+ 463 0348 6627      		clr r22
+ 464 034a 8091 0000 		lds r24,buffer+1
+ 465 034e 682B      		or r22,r24
+ 466 0350 8091 0000 		lds r24,Gx_offset
+ 467 0354 9091 0000 		lds r25,Gx_offset+1
+ 468 0358 681B      		sub r22,r24
+ 469 035a 790B      		sbc r23,r25
+ 470 035c 8827      		clr r24
+ 471 035e 77FD      		sbrc r23,7
+ 472 0360 8095      		com r24
+ 473 0362 982F      		mov r25,r24
+ 474 0364 0E94 0000 		call __floatsisf
+ 475 0368 20E0      		ldi r18,0
+ 476 036a 30E0      		ldi r19,0
+ 477 036c 43E0      		ldi r20,lo8(3)
+ 478 036e 53E4      		ldi r21,lo8(67)
+ 479 0370 0E94 0000 		call __divsf3
+ 480 0374 F501      		movw r30,r10
+ 481 0376 6083      		st Z,r22
+ 482 0378 7183      		std Z+1,r23
+ 483 037a 8283      		std Z+2,r24
+ 484 037c 9383      		std Z+3,r25
+ 485 037e B601      		movw r22,r12
+ 486 0380 8827      		clr r24
+ 487 0382 77FD      		sbrc r23,7
+ 488 0384 8095      		com r24
+ 489 0386 982F      		mov r25,r24
+ 490 0388 0E94 0000 		call __floatsisf
+ 491 038c 20E0      		ldi r18,0
+ 492 038e 30E0      		ldi r19,0
+ 493 0390 43E0      		ldi r20,lo8(3)
+ 494 0392 53E4      		ldi r21,lo8(67)
+ 495 0394 0E94 0000 		call __divsf3
+ 496 0398 F701      		movw r30,r14
+ 497 039a 6083      		st Z,r22
+ 498 039c 7183      		std Z+1,r23
+ 499 039e 8283      		std Z+2,r24
+ 500 03a0 9383      		std Z+3,r25
+ 501 03a2 B801      		movw r22,r16
+ 502 03a4 8827      		clr r24
+ 503 03a6 77FD      		sbrc r23,7
+ 504 03a8 8095      		com r24
+ 505 03aa 982F      		mov r25,r24
+ 506 03ac 0E94 0000 		call __floatsisf
+ 507 03b0 20E0      		ldi r18,0
+ 508 03b2 30E0      		ldi r19,0
+ 509 03b4 43E0      		ldi r20,lo8(3)
+ 510 03b6 53E4      		ldi r21,lo8(67)
+ 511 03b8 0E94 0000 		call __divsf3
+ 512 03bc 6883      		st Y,r22
+ 513 03be 7983      		std Y+1,r23
+GAS LISTING /tmp/ccMZBTXc.s 			page 10
+
+
+ 514 03c0 8A83      		std Y+2,r24
+ 515 03c2 9B83      		std Y+3,r25
+ 516               	/* epilogue start */
+ 517 03c4 DF91      		pop r29
+ 518 03c6 CF91      		pop r28
+ 519 03c8 1F91      		pop r17
+ 520 03ca 0F91      		pop r16
+ 521 03cc FF90      		pop r15
+ 522 03ce EF90      		pop r14
+ 523 03d0 DF90      		pop r13
+ 524 03d2 CF90      		pop r12
+ 525 03d4 BF90      		pop r11
+ 526 03d6 AF90      		pop r10
+ 527 03d8 0895      		ret
+ 528               		.size	MPU_Get_Gyro_Rates, .-MPU_Get_Gyro_Rates
+ 529               	.global	__mulsf3
+ 530               	.global	MPU_Get_Accel_Values
+ 531               		.type	MPU_Get_Accel_Values, @function
+ 532               	MPU_Get_Accel_Values:
+ 533 03da AF92      		push r10
+ 534 03dc BF92      		push r11
+ 535 03de CF92      		push r12
+ 536 03e0 DF92      		push r13
+ 537 03e2 EF92      		push r14
+ 538 03e4 FF92      		push r15
+ 539 03e6 0F93      		push r16
+ 540 03e8 1F93      		push r17
+ 541 03ea CF93      		push r28
+ 542 03ec DF93      		push r29
+ 543               	/* prologue: function */
+ 544               	/* frame size = 0 */
+ 545               	/* stack size = 10 */
+ 546               	.L__stack_usage = 10
+ 547 03ee 5C01      		movw r10,r24
+ 548 03f0 7B01      		movw r14,r22
+ 549 03f2 EA01      		movw r28,r20
+ 550 03f4 20E0      		ldi r18,lo8(buffer)
+ 551 03f6 30E0      		ldi r19,hi8(buffer)
+ 552 03f8 46E0      		ldi r20,lo8(6)
+ 553 03fa 6BE3      		ldi r22,lo8(59)
+ 554 03fc 88E6      		ldi r24,lo8(104)
+ 555 03fe 0E94 0000 		call TWI_read_bytes
+ 556 0402 C090 0000 		lds r12,buffer+2
+ 557 0406 D12C      		mov r13,__zero_reg__
+ 558 0408 DC2C      		mov r13,r12
+ 559 040a CC24      		clr r12
+ 560 040c 8091 0000 		lds r24,buffer+3
+ 561 0410 C82A      		or r12,r24
+ 562 0412 0091 0000 		lds r16,buffer+4
+ 563 0416 10E0      		ldi r17,0
+ 564 0418 102F      		mov r17,r16
+ 565 041a 0027      		clr r16
+ 566 041c 8091 0000 		lds r24,buffer+5
+ 567 0420 082B      		or r16,r24
+ 568 0422 6091 0000 		lds r22,buffer
+ 569 0426 70E0      		ldi r23,0
+ 570 0428 762F      		mov r23,r22
+GAS LISTING /tmp/ccMZBTXc.s 			page 11
+
+
+ 571 042a 6627      		clr r22
+ 572 042c 8091 0000 		lds r24,buffer+1
+ 573 0430 682B      		or r22,r24
+ 574 0432 8827      		clr r24
+ 575 0434 77FD      		sbrc r23,7
+ 576 0436 8095      		com r24
+ 577 0438 982F      		mov r25,r24
+ 578 043a 0E94 0000 		call __floatsisf
+ 579 043e 20E0      		ldi r18,0
+ 580 0440 30E0      		ldi r19,0
+ 581 0442 40E8      		ldi r20,lo8(-128)
+ 582 0444 58E3      		ldi r21,lo8(56)
+ 583 0446 0E94 0000 		call __mulsf3
+ 584 044a F501      		movw r30,r10
+ 585 044c 6083      		st Z,r22
+ 586 044e 7183      		std Z+1,r23
+ 587 0450 8283      		std Z+2,r24
+ 588 0452 9383      		std Z+3,r25
+ 589 0454 B601      		movw r22,r12
+ 590 0456 8827      		clr r24
+ 591 0458 77FD      		sbrc r23,7
+ 592 045a 8095      		com r24
+ 593 045c 982F      		mov r25,r24
+ 594 045e 0E94 0000 		call __floatsisf
+ 595 0462 20E0      		ldi r18,0
+ 596 0464 30E0      		ldi r19,0
+ 597 0466 40E8      		ldi r20,lo8(-128)
+ 598 0468 58E3      		ldi r21,lo8(56)
+ 599 046a 0E94 0000 		call __mulsf3
+ 600 046e F701      		movw r30,r14
+ 601 0470 6083      		st Z,r22
+ 602 0472 7183      		std Z+1,r23
+ 603 0474 8283      		std Z+2,r24
+ 604 0476 9383      		std Z+3,r25
+ 605 0478 B801      		movw r22,r16
+ 606 047a 8827      		clr r24
+ 607 047c 77FD      		sbrc r23,7
+ 608 047e 8095      		com r24
+ 609 0480 982F      		mov r25,r24
+ 610 0482 0E94 0000 		call __floatsisf
+ 611 0486 20E0      		ldi r18,0
+ 612 0488 30E0      		ldi r19,0
+ 613 048a 40E8      		ldi r20,lo8(-128)
+ 614 048c 58E3      		ldi r21,lo8(56)
+ 615 048e 0E94 0000 		call __mulsf3
+ 616 0492 6883      		st Y,r22
+ 617 0494 7983      		std Y+1,r23
+ 618 0496 8A83      		std Y+2,r24
+ 619 0498 9B83      		std Y+3,r25
+ 620               	/* epilogue start */
+ 621 049a DF91      		pop r29
+ 622 049c CF91      		pop r28
+ 623 049e 1F91      		pop r17
+ 624 04a0 0F91      		pop r16
+ 625 04a2 FF90      		pop r15
+ 626 04a4 EF90      		pop r14
+ 627 04a6 DF90      		pop r13
+GAS LISTING /tmp/ccMZBTXc.s 			page 12
+
+
+ 628 04a8 CF90      		pop r12
+ 629 04aa BF90      		pop r11
+ 630 04ac AF90      		pop r10
+ 631 04ae 0895      		ret
+ 632               		.size	MPU_Get_Accel_Values, .-MPU_Get_Accel_Values
+ 633               	.global	MPU_1GValue
+ 634               		.type	MPU_1GValue, @function
+ 635               	MPU_1GValue:
+ 636               	/* prologue: function */
+ 637               	/* frame size = 0 */
+ 638               	/* stack size = 0 */
+ 639               	.L__stack_usage = 0
+ 640 04b0 6091 0000 		lds r22,Acc1G_Values
+ 641 04b4 7091 0000 		lds r23,Acc1G_Values+1
+ 642 04b8 8091 0000 		lds r24,Acc1G_Values+2
+ 643 04bc 9091 0000 		lds r25,Acc1G_Values+3
+ 644 04c0 0895      		ret
+ 645               		.size	MPU_1GValue, .-MPU_1GValue
+ 646               		.comm	MPU6050_Lastgz,2,1
+ 647               		.comm	MPU6050_Lastgy,2,1
+ 648               		.comm	MPU6050_Lastgx,2,1
+ 649               		.comm	MPU6050_Lastaz,2,1
+ 650               		.comm	MPU6050_Lastay,2,1
+ 651               		.comm	MPU6050_Lastax,2,1
+ 652               		.comm	Acc1G_Values,4,1
+ 653               	.global	Gz_offset
+ 654               		.section .bss
+ 655               		.type	Gz_offset, @object
+ 656               		.size	Gz_offset, 2
+ 657               	Gz_offset:
+ 658 0000 0000      		.zero	2
+ 659               	.global	Gy_offset
+ 660               		.type	Gy_offset, @object
+ 661               		.size	Gy_offset, 2
+ 662               	Gy_offset:
+ 663 0002 0000      		.zero	2
+ 664               	.global	Gx_offset
+ 665               		.type	Gx_offset, @object
+ 666               		.size	Gx_offset, 2
+ 667               	Gx_offset:
+ 668 0004 0000      		.zero	2
+ 669               		.comm	MPU_FIFO,132,1
+ 670               		.comm	buffer,14,1
+ 671               		.ident	"GCC: (GNU) 4.8.2"
+ 672               	.global __do_clear_bss
+GAS LISTING /tmp/ccMZBTXc.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 MPU6050.c
+     /tmp/ccMZBTXc.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccMZBTXc.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccMZBTXc.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccMZBTXc.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccMZBTXc.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccMZBTXc.s:10     .text:0000000000000000 MPU_setClockSource
+     /tmp/ccMZBTXc.s:28     .text:0000000000000014 MPU_setFullScaleGyroRange
+     /tmp/ccMZBTXc.s:46     .text:0000000000000028 MPU_setFullScaleAccelRange
+     /tmp/ccMZBTXc.s:64     .text:000000000000003c MPU_setSleepEnabled
+     /tmp/ccMZBTXc.s:78     .text:000000000000004a MPU_setI2CMasterModeEnabled
+     /tmp/ccMZBTXc.s:92     .text:0000000000000058 MPU_testConnection
+                            *COM*:000000000000000e buffer
+     /tmp/ccMZBTXc.s:113    .text:0000000000000074 MPU_getMotion6
+     /tmp/ccMZBTXc.s:667    .bss:0000000000000004 Gx_offset
+     /tmp/ccMZBTXc.s:662    .bss:0000000000000002 Gy_offset
+     /tmp/ccMZBTXc.s:657    .bss:0000000000000000 Gz_offset
+     /tmp/ccMZBTXc.s:222    .text:0000000000000162 MPU_Calibrate_Gyros
+     /tmp/ccMZBTXc.s:389    .text:00000000000002b0 MPU_initialize
+     /tmp/ccMZBTXc.s:416    .text:00000000000002e0 MPU_Get_Gyro_Rates
+     /tmp/ccMZBTXc.s:532    .text:00000000000003da MPU_Get_Accel_Values
+     /tmp/ccMZBTXc.s:635    .text:00000000000004b0 MPU_1GValue
+                            *COM*:0000000000000004 Acc1G_Values
+                            *COM*:0000000000000002 MPU6050_Lastgz
+                            *COM*:0000000000000002 MPU6050_Lastgy
+                            *COM*:0000000000000002 MPU6050_Lastgx
+                            *COM*:0000000000000002 MPU6050_Lastaz
+                            *COM*:0000000000000002 MPU6050_Lastay
+                            *COM*:0000000000000002 MPU6050_Lastax
+                            *COM*:0000000000000084 MPU_FIFO
+
+UNDEFINED SYMBOLS
+TWI_write_bits
+TWI_write_bit
+TWI_read_bytes
+__divmodsi4
+__floatsisf
+__divsf3
+__mulsf3
+__do_clear_bss

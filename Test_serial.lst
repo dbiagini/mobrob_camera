@@ -1,0 +1,57 @@
+GAS LISTING /tmp/ccWPXK3z.s 			page 1
+
+
+   1               		.file	"Test_serial.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.text
+   8               	.global	main
+   9               		.type	main, @function
+  10               	main:
+  11               	/* prologue: function */
+  12               	/* frame size = 0 */
+  13               	/* stack size = 0 */
+  14               	.L__stack_usage = 0
+  15 0000 0E94 0000 		call USART_init
+  16               	.L2:
+  17 0004 2FE7      		ldi r18,lo8(527999)
+  18 0006 8EE0      		ldi r24,hi8(527999)
+  19 0008 98E0      		ldi r25,hlo8(527999)
+  20 000a 2150      		1: subi r18,1
+  21 000c 8040      		sbci r24,0
+  22 000e 9040      		sbci r25,0
+  23 0010 01F4      		brne 1b
+  24 0012 00C0      		rjmp .
+  25 0014 0000      		nop
+  26 0016 84E5      		ldi r24,lo8(84)
+  27 0018 0E94 0000 		call out_char
+  28 001c 2FE7      		ldi r18,lo8(527999)
+  29 001e 8EE0      		ldi r24,hi8(527999)
+  30 0020 98E0      		ldi r25,hlo8(527999)
+  31 0022 2150      		1: subi r18,1
+  32 0024 8040      		sbci r24,0
+  33 0026 9040      		sbci r25,0
+  34 0028 01F4      		brne 1b
+  35 002a 00C0      		rjmp .
+  36 002c 0000      		nop
+  37 002e 00C0      		rjmp .L2
+  38               		.size	main, .-main
+  39               		.ident	"GCC: (GNU) 4.8.2"
+GAS LISTING /tmp/ccWPXK3z.s 			page 2
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 Test_serial.c
+     /tmp/ccWPXK3z.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccWPXK3z.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccWPXK3z.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccWPXK3z.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccWPXK3z.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccWPXK3z.s:10     .text:0000000000000000 main
+
+UNDEFINED SYMBOLS
+USART_init
+out_char

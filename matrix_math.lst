@@ -1,0 +1,250 @@
+GAS LISTING /tmp/ccil2YMf.s 			page 1
+
+
+   1               		.file	"matrix_math.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__ = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.text
+   9               	.global	matrix_multiply
+  10               		.type	matrix_multiply, @function
+  11               	matrix_multiply:
+  12 0000 2F92      		push r2
+  13 0002 3F92      		push r3
+  14 0004 4F92      		push r4
+  15 0006 5F92      		push r5
+  16 0008 6F92      		push r6
+  17 000a 7F92      		push r7
+  18 000c 8F92      		push r8
+  19 000e 9F92      		push r9
+  20 0010 AF92      		push r10
+  21 0012 BF92      		push r11
+  22 0014 CF92      		push r12
+  23 0016 DF92      		push r13
+  24 0018 EF92      		push r14
+  25 001a FF92      		push r15
+  26 001c 0F93      		push r16
+  27 001e 1F93      		push r17
+  28 0020 DF93      		push r29
+  29 0022 CF93      		push r28
+  30 0024 CDB7      		in r28,__SP_L__
+  31 0026 DEB7      		in r29,__SP_H__
+  32 0028 6497      		sbiw r28,20
+  33 002a 0FB6      		in __tmp_reg__,__SREG__
+  34 002c F894      		cli
+  35 002e DEBF      		out __SP_H__,r29
+  36 0030 0FBE      		out __SREG__,__tmp_reg__
+  37 0032 CDBF      		out __SP_L__,r28
+  38               	/* prologue: function */
+  39               	/* frame size = 20 */
+  40               	/* stack size = 38 */
+  41               	.L__stack_usage = 38
+  42 0034 698B      		std Y+17,r22
+  43 0036 7A8B      		std Y+18,r23
+  44 0038 5E87      		std Y+14,r21
+  45 003a 4D87      		std Y+13,r20
+  46 003c 4901      		movw r8,r18
+  47 003e 1A83      		std Y+2,r17
+  48 0040 0983      		std Y+1,r16
+  49 0042 1416      		cp __zero_reg__,r20
+  50 0044 1506      		cpc __zero_reg__,r21
+  51 0046 04F0      		brlt .+2
+  52 0048 00C0      		rjmp .L1
+  53 004a 5801      		movw r10,r16
+  54 004c AA0C      		lsl r10
+  55 004e BB1C      		rol r11
+  56 0050 AA0C      		lsl r10
+  57 0052 BB1C      		rol r11
+GAS LISTING /tmp/ccil2YMf.s 			page 2
+
+
+  58 0054 2E2D      		mov r18,r14
+  59 0056 3F2D      		mov r19,r15
+  60 0058 3887      		std Y+8,r19
+  61 005a 2F83      		std Y+7,r18
+  62 005c 9401      		movw r18,r8
+  63 005e 220F      		lsl r18
+  64 0060 331F      		rol r19
+  65 0062 220F      		lsl r18
+  66 0064 331F      		rol r19
+  67 0066 388B      		std Y+16,r19
+  68 0068 2F87      		std Y+15,r18
+  69 006a 9A87      		std Y+10,r25
+  70 006c 8987      		std Y+9,r24
+  71 006e 1C86      		std Y+12,__zero_reg__
+  72 0070 1B86      		std Y+11,__zero_reg__
+  73 0072 80E0      		ldi r24,lo8(0)
+  74 0074 90E0      		ldi r25,hi8(0)
+  75 0076 8D83      		std Y+5,r24
+  76 0078 9E83      		std Y+6,r25
+  77 007a 00C0      		rjmp .L3
+  78               	.L6:
+  79 007c 7301      		movw r14,r6
+  80 007e 80E0      		ldi r24,lo8(0x0)
+  81 0080 90E0      		ldi r25,hi8(0x0)
+  82 0082 DC01      		movw r26,r24
+  83 0084 F301      		movw r30,r6
+  84 0086 8083      		st Z,r24
+  85 0088 9183      		std Z+1,r25
+  86 008a A283      		std Z+2,r26
+  87 008c B383      		std Z+3,r27
+  88 008e 1814      		cp __zero_reg__,r8
+  89 0090 1904      		cpc __zero_reg__,r9
+  90 0092 04F4      		brge .L4
+  91 0094 3C8A      		std Y+20,r3
+  92 0096 2B8A      		std Y+19,r2
+  93 0098 CB80      		ldd r12,Y+3
+  94 009a DC80      		ldd r13,Y+4
+  95 009c 0D81      		ldd r16,Y+5
+  96 009e 1E81      		ldd r17,Y+6
+  97               	.L5:
+  98 00a0 D601      		movw r26,r12
+  99 00a2 6D91      		ld r22,X+
+ 100 00a4 7D91      		ld r23,X+
+ 101 00a6 8D91      		ld r24,X+
+ 102 00a8 9D91      		ld r25,X+
+ 103 00aa 6D01      		movw r12,r26
+ 104 00ac EB89      		ldd r30,Y+19
+ 105 00ae FC89      		ldd r31,Y+20
+ 106 00b0 2081      		ld r18,Z
+ 107 00b2 3181      		ldd r19,Z+1
+ 108 00b4 4281      		ldd r20,Z+2
+ 109 00b6 5381      		ldd r21,Z+3
+ 110 00b8 00D0      		rcall __mulsf3
+ 111 00ba 9B01      		movw r18,r22
+ 112 00bc AC01      		movw r20,r24
+ 113 00be D701      		movw r26,r14
+ 114 00c0 6D91      		ld r22,X+
+GAS LISTING /tmp/ccil2YMf.s 			page 3
+
+
+ 115 00c2 7D91      		ld r23,X+
+ 116 00c4 8D91      		ld r24,X+
+ 117 00c6 9C91      		ld r25,X
+ 118 00c8 00D0      		rcall __addsf3
+ 119 00ca F701      		movw r30,r14
+ 120 00cc 6083      		st Z,r22
+ 121 00ce 7183      		std Z+1,r23
+ 122 00d0 8283      		std Z+2,r24
+ 123 00d2 9383      		std Z+3,r25
+ 124 00d4 0F5F      		subi r16,lo8(-(1))
+ 125 00d6 1F4F      		sbci r17,hi8(-(1))
+ 126 00d8 2B89      		ldd r18,Y+19
+ 127 00da 3C89      		ldd r19,Y+20
+ 128 00dc 2A0D      		add r18,r10
+ 129 00de 3B1D      		adc r19,r11
+ 130 00e0 3C8B      		std Y+20,r19
+ 131 00e2 2B8B      		std Y+19,r18
+ 132 00e4 0815      		cp r16,r8
+ 133 00e6 1905      		cpc r17,r9
+ 134 00e8 01F4      		brne .L5
+ 135               	.L4:
+ 136 00ea 0894      		sec
+ 137 00ec 411C      		adc r4,__zero_reg__
+ 138 00ee 511C      		adc r5,__zero_reg__
+ 139 00f0 84E0      		ldi r24,lo8(4)
+ 140 00f2 90E0      		ldi r25,hi8(4)
+ 141 00f4 680E      		add r6,r24
+ 142 00f6 791E      		adc r7,r25
+ 143 00f8 280E      		add r2,r24
+ 144 00fa 391E      		adc r3,r25
+ 145 00fc A981      		ldd r26,Y+1
+ 146 00fe BA81      		ldd r27,Y+2
+ 147 0100 4A16      		cp r4,r26
+ 148 0102 5B06      		cpc r5,r27
+ 149 0104 01F0      		breq .+2
+ 150 0106 00C0      		rjmp .L6
+ 151               	.L7:
+ 152 0108 EB85      		ldd r30,Y+11
+ 153 010a FC85      		ldd r31,Y+12
+ 154 010c 3196      		adiw r30,1
+ 155 010e FC87      		std Y+12,r31
+ 156 0110 EB87      		std Y+11,r30
+ 157 0112 2F81      		ldd r18,Y+7
+ 158 0114 3885      		ldd r19,Y+8
+ 159 0116 2A0D      		add r18,r10
+ 160 0118 3B1D      		adc r19,r11
+ 161 011a 3887      		std Y+8,r19
+ 162 011c 2F83      		std Y+7,r18
+ 163 011e 8985      		ldd r24,Y+9
+ 164 0120 9A85      		ldd r25,Y+10
+ 165 0122 AF85      		ldd r26,Y+15
+ 166 0124 B889      		ldd r27,Y+16
+ 167 0126 8A0F      		add r24,r26
+ 168 0128 9B1F      		adc r25,r27
+ 169 012a 9A87      		std Y+10,r25
+ 170 012c 8987      		std Y+9,r24
+ 171 012e 2D85      		ldd r18,Y+13
+GAS LISTING /tmp/ccil2YMf.s 			page 4
+
+
+ 172 0130 3E85      		ldd r19,Y+14
+ 173 0132 E217      		cp r30,r18
+ 174 0134 F307      		cpc r31,r19
+ 175 0136 01F0      		breq .L1
+ 176               	.L3:
+ 177 0138 8981      		ldd r24,Y+1
+ 178 013a 9A81      		ldd r25,Y+2
+ 179 013c 1816      		cp __zero_reg__,r24
+ 180 013e 1906      		cpc __zero_reg__,r25
+ 181 0140 04F4      		brge .L7
+ 182 0142 9989      		ldd r25,Y+17
+ 183 0144 8A89      		ldd r24,Y+18
+ 184 0146 292E      		mov r2,r25
+ 185 0148 382E      		mov r3,r24
+ 186 014a 6F80      		ldd r6,Y+7
+ 187 014c 7884      		ldd r7,Y+8
+ 188 014e 4424      		clr r4
+ 189 0150 5524      		clr r5
+ 190 0152 8985      		ldd r24,Y+9
+ 191 0154 9A85      		ldd r25,Y+10
+ 192 0156 8B83      		std Y+3,r24
+ 193 0158 9C83      		std Y+4,r25
+ 194 015a 00C0      		rjmp .L6
+ 195               	.L1:
+ 196               	/* epilogue start */
+ 197 015c 6496      		adiw r28,20
+ 198 015e 0FB6      		in __tmp_reg__,__SREG__
+ 199 0160 F894      		cli
+ 200 0162 DEBF      		out __SP_H__,r29
+ 201 0164 0FBE      		out __SREG__,__tmp_reg__
+ 202 0166 CDBF      		out __SP_L__,r28
+ 203 0168 CF91      		pop r28
+ 204 016a DF91      		pop r29
+ 205 016c 1F91      		pop r17
+ 206 016e 0F91      		pop r16
+ 207 0170 FF90      		pop r15
+ 208 0172 EF90      		pop r14
+ 209 0174 DF90      		pop r13
+ 210 0176 CF90      		pop r12
+ 211 0178 BF90      		pop r11
+ 212 017a AF90      		pop r10
+ 213 017c 9F90      		pop r9
+ 214 017e 8F90      		pop r8
+ 215 0180 7F90      		pop r7
+ 216 0182 6F90      		pop r6
+ 217 0184 5F90      		pop r5
+ 218 0186 4F90      		pop r4
+ 219 0188 3F90      		pop r3
+ 220 018a 2F90      		pop r2
+ 221 018c 0895      		ret
+ 222               		.size	matrix_multiply, .-matrix_multiply
+GAS LISTING /tmp/ccil2YMf.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 matrix_math.c
+     /tmp/ccil2YMf.s:2      *ABS*:000000000000003f __SREG__
+     /tmp/ccil2YMf.s:3      *ABS*:000000000000003e __SP_H__
+     /tmp/ccil2YMf.s:4      *ABS*:000000000000003d __SP_L__
+     /tmp/ccil2YMf.s:5      *ABS*:0000000000000034 __CCP__
+     /tmp/ccil2YMf.s:6      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccil2YMf.s:7      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccil2YMf.s:11     .text:0000000000000000 matrix_multiply
+
+UNDEFINED SYMBOLS
+__mulsf3
+__addsf3

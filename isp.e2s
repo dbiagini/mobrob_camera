@@ -1,0 +1,4 @@
+-e SELECTDEVICE atmega32
+LOAD-PROG avr.hex
+ WRITE-PROG
+

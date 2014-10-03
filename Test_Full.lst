@@ -1,0 +1,1483 @@
+GAS LISTING /tmp/ccQzOhHf.s 			page 1
+
+
+   1               		.file	"Test_Full.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               	.global	__mulsf3
+   8               	.global	__addsf3
+   9               	.global	__divsf3
+  10               		.text
+  11               	.global	normalize3DVector
+  12               		.type	normalize3DVector, @function
+  13               	normalize3DVector:
+  14 0000 4F92      		push r4
+  15 0002 5F92      		push r5
+  16 0004 6F92      		push r6
+  17 0006 7F92      		push r7
+  18 0008 8F92      		push r8
+  19 000a 9F92      		push r9
+  20 000c AF92      		push r10
+  21 000e BF92      		push r11
+  22 0010 CF92      		push r12
+  23 0012 DF92      		push r13
+  24 0014 EF92      		push r14
+  25 0016 FF92      		push r15
+  26 0018 0F93      		push r16
+  27 001a 1F93      		push r17
+  28 001c CF93      		push r28
+  29 001e DF93      		push r29
+  30 0020 00D0      		rcall .
+  31 0022 00D0      		rcall .
+  32 0024 CDB7      		in r28,__SP_L__
+  33 0026 DEB7      		in r29,__SP_H__
+  34               	/* prologue: function */
+  35               	/* frame size = 4 */
+  36               	/* stack size = 20 */
+  37               	.L__stack_usage = 20
+  38 0028 8C01      		movw r16,r24
+  39 002a DC01      		movw r26,r24
+  40 002c 4D90      		ld r4,X+
+  41 002e 5D90      		ld r5,X+
+  42 0030 6D90      		ld r6,X+
+  43 0032 7C90      		ld r7,X
+  44 0034 1397      		sbiw r26,3
+  45 0036 1496      		adiw r26,4
+  46 0038 8D90      		ld r8,X+
+  47 003a 9D90      		ld r9,X+
+  48 003c AD90      		ld r10,X+
+  49 003e BC90      		ld r11,X
+  50 0040 1797      		sbiw r26,4+3
+  51 0042 1896      		adiw r26,8
+  52 0044 8D91      		ld r24,X+
+  53 0046 9D91      		ld r25,X+
+  54 0048 0D90      		ld __tmp_reg__,X+
+  55 004a BC91      		ld r27,X
+  56 004c A02D      		mov r26,__tmp_reg__
+  57 004e 8983      		std Y+1,r24
+GAS LISTING /tmp/ccQzOhHf.s 			page 2
+
+
+  58 0050 9A83      		std Y+2,r25
+  59 0052 AB83      		std Y+3,r26
+  60 0054 BC83      		std Y+4,r27
+  61 0056 A301      		movw r20,r6
+  62 0058 9201      		movw r18,r4
+  63 005a C301      		movw r24,r6
+  64 005c B201      		movw r22,r4
+  65 005e 0E94 0000 		call __mulsf3
+  66 0062 6B01      		movw r12,r22
+  67 0064 7C01      		movw r14,r24
+  68 0066 A501      		movw r20,r10
+  69 0068 9401      		movw r18,r8
+  70 006a C501      		movw r24,r10
+  71 006c B401      		movw r22,r8
+  72 006e 0E94 0000 		call __mulsf3
+  73 0072 9B01      		movw r18,r22
+  74 0074 AC01      		movw r20,r24
+  75 0076 C701      		movw r24,r14
+  76 0078 B601      		movw r22,r12
+  77 007a 0E94 0000 		call __addsf3
+  78 007e 6B01      		movw r12,r22
+  79 0080 7C01      		movw r14,r24
+  80 0082 2981      		ldd r18,Y+1
+  81 0084 3A81      		ldd r19,Y+2
+  82 0086 4B81      		ldd r20,Y+3
+  83 0088 5C81      		ldd r21,Y+4
+  84 008a CA01      		movw r24,r20
+  85 008c B901      		movw r22,r18
+  86 008e 0E94 0000 		call __mulsf3
+  87 0092 9B01      		movw r18,r22
+  88 0094 AC01      		movw r20,r24
+  89 0096 C701      		movw r24,r14
+  90 0098 B601      		movw r22,r12
+  91 009a 0E94 0000 		call __addsf3
+  92 009e 0E94 0000 		call sqrt
+  93 00a2 6B01      		movw r12,r22
+  94 00a4 7C01      		movw r14,r24
+  95 00a6 6093 0000 		sts R.1863,r22
+  96 00aa 7093 0000 		sts R.1863+1,r23
+  97 00ae 8093 0000 		sts R.1863+2,r24
+  98 00b2 9093 0000 		sts R.1863+3,r25
+  99 00b6 9B01      		movw r18,r22
+ 100 00b8 AC01      		movw r20,r24
+ 101 00ba C301      		movw r24,r6
+ 102 00bc B201      		movw r22,r4
+ 103 00be 0E94 0000 		call __divsf3
+ 104 00c2 F801      		movw r30,r16
+ 105 00c4 6083      		st Z,r22
+ 106 00c6 7183      		std Z+1,r23
+ 107 00c8 8283      		std Z+2,r24
+ 108 00ca 9383      		std Z+3,r25
+ 109 00cc A701      		movw r20,r14
+ 110 00ce 9601      		movw r18,r12
+ 111 00d0 C501      		movw r24,r10
+ 112 00d2 B401      		movw r22,r8
+ 113 00d4 0E94 0000 		call __divsf3
+ 114 00d8 D801      		movw r26,r16
+GAS LISTING /tmp/ccQzOhHf.s 			page 3
+
+
+ 115 00da 1496      		adiw r26,4
+ 116 00dc 6D93      		st X+,r22
+ 117 00de 7D93      		st X+,r23
+ 118 00e0 8D93      		st X+,r24
+ 119 00e2 9C93      		st X,r25
+ 120 00e4 1797      		sbiw r26,4+3
+ 121 00e6 A701      		movw r20,r14
+ 122 00e8 9601      		movw r18,r12
+ 123 00ea 6981      		ldd r22,Y+1
+ 124 00ec 7A81      		ldd r23,Y+2
+ 125 00ee 8B81      		ldd r24,Y+3
+ 126 00f0 9C81      		ldd r25,Y+4
+ 127 00f2 0E94 0000 		call __divsf3
+ 128 00f6 F801      		movw r30,r16
+ 129 00f8 6087      		std Z+8,r22
+ 130 00fa 7187      		std Z+9,r23
+ 131 00fc 8287      		std Z+10,r24
+ 132 00fe 9387      		std Z+11,r25
+ 133               	/* epilogue start */
+ 134 0100 0F90      		pop __tmp_reg__
+ 135 0102 0F90      		pop __tmp_reg__
+ 136 0104 0F90      		pop __tmp_reg__
+ 137 0106 0F90      		pop __tmp_reg__
+ 138 0108 DF91      		pop r29
+ 139 010a CF91      		pop r28
+ 140 010c 1F91      		pop r17
+ 141 010e 0F91      		pop r16
+ 142 0110 FF90      		pop r15
+ 143 0112 EF90      		pop r14
+ 144 0114 DF90      		pop r13
+ 145 0116 CF90      		pop r12
+ 146 0118 BF90      		pop r11
+ 147 011a AF90      		pop r10
+ 148 011c 9F90      		pop r9
+ 149 011e 8F90      		pop r8
+ 150 0120 7F90      		pop r7
+ 151 0122 6F90      		pop r6
+ 152 0124 5F90      		pop r5
+ 153 0126 4F90      		pop r4
+ 154 0128 0895      		ret
+ 155               		.size	normalize3DVector, .-normalize3DVector
+ 156               	.global	lpf
+ 157               		.type	lpf, @function
+ 158               	lpf:
+ 159 012a 2F92      		push r2
+ 160 012c 3F92      		push r3
+ 161 012e 4F92      		push r4
+ 162 0130 5F92      		push r5
+ 163 0132 6F92      		push r6
+ 164 0134 7F92      		push r7
+ 165 0136 8F92      		push r8
+ 166 0138 9F92      		push r9
+ 167 013a AF92      		push r10
+ 168 013c BF92      		push r11
+ 169 013e CF92      		push r12
+ 170 0140 DF92      		push r13
+ 171 0142 EF92      		push r14
+GAS LISTING /tmp/ccQzOhHf.s 			page 4
+
+
+ 172 0144 FF92      		push r15
+ 173 0146 0F93      		push r16
+ 174 0148 1F93      		push r17
+ 175 014a CF93      		push r28
+ 176 014c DF93      		push r29
+ 177 014e CDB7      		in r28,__SP_L__
+ 178 0150 DEB7      		in r29,__SP_H__
+ 179 0152 2C97      		sbiw r28,12
+ 180 0154 0FB6      		in __tmp_reg__,__SREG__
+ 181 0156 F894      		cli
+ 182 0158 DEBF      		out __SP_H__,r29
+ 183 015a 0FBE      		out __SREG__,__tmp_reg__
+ 184 015c CDBF      		out __SP_L__,r28
+ 185               	/* prologue: function */
+ 186               	/* frame size = 12 */
+ 187               	/* stack size = 30 */
+ 188               	.L__stack_usage = 30
+ 189 015e 1982      		std Y+1,__zero_reg__
+ 190 0160 1A82      		std Y+2,__zero_reg__
+ 191 0162 1B82      		std Y+3,__zero_reg__
+ 192 0164 1C82      		std Y+4,__zero_reg__
+ 193 0166 1D82      		std Y+5,__zero_reg__
+ 194 0168 1E82      		std Y+6,__zero_reg__
+ 195 016a 1F82      		std Y+7,__zero_reg__
+ 196 016c 1886      		std Y+8,__zero_reg__
+ 197 016e 1986      		std Y+9,__zero_reg__
+ 198 0170 1A86      		std Y+10,__zero_reg__
+ 199 0172 1B86      		std Y+11,__zero_reg__
+ 200 0174 1C86      		std Y+12,__zero_reg__
+ 201 0176 A0E0      		ldi r26,lo8(samp_vect+132)
+ 202 0178 B0E0      		ldi r27,hi8(samp_vect+132)
+ 203 017a 00E0      		ldi r16,lo8(samp_vect+144)
+ 204 017c 10E0      		ldi r17,hi8(samp_vect+144)
+ 205 017e 282F      		mov r18,r24
+ 206 0180 392F      		mov r19,r25
+ 207 0182 0F2E      		mov __tmp_reg__,r31
+ 208 0184 FBE0      		ldi r31,lo8(11)
+ 209 0186 CF2E      		mov r12,r31
+ 210 0188 F02D      		mov r31,__tmp_reg__
+ 211 018a D12C      		mov r13,__zero_reg__
+ 212 018c 00C0      		rjmp .L3
+ 213               	.L7:
+ 214 018e 4485      		ldd r20,Z+12
+ 215 0190 5585      		ldd r21,Z+13
+ 216 0192 6685      		ldd r22,Z+14
+ 217 0194 7785      		ldd r23,Z+15
+ 218 0196 4083      		st Z,r20
+ 219 0198 5183      		std Z+1,r21
+ 220 019a 6283      		std Z+2,r22
+ 221 019c 7383      		std Z+3,r23
+ 222 019e 41E0      		ldi r20,1
+ 223 01a0 E41A      		sub r14,r20
+ 224 01a2 F108      		sbc r15,__zero_reg__
+ 225 01a4 3C96      		adiw r30,12
+ 226 01a6 E114      		cp r14,__zero_reg__
+ 227 01a8 F104      		cpc r15,__zero_reg__
+ 228 01aa 01F4      		brne .L7
+GAS LISTING /tmp/ccQzOhHf.s 			page 5
+
+
+ 229 01ac F901      		movw r30,r18
+ 230 01ae 4191      		ld r20,Z+
+ 231 01b0 5191      		ld r21,Z+
+ 232 01b2 6191      		ld r22,Z+
+ 233 01b4 7191      		ld r23,Z+
+ 234 01b6 9F01      		movw r18,r30
+ 235 01b8 4D93      		st X+,r20
+ 236 01ba 5D93      		st X+,r21
+ 237 01bc 6D93      		st X+,r22
+ 238 01be 7D93      		st X+,r23
+ 239 01c0 A017      		cp r26,r16
+ 240 01c2 B107      		cpc r27,r17
+ 241 01c4 01F4      		brne .L3
+ 242 01c6 9E01      		movw r18,r28
+ 243 01c8 2F5F      		subi r18,-1
+ 244 01ca 3F4F      		sbci r19,-1
+ 245 01cc 6901      		movw r12,r18
+ 246 01ce 4E01      		movw r8,r28
+ 247 01d0 3DE0      		ldi r19,13
+ 248 01d2 830E      		add r8,r19
+ 249 01d4 911C      		adc r9,__zero_reg__
+ 250 01d6 0F2E      		mov __tmp_reg__,r31
+ 251 01d8 F0E0      		ldi r31,lo8(samp_vect)
+ 252 01da EF2E      		mov r14,r31
+ 253 01dc F0E0      		ldi r31,hi8(samp_vect)
+ 254 01de FF2E      		mov r15,r31
+ 255 01e0 F02D      		mov r31,__tmp_reg__
+ 256 01e2 682E      		mov r6,r24
+ 257 01e4 792E      		mov r7,r25
+ 258 01e6 412C      		mov r4,__zero_reg__
+ 259 01e8 512C      		mov r5,__zero_reg__
+ 260 01ea 00C0      		rjmp .L6
+ 261               	.L3:
+ 262 01ec FD01      		movw r30,r26
+ 263 01ee E458      		subi r30,-124
+ 264 01f0 F109      		sbc r31,__zero_reg__
+ 265 01f2 EC2C      		mov r14,r12
+ 266 01f4 FD2C      		mov r15,r13
+ 267 01f6 00C0      		rjmp .L7
+ 268               	.L10:
+ 269 01f8 F701      		movw r30,r14
+ 270 01fa E00F      		add r30,r16
+ 271 01fc F11F      		adc r31,r17
+ 272 01fe 2081      		ld r18,Z
+ 273 0200 3181      		ldd r19,Z+1
+ 274 0202 4281      		ldd r20,Z+2
+ 275 0204 5381      		ldd r21,Z+3
+ 276 0206 632D      		mov r22,r3
+ 277 0208 722D      		mov r23,r2
+ 278 020a 8A2F      		mov r24,r26
+ 279 020c 9B2F      		mov r25,r27
+ 280 020e 0E94 0000 		call __addsf3
+ 281 0212 362E      		mov r3,r22
+ 282 0214 272E      		mov r2,r23
+ 283 0216 A82F      		mov r26,r24
+ 284 0218 B92F      		mov r27,r25
+ 285 021a 045F      		subi r16,-12
+GAS LISTING /tmp/ccQzOhHf.s 			page 6
+
+
+ 286 021c 1F4F      		sbci r17,-1
+ 287 021e 0039      		cpi r16,-112
+ 288 0220 1105      		cpc r17,__zero_reg__
+ 289 0222 01F4      		brne .L10
+ 290 0224 462F      		mov r20,r22
+ 291 0226 572F      		mov r21,r23
+ 292 0228 682F      		mov r22,r24
+ 293 022a 792F      		mov r23,r25
+ 294 022c F501      		movw r30,r10
+ 295 022e 4083      		st Z,r20
+ 296 0230 5183      		std Z+1,r21
+ 297 0232 6283      		std Z+2,r22
+ 298 0234 7383      		std Z+3,r23
+ 299 0236 F4E0      		ldi r31,4
+ 300 0238 CF0E      		add r12,r31
+ 301 023a D11C      		adc r13,__zero_reg__
+ 302 023c 20E0      		ldi r18,0
+ 303 023e 30E0      		ldi r19,0
+ 304 0240 40E4      		ldi r20,lo8(64)
+ 305 0242 51E4      		ldi r21,lo8(65)
+ 306 0244 632D      		mov r22,r3
+ 307 0246 722D      		mov r23,r2
+ 308 0248 0E94 0000 		call __divsf3
+ 309 024c F301      		movw r30,r6
+ 310 024e 6193      		st Z+,r22
+ 311 0250 7193      		st Z+,r23
+ 312 0252 8193      		st Z+,r24
+ 313 0254 9193      		st Z+,r25
+ 314 0256 3F01      		movw r6,r30
+ 315 0258 F4E0      		ldi r31,4
+ 316 025a EF0E      		add r14,r31
+ 317 025c F11C      		adc r15,__zero_reg__
+ 318 025e C814      		cp r12,r8
+ 319 0260 D904      		cpc r13,r9
+ 320 0262 01F0      		breq .L2
+ 321               	.L6:
+ 322 0264 5601      		movw r10,r12
+ 323 0266 F601      		movw r30,r12
+ 324 0268 3080      		ld r3,Z
+ 325 026a 2180      		ldd r2,Z+1
+ 326 026c A281      		ldd r26,Z+2
+ 327 026e B381      		ldd r27,Z+3
+ 328 0270 042D      		mov r16,r4
+ 329 0272 152D      		mov r17,r5
+ 330 0274 00C0      		rjmp .L10
+ 331               	.L2:
+ 332               	/* epilogue start */
+ 333 0276 2C96      		adiw r28,12
+ 334 0278 0FB6      		in __tmp_reg__,__SREG__
+ 335 027a F894      		cli
+ 336 027c DEBF      		out __SP_H__,r29
+ 337 027e 0FBE      		out __SREG__,__tmp_reg__
+ 338 0280 CDBF      		out __SP_L__,r28
+ 339 0282 DF91      		pop r29
+ 340 0284 CF91      		pop r28
+ 341 0286 1F91      		pop r17
+ 342 0288 0F91      		pop r16
+GAS LISTING /tmp/ccQzOhHf.s 			page 7
+
+
+ 343 028a FF90      		pop r15
+ 344 028c EF90      		pop r14
+ 345 028e DF90      		pop r13
+ 346 0290 CF90      		pop r12
+ 347 0292 BF90      		pop r11
+ 348 0294 AF90      		pop r10
+ 349 0296 9F90      		pop r9
+ 350 0298 8F90      		pop r8
+ 351 029a 7F90      		pop r7
+ 352 029c 6F90      		pop r6
+ 353 029e 5F90      		pop r5
+ 354 02a0 4F90      		pop r4
+ 355 02a2 3F90      		pop r3
+ 356 02a4 2F90      		pop r2
+ 357 02a6 0895      		ret
+ 358               		.size	lpf, .-lpf
+ 359               	.global	squared
+ 360               		.type	squared, @function
+ 361               	squared:
+ 362               	/* prologue: function */
+ 363               	/* frame size = 0 */
+ 364               	/* stack size = 0 */
+ 365               	.L__stack_usage = 0
+ 366 02a8 9B01      		movw r18,r22
+ 367 02aa AC01      		movw r20,r24
+ 368 02ac 0E94 0000 		call __mulsf3
+ 369 02b0 0895      		ret
+ 370               		.size	squared, .-squared
+ 371               	.global	__ltsf2
+ 372               	.global	__gesf2
+ 373               	.global	__subsf3
+ 374               	.global	__floatsisf
+ 375               	.global	fuse_withGyro
+ 376               		.type	fuse_withGyro, @function
+ 377               	fuse_withGyro:
+ 378 02b2 2F92      		push r2
+ 379 02b4 3F92      		push r3
+ 380 02b6 4F92      		push r4
+ 381 02b8 5F92      		push r5
+ 382 02ba 6F92      		push r6
+ 383 02bc 7F92      		push r7
+ 384 02be 8F92      		push r8
+ 385 02c0 9F92      		push r9
+ 386 02c2 AF92      		push r10
+ 387 02c4 BF92      		push r11
+ 388 02c6 CF92      		push r12
+ 389 02c8 DF92      		push r13
+ 390 02ca EF92      		push r14
+ 391 02cc FF92      		push r15
+ 392 02ce 0F93      		push r16
+ 393 02d0 1F93      		push r17
+ 394 02d2 CF93      		push r28
+ 395 02d4 DF93      		push r29
+ 396 02d6 CDB7      		in r28,__SP_L__
+ 397 02d8 DEB7      		in r29,__SP_H__
+ 398 02da A497      		sbiw r28,36
+ 399 02dc 0FB6      		in __tmp_reg__,__SREG__
+GAS LISTING /tmp/ccQzOhHf.s 			page 8
+
+
+ 400 02de F894      		cli
+ 401 02e0 DEBF      		out __SP_H__,r29
+ 402 02e2 0FBE      		out __SREG__,__tmp_reg__
+ 403 02e4 CDBF      		out __SP_L__,r28
+ 404               	/* prologue: function */
+ 405               	/* frame size = 36 */
+ 406               	/* stack size = 54 */
+ 407               	.L__stack_usage = 54
+ 408 02e6 1C01      		movw r2,r24
+ 409 02e8 3B01      		movw r6,r22
+ 410 02ea 4901      		movw r8,r18
+ 411 02ec 5A01      		movw r10,r20
+ 412 02ee 0097      		sbiw r24,0
+ 413 02f0 01F4      		brne .+2
+ 414 02f2 00C0      		rjmp .L12
+ 415 02f4 6115      		cp r22,__zero_reg__
+ 416 02f6 7105      		cpc r23,__zero_reg__
+ 417 02f8 01F4      		brne .+2
+ 418 02fa 00C0      		rjmp .L12
+ 419 02fc 0115      		cp r16,__zero_reg__
+ 420 02fe 1105      		cpc r17,__zero_reg__
+ 421 0300 01F4      		brne .+2
+ 422 0302 00C0      		rjmp .L12
+ 423 0304 DC01      		movw r26,r24
+ 424 0306 1896      		adiw r26,8
+ 425 0308 CD90      		ld r12,X+
+ 426 030a DD90      		ld r13,X+
+ 427 030c ED90      		ld r14,X+
+ 428 030e FC90      		ld r15,X
+ 429 0310 1B97      		sbiw r26,8+3
+ 430 0312 C701      		movw r24,r14
+ 431 0314 B601      		movw r22,r12
+ 432 0316 9F77      		andi r25,0x7f
+ 433 0318 2DEC      		ldi r18,lo8(-51)
+ 434 031a 3CEC      		ldi r19,lo8(-52)
+ 435 031c 4CEC      		ldi r20,lo8(-52)
+ 436 031e 5DE3      		ldi r21,lo8(61)
+ 437 0320 0E94 0000 		call __ltsf2
+ 438 0324 8823      		tst r24
+ 439 0326 04F4      		brge .L23
+ 440 0328 F101      		movw r30,r2
+ 441 032a 8081      		ld r24,Z
+ 442 032c 9181      		ldd r25,Z+1
+ 443 032e A281      		ldd r26,Z+2
+ 444 0330 B381      		ldd r27,Z+3
+ 445 0332 F801      		movw r30,r16
+ 446 0334 8083      		st Z,r24
+ 447 0336 9183      		std Z+1,r25
+ 448 0338 A283      		std Z+2,r26
+ 449 033a B383      		std Z+3,r27
+ 450 033c F101      		movw r30,r2
+ 451 033e 8481      		ldd r24,Z+4
+ 452 0340 9581      		ldd r25,Z+5
+ 453 0342 A681      		ldd r26,Z+6
+ 454 0344 B781      		ldd r27,Z+7
+ 455 0346 F801      		movw r30,r16
+ 456 0348 8483      		std Z+4,r24
+GAS LISTING /tmp/ccQzOhHf.s 			page 9
+
+
+ 457 034a 9583      		std Z+5,r25
+ 458 034c A683      		std Z+6,r26
+ 459 034e B783      		std Z+7,r27
+ 460 0350 F101      		movw r30,r2
+ 461 0352 8085      		ldd r24,Z+8
+ 462 0354 9185      		ldd r25,Z+9
+ 463 0356 A285      		ldd r26,Z+10
+ 464 0358 B385      		ldd r27,Z+11
+ 465 035a F801      		movw r30,r16
+ 466 035c 8087      		std Z+8,r24
+ 467 035e 9187      		std Z+9,r25
+ 468 0360 A287      		std Z+10,r26
+ 469 0362 B387      		std Z+11,r27
+ 470 0364 00C0      		rjmp .L12
+ 471               	.L23:
+ 472 0366 D101      		movw r26,r2
+ 473 0368 8D91      		ld r24,X+
+ 474 036a 9D91      		ld r25,X+
+ 475 036c 0D90      		ld __tmp_reg__,X+
+ 476 036e BC91      		ld r27,X
+ 477 0370 A02D      		mov r26,__tmp_reg__
+ 478 0372 898F      		std Y+25,r24
+ 479 0374 9A8F      		std Y+26,r25
+ 480 0376 AB8F      		std Y+27,r26
+ 481 0378 BC8F      		std Y+28,r27
+ 482 037a A701      		movw r20,r14
+ 483 037c 9601      		movw r18,r12
+ 484 037e BC01      		movw r22,r24
+ 485 0380 CD01      		movw r24,r26
+ 486 0382 0E94 0000 		call atan2
+ 487 0386 20E0      		ldi r18,0
+ 488 0388 30E0      		ldi r19,0
+ 489 038a 44E3      		ldi r20,lo8(52)
+ 490 038c 53E4      		ldi r21,lo8(67)
+ 491 038e 0E94 0000 		call __mulsf3
+ 492 0392 2BED      		ldi r18,lo8(-37)
+ 493 0394 3FE0      		ldi r19,lo8(15)
+ 494 0396 49E4      		ldi r20,lo8(73)
+ 495 0398 50E4      		ldi r21,lo8(64)
+ 496 039a 0E94 0000 		call __divsf3
+ 497 039e 6983      		std Y+1,r22
+ 498 03a0 7A83      		std Y+2,r23
+ 499 03a2 8B83      		std Y+3,r24
+ 500 03a4 9C83      		std Y+4,r25
+ 501 03a6 F101      		movw r30,r2
+ 502 03a8 2480      		ldd r2,Z+4
+ 503 03aa 3580      		ldd r3,Z+5
+ 504 03ac 4680      		ldd r4,Z+6
+ 505 03ae 5780      		ldd r5,Z+7
+ 506 03b0 A701      		movw r20,r14
+ 507 03b2 9601      		movw r18,r12
+ 508 03b4 C201      		movw r24,r4
+ 509 03b6 B101      		movw r22,r2
+ 510 03b8 0E94 0000 		call atan2
+ 511 03bc 20E0      		ldi r18,0
+ 512 03be 30E0      		ldi r19,0
+ 513 03c0 44E3      		ldi r20,lo8(52)
+GAS LISTING /tmp/ccQzOhHf.s 			page 10
+
+
+ 514 03c2 53E4      		ldi r21,lo8(67)
+ 515 03c4 0E94 0000 		call __mulsf3
+ 516 03c8 2BED      		ldi r18,lo8(-37)
+ 517 03ca 3FE0      		ldi r19,lo8(15)
+ 518 03cc 49E4      		ldi r20,lo8(73)
+ 519 03ce 50E4      		ldi r21,lo8(64)
+ 520 03d0 0E94 0000 		call __divsf3
+ 521 03d4 6D83      		std Y+5,r22
+ 522 03d6 7E83      		std Y+6,r23
+ 523 03d8 8F83      		std Y+7,r24
+ 524 03da 9887      		std Y+8,r25
+ 525 03dc A201      		movw r20,r4
+ 526 03de 9101      		movw r18,r2
+ 527 03e0 698D      		ldd r22,Y+25
+ 528 03e2 7A8D      		ldd r23,Y+26
+ 529 03e4 8B8D      		ldd r24,Y+27
+ 530 03e6 9C8D      		ldd r25,Y+28
+ 531 03e8 0E94 0000 		call atan2
+ 532 03ec 20E0      		ldi r18,0
+ 533 03ee 30E0      		ldi r19,0
+ 534 03f0 44E3      		ldi r20,lo8(52)
+ 535 03f2 53E4      		ldi r21,lo8(67)
+ 536 03f4 0E94 0000 		call __mulsf3
+ 537 03f8 2BED      		ldi r18,lo8(-37)
+ 538 03fa 3FE0      		ldi r19,lo8(15)
+ 539 03fc 49E4      		ldi r20,lo8(73)
+ 540 03fe 50E4      		ldi r21,lo8(64)
+ 541 0400 0E94 0000 		call __divsf3
+ 542 0404 6987      		std Y+9,r22
+ 543 0406 7A87      		std Y+10,r23
+ 544 0408 8B87      		std Y+11,r24
+ 545 040a 9C87      		std Y+12,r25
+ 546 040c CE01      		movw r24,r28
+ 547 040e 0196      		adiw r24,1
+ 548 0410 6C01      		movw r12,r24
+ 549 0412 7E01      		movw r14,r28
+ 550 0414 9DE0      		ldi r25,13
+ 551 0416 E90E      		add r14,r25
+ 552 0418 F11C      		adc r15,__zero_reg__
+ 553 041a 1701      		movw r2,r14
+ 554 041c 1A8F      		std Y+26,r17
+ 555 041e 098F      		std Y+25,r16
+ 556 0420 8301      		movw r16,r6
+ 557               	.L17:
+ 558 0422 D601      		movw r26,r12
+ 559 0424 4D90      		ld r4,X+
+ 560 0426 5D90      		ld r5,X+
+ 561 0428 6D90      		ld r6,X+
+ 562 042a 7D90      		ld r7,X+
+ 563 042c 6D01      		movw r12,r26
+ 564 042e F801      		movw r30,r16
+ 565 0430 6191      		ld r22,Z+
+ 566 0432 7191      		ld r23,Z+
+ 567 0434 8191      		ld r24,Z+
+ 568 0436 9191      		ld r25,Z+
+ 569 0438 8F01      		movw r16,r30
+ 570 043a A501      		movw r20,r10
+GAS LISTING /tmp/ccQzOhHf.s 			page 11
+
+
+ 571 043c 9401      		movw r18,r8
+ 572 043e 0E94 0000 		call __mulsf3
+ 573 0442 9B01      		movw r18,r22
+ 574 0444 AC01      		movw r20,r24
+ 575 0446 C301      		movw r24,r6
+ 576 0448 B201      		movw r22,r4
+ 577 044a 0E94 0000 		call __addsf3
+ 578 044e D701      		movw r26,r14
+ 579 0450 6D93      		st X+,r22
+ 580 0452 7D93      		st X+,r23
+ 581 0454 8D93      		st X+,r24
+ 582 0456 9D93      		st X+,r25
+ 583 0458 7D01      		movw r14,r26
+ 584 045a C214      		cp r12,r2
+ 585 045c D304      		cpc r13,r3
+ 586 045e 01F4      		brne .L17
+ 587 0460 098D      		ldd r16,Y+25
+ 588 0462 1A8D      		ldd r17,Y+26
+ 589 0464 2BED      		ldi r18,lo8(-37)
+ 590 0466 3FE0      		ldi r19,lo8(15)
+ 591 0468 49E4      		ldi r20,lo8(73)
+ 592 046a 50E4      		ldi r21,lo8(64)
+ 593 046c 6989      		ldd r22,Y+17
+ 594 046e 7A89      		ldd r23,Y+18
+ 595 0470 8B89      		ldd r24,Y+19
+ 596 0472 9C89      		ldd r25,Y+20
+ 597 0474 0E94 0000 		call __mulsf3
+ 598 0478 20E0      		ldi r18,0
+ 599 047a 30E0      		ldi r19,0
+ 600 047c 44E3      		ldi r20,lo8(52)
+ 601 047e 53E4      		ldi r21,lo8(67)
+ 602 0480 0E94 0000 		call __divsf3
+ 603 0484 2B01      		movw r4,r22
+ 604 0486 3C01      		movw r6,r24
+ 605 0488 0E94 0000 		call cos
+ 606 048c 698F      		std Y+25,r22
+ 607 048e 7A8F      		std Y+26,r23
+ 608 0490 8B8F      		std Y+27,r24
+ 609 0492 9C8F      		std Y+28,r25
+ 610 0494 20E0      		ldi r18,0
+ 611 0496 30E0      		ldi r19,0
+ 612 0498 A901      		movw r20,r18
+ 613 049a 0E94 0000 		call __gesf2
+ 614 049e 8823      		tst r24
+ 615 04a0 04F0      		brlt .L24
+ 616 04a2 2224      		clr r2
+ 617 04a4 2394      		inc r2
+ 618 04a6 312C      		mov r3,__zero_reg__
+ 619 04a8 00C0      		rjmp .L18
+ 620               	.L24:
+ 621 04aa 2224      		clr r2
+ 622 04ac 2A94      		dec r2
+ 623 04ae 322C      		mov r3,r2
+ 624               	.L18:
+ 625 04b0 2BED      		ldi r18,lo8(-37)
+ 626 04b2 3FE0      		ldi r19,lo8(15)
+ 627 04b4 49E4      		ldi r20,lo8(73)
+GAS LISTING /tmp/ccQzOhHf.s 			page 12
+
+
+ 628 04b6 50E4      		ldi r21,lo8(64)
+ 629 04b8 6D85      		ldd r22,Y+13
+ 630 04ba 7E85      		ldd r23,Y+14
+ 631 04bc 8F85      		ldd r24,Y+15
+ 632 04be 9889      		ldd r25,Y+16
+ 633 04c0 0E94 0000 		call __mulsf3
+ 634 04c4 20E0      		ldi r18,0
+ 635 04c6 30E0      		ldi r19,0
+ 636 04c8 44E3      		ldi r20,lo8(52)
+ 637 04ca 53E4      		ldi r21,lo8(67)
+ 638 04cc 0E94 0000 		call __divsf3
+ 639 04d0 4B01      		movw r8,r22
+ 640 04d2 5C01      		movw r10,r24
+ 641 04d4 0E94 0000 		call sin
+ 642 04d8 69A3      		std Y+33,r22
+ 643 04da 7AA3      		std Y+34,r23
+ 644 04dc 8BA3      		std Y+35,r24
+ 645 04de 9CA3      		std Y+36,r25
+ 646 04e0 C501      		movw r24,r10
+ 647 04e2 B401      		movw r22,r8
+ 648 04e4 0E94 0000 		call cos
+ 649 04e8 6B01      		movw r12,r22
+ 650 04ea 7C01      		movw r14,r24
+ 651 04ec C301      		movw r24,r6
+ 652 04ee B201      		movw r22,r4
+ 653 04f0 0E94 0000 		call tan
+ 654 04f4 6D8F      		std Y+29,r22
+ 655 04f6 7E8F      		std Y+30,r23
+ 656 04f8 8F8F      		std Y+31,r24
+ 657 04fa 98A3      		std Y+32,r25
+ 658 04fc A701      		movw r20,r14
+ 659 04fe 9601      		movw r18,r12
+ 660 0500 C701      		movw r24,r14
+ 661 0502 B601      		movw r22,r12
+ 662 0504 0E94 0000 		call __mulsf3
+ 663 0508 6B01      		movw r12,r22
+ 664 050a 7C01      		movw r14,r24
+ 665 050c 2D8D      		ldd r18,Y+29
+ 666 050e 3E8D      		ldd r19,Y+30
+ 667 0510 4F8D      		ldd r20,Y+31
+ 668 0512 58A1      		ldd r21,Y+32
+ 669 0514 CA01      		movw r24,r20
+ 670 0516 B901      		movw r22,r18
+ 671 0518 0E94 0000 		call __mulsf3
+ 672 051c 9B01      		movw r18,r22
+ 673 051e AC01      		movw r20,r24
+ 674 0520 C701      		movw r24,r14
+ 675 0522 B601      		movw r22,r12
+ 676 0524 0E94 0000 		call __mulsf3
+ 677 0528 20E0      		ldi r18,0
+ 678 052a 30E0      		ldi r19,0
+ 679 052c 40E8      		ldi r20,lo8(-128)
+ 680 052e 5FE3      		ldi r21,lo8(63)
+ 681 0530 0E94 0000 		call __addsf3
+ 682 0534 0E94 0000 		call sqrt
+ 683 0538 9B01      		movw r18,r22
+ 684 053a AC01      		movw r20,r24
+GAS LISTING /tmp/ccQzOhHf.s 			page 13
+
+
+ 685 053c 69A1      		ldd r22,Y+33
+ 686 053e 7AA1      		ldd r23,Y+34
+ 687 0540 8BA1      		ldd r24,Y+35
+ 688 0542 9CA1      		ldd r25,Y+36
+ 689 0544 0E94 0000 		call __divsf3
+ 690 0548 6B01      		movw r12,r22
+ 691 054a 7C01      		movw r14,r24
+ 692 054c F801      		movw r30,r16
+ 693 054e 6083      		st Z,r22
+ 694 0550 7183      		std Z+1,r23
+ 695 0552 8283      		std Z+2,r24
+ 696 0554 9383      		std Z+3,r25
+ 697 0556 C301      		movw r24,r6
+ 698 0558 B201      		movw r22,r4
+ 699 055a 0E94 0000 		call sin
+ 700 055e 6D8F      		std Y+29,r22
+ 701 0560 7E8F      		std Y+30,r23
+ 702 0562 8F8F      		std Y+31,r24
+ 703 0564 98A3      		std Y+32,r25
+ 704 0566 C501      		movw r24,r10
+ 705 0568 B401      		movw r22,r8
+ 706 056a 0E94 0000 		call tan
+ 707 056e 4B01      		movw r8,r22
+ 708 0570 5C01      		movw r10,r24
+ 709 0572 298D      		ldd r18,Y+25
+ 710 0574 3A8D      		ldd r19,Y+26
+ 711 0576 4B8D      		ldd r20,Y+27
+ 712 0578 5C8D      		ldd r21,Y+28
+ 713 057a CA01      		movw r24,r20
+ 714 057c B901      		movw r22,r18
+ 715 057e 0E94 0000 		call __mulsf3
+ 716 0582 2B01      		movw r4,r22
+ 717 0584 3C01      		movw r6,r24
+ 718 0586 A501      		movw r20,r10
+ 719 0588 9401      		movw r18,r8
+ 720 058a C501      		movw r24,r10
+ 721 058c B401      		movw r22,r8
+ 722 058e 0E94 0000 		call __mulsf3
+ 723 0592 9B01      		movw r18,r22
+ 724 0594 AC01      		movw r20,r24
+ 725 0596 C301      		movw r24,r6
+ 726 0598 B201      		movw r22,r4
+ 727 059a 0E94 0000 		call __mulsf3
+ 728 059e 20E0      		ldi r18,0
+ 729 05a0 30E0      		ldi r19,0
+ 730 05a2 40E8      		ldi r20,lo8(-128)
+ 731 05a4 5FE3      		ldi r21,lo8(63)
+ 732 05a6 0E94 0000 		call __addsf3
+ 733 05aa 0E94 0000 		call sqrt
+ 734 05ae 9B01      		movw r18,r22
+ 735 05b0 AC01      		movw r20,r24
+ 736 05b2 6D8D      		ldd r22,Y+29
+ 737 05b4 7E8D      		ldd r23,Y+30
+ 738 05b6 8F8D      		ldd r24,Y+31
+ 739 05b8 98A1      		ldd r25,Y+32
+ 740 05ba 0E94 0000 		call __divsf3
+ 741 05be 4B01      		movw r8,r22
+GAS LISTING /tmp/ccQzOhHf.s 			page 14
+
+
+ 742 05c0 5C01      		movw r10,r24
+ 743 05c2 D801      		movw r26,r16
+ 744 05c4 1496      		adiw r26,4
+ 745 05c6 6D93      		st X+,r22
+ 746 05c8 7D93      		st X+,r23
+ 747 05ca 8D93      		st X+,r24
+ 748 05cc 9C93      		st X,r25
+ 749 05ce 1797      		sbiw r26,4+3
+ 750 05d0 A701      		movw r20,r14
+ 751 05d2 9601      		movw r18,r12
+ 752 05d4 C701      		movw r24,r14
+ 753 05d6 B601      		movw r22,r12
+ 754 05d8 0E94 0000 		call __mulsf3
+ 755 05dc 9B01      		movw r18,r22
+ 756 05de AC01      		movw r20,r24
+ 757 05e0 60E0      		ldi r22,0
+ 758 05e2 70E0      		ldi r23,0
+ 759 05e4 80E8      		ldi r24,lo8(-128)
+ 760 05e6 9FE3      		ldi r25,lo8(63)
+ 761 05e8 0E94 0000 		call __subsf3
+ 762 05ec 6B01      		movw r12,r22
+ 763 05ee 7C01      		movw r14,r24
+ 764 05f0 A501      		movw r20,r10
+ 765 05f2 9401      		movw r18,r8
+ 766 05f4 C501      		movw r24,r10
+ 767 05f6 B401      		movw r22,r8
+ 768 05f8 0E94 0000 		call __mulsf3
+ 769 05fc 9B01      		movw r18,r22
+ 770 05fe AC01      		movw r20,r24
+ 771 0600 C701      		movw r24,r14
+ 772 0602 B601      		movw r22,r12
+ 773 0604 0E94 0000 		call __subsf3
+ 774 0608 0E94 0000 		call sqrt
+ 775 060c 6B01      		movw r12,r22
+ 776 060e 7C01      		movw r14,r24
+ 777 0610 B101      		movw r22,r2
+ 778 0612 8827      		clr r24
+ 779 0614 77FD      		sbrc r23,7
+ 780 0616 8095      		com r24
+ 781 0618 982F      		mov r25,r24
+ 782 061a 0E94 0000 		call __floatsisf
+ 783 061e A701      		movw r20,r14
+ 784 0620 9601      		movw r18,r12
+ 785 0622 0E94 0000 		call __mulsf3
+ 786 0626 F801      		movw r30,r16
+ 787 0628 6087      		std Z+8,r22
+ 788 062a 7187      		std Z+9,r23
+ 789 062c 8287      		std Z+10,r24
+ 790 062e 9387      		std Z+11,r25
+ 791               	.L12:
+ 792               	/* epilogue start */
+ 793 0630 A496      		adiw r28,36
+ 794 0632 0FB6      		in __tmp_reg__,__SREG__
+ 795 0634 F894      		cli
+ 796 0636 DEBF      		out __SP_H__,r29
+ 797 0638 0FBE      		out __SREG__,__tmp_reg__
+ 798 063a CDBF      		out __SP_L__,r28
+GAS LISTING /tmp/ccQzOhHf.s 			page 15
+
+
+ 799 063c DF91      		pop r29
+ 800 063e CF91      		pop r28
+ 801 0640 1F91      		pop r17
+ 802 0642 0F91      		pop r16
+ 803 0644 FF90      		pop r15
+ 804 0646 EF90      		pop r14
+ 805 0648 DF90      		pop r13
+ 806 064a CF90      		pop r12
+ 807 064c BF90      		pop r11
+ 808 064e AF90      		pop r10
+ 809 0650 9F90      		pop r9
+ 810 0652 8F90      		pop r8
+ 811 0654 7F90      		pop r7
+ 812 0656 6F90      		pop r6
+ 813 0658 5F90      		pop r5
+ 814 065a 4F90      		pop r4
+ 815 065c 3F90      		pop r3
+ 816 065e 2F90      		pop r2
+ 817 0660 0895      		ret
+ 818               		.size	fuse_withGyro, .-fuse_withGyro
+ 819               		.section	.rodata.str1.1,"aMS",@progbits,1
+ 820               	.LC0:
+ 821 0000 2053 6572 		.string	" Servos set to middle position %d \r\n"
+ 821      766F 7320 
+ 821      7365 7420 
+ 821      746F 206D 
+ 821      6964 646C 
+ 822               	.LC1:
+ 823 0025 204D 5055 		.string	" MPU Test Connection Failed!! \r\n"
+ 823      2054 6573 
+ 823      7420 436F 
+ 823      6E6E 6563 
+ 823      7469 6F6E 
+ 824               	.LC2:
+ 825 0046 204D 4147 		.string	" MAG Test Connection Failed!! \r\n"
+ 825      2054 6573 
+ 825      7420 436F 
+ 825      6E6E 6563 
+ 825      7469 6F6E 
+ 826               	.global	__floatunsisf
+ 827               	.global	__fixunssfsi
+ 828               		.text
+ 829               	.global	main
+ 830               		.type	main, @function
+ 831               	main:
+ 832 0662 2F92      		push r2
+ 833 0664 3F92      		push r3
+ 834 0666 4F92      		push r4
+ 835 0668 5F92      		push r5
+ 836 066a 6F92      		push r6
+ 837 066c 7F92      		push r7
+ 838 066e 8F92      		push r8
+ 839 0670 9F92      		push r9
+ 840 0672 AF92      		push r10
+ 841 0674 BF92      		push r11
+ 842 0676 CF92      		push r12
+ 843 0678 DF92      		push r13
+GAS LISTING /tmp/ccQzOhHf.s 			page 16
+
+
+ 844 067a EF92      		push r14
+ 845 067c FF92      		push r15
+ 846 067e 0F93      		push r16
+ 847 0680 1F93      		push r17
+ 848 0682 CF93      		push r28
+ 849 0684 DF93      		push r29
+ 850 0686 CDB7      		in r28,__SP_L__
+ 851 0688 DEB7      		in r29,__SP_H__
+ 852 068a C055      		subi r28,80
+ 853 068c D109      		sbc r29,__zero_reg__
+ 854 068e 0FB6      		in __tmp_reg__,__SREG__
+ 855 0690 F894      		cli
+ 856 0692 DEBF      		out __SP_H__,r29
+ 857 0694 0FBE      		out __SREG__,__tmp_reg__
+ 858 0696 CDBF      		out __SP_L__,r28
+ 859               	/* prologue: function */
+ 860               	/* frame size = 80 */
+ 861               	/* stack size = 98 */
+ 862               	.L__stack_usage = 98
+ 863 0698 0E94 0000 		call USART_init
+ 864 069c 2FEF      		ldi r18,lo8(1599999)
+ 865 069e 89E6      		ldi r24,hi8(1599999)
+ 866 06a0 98E1      		ldi r25,hlo8(1599999)
+ 867 06a2 2150      		1: subi r18,1
+ 868 06a4 8040      		sbci r24,0
+ 869 06a6 9040      		sbci r25,0
+ 870 06a8 01F4      		brne 1b
+ 871 06aa 00C0      		rjmp .
+ 872 06ac 0000      		nop
+ 873 06ae 979A      		sbi 0x12,7
+ 874               	/* #APP */
+ 875               	 ;  123 "Test_Full.c" 1
+ 876 06b0 F894      		cli
+ 877               	 ;  0 "" 2
+ 878               	/* #NOAPP */
+ 879 06b2 8EB5      		in r24,0x2e
+ 880 06b4 8160      		ori r24,lo8(1)
+ 881 06b6 8EBD      		out 0x2e,r24
+ 882 06b8 89B7      		in r24,0x39
+ 883 06ba 8460      		ori r24,lo8(4)
+ 884 06bc 89BF      		out 0x39,r24
+ 885 06be 0E94 0000 		call TWI_init_master
+ 886 06c2 0E94 0000 		call servoResetPos
+ 887 06c6 0E94 0000 		call servoStart
+ 888               	/* #APP */
+ 889               	 ;  132 "Test_Full.c" 1
+ 890 06ca 7894      		sei
+ 891               	 ;  0 "" 2
+ 892               	/* #NOAPP */
+ 893 06cc 86E0      		ldi r24,lo8(6)
+ 894 06ce 8F93      		push r24
+ 895 06d0 85EB      		ldi r24,lo8(-75)
+ 896 06d2 8F93      		push r24
+ 897 06d4 80E0      		ldi r24,lo8(.LC0)
+ 898 06d6 90E0      		ldi r25,hi8(.LC0)
+ 899 06d8 9F93      		push r25
+ 900 06da 8F93      		push r24
+GAS LISTING /tmp/ccQzOhHf.s 			page 17
+
+
+ 901 06dc 0E94 0000 		call print_UART
+ 902 06e0 EFEF      		ldi r30,lo8(1599999)
+ 903 06e2 F9E6      		ldi r31,hi8(1599999)
+ 904 06e4 28E1      		ldi r18,hlo8(1599999)
+ 905 06e6 E150      		1: subi r30,1
+ 906 06e8 F040      		sbci r31,0
+ 907 06ea 2040      		sbci r18,0
+ 908 06ec 01F4      		brne 1b
+ 909 06ee 00C0      		rjmp .
+ 910 06f0 0000      		nop
+ 911 06f2 0E94 0000 		call MPU_testConnection
+ 912 06f6 0F90      		pop __tmp_reg__
+ 913 06f8 0F90      		pop __tmp_reg__
+ 914 06fa 0F90      		pop __tmp_reg__
+ 915 06fc 0F90      		pop __tmp_reg__
+ 916 06fe 8823      		tst r24
+ 917 0700 01F0      		breq .L26
+ 918 0702 80E0      		ldi r24,lo8(.LC1)
+ 919 0704 90E0      		ldi r25,hi8(.LC1)
+ 920 0706 9F93      		push r25
+ 921 0708 8F93      		push r24
+ 922 070a 0E94 0000 		call print_UART
+ 923 070e 0F90      		pop __tmp_reg__
+ 924 0710 0F90      		pop __tmp_reg__
+ 925 0712 00C0      		rjmp .L27
+ 926               	.L26:
+ 927 0714 0E94 0000 		call MPU_initialize
+ 928 0718 0E94 0000 		call MAG_testConnection
+ 929 071c 892B      		or r24,r25
+ 930 071e 01F0      		breq .L28
+ 931 0720 80E0      		ldi r24,lo8(.LC2)
+ 932 0722 90E0      		ldi r25,hi8(.LC2)
+ 933 0724 9F93      		push r25
+ 934 0726 8F93      		push r24
+ 935 0728 0E94 0000 		call print_UART
+ 936 072c 0F90      		pop __tmp_reg__
+ 937 072e 0F90      		pop __tmp_reg__
+ 938 0730 00C0      		rjmp .L27
+ 939               	.L28:
+ 940 0732 0E94 0000 		call MAG_initialize
+ 941 0736 AE01      		movw r20,r28
+ 942 0738 4B5E      		subi r20,-21
+ 943 073a 5F4F      		sbci r21,-1
+ 944 073c BE01      		movw r22,r28
+ 945 073e 6F5E      		subi r22,-17
+ 946 0740 7F4F      		sbci r23,-1
+ 947 0742 CE01      		movw r24,r28
+ 948 0744 0D96      		adiw r24,13
+ 949 0746 0E94 0000 		call MPU_Get_Accel_Values
+ 950 074a CE01      		movw r24,r28
+ 951 074c 0D96      		adiw r24,13
+ 952 074e 0E94 0000 		call normalize3DVector
+ 953 0752 AE01      		movw r20,r28
+ 954 0754 4D5C      		subi r20,-51
+ 955 0756 5F4F      		sbci r21,-1
+ 956 0758 BE01      		movw r22,r28
+ 957 075a 615D      		subi r22,-47
+GAS LISTING /tmp/ccQzOhHf.s 			page 18
+
+
+ 958 075c 7F4F      		sbci r23,-1
+ 959 075e CE01      		movw r24,r28
+ 960 0760 8B96      		adiw r24,43
+ 961 0762 0E94 0000 		call MAG_getHeading
+ 962 0766 CE01      		movw r24,r28
+ 963 0768 8B96      		adiw r24,43
+ 964 076a 0E94 0000 		call normalize3DVector
+ 965 076e 8D85      		ldd r24,Y+13
+ 966 0770 9E85      		ldd r25,Y+14
+ 967 0772 AF85      		ldd r26,Y+15
+ 968 0774 B889      		ldd r27,Y+16
+ 969 0776 8983      		std Y+1,r24
+ 970 0778 9A83      		std Y+2,r25
+ 971 077a AB83      		std Y+3,r26
+ 972 077c BC83      		std Y+4,r27
+ 973 077e 8989      		ldd r24,Y+17
+ 974 0780 9A89      		ldd r25,Y+18
+ 975 0782 AB89      		ldd r26,Y+19
+ 976 0784 BC89      		ldd r27,Y+20
+ 977 0786 8D83      		std Y+5,r24
+ 978 0788 9E83      		std Y+6,r25
+ 979 078a AF83      		std Y+7,r26
+ 980 078c B887      		std Y+8,r27
+ 981 078e 8D89      		ldd r24,Y+21
+ 982 0790 9E89      		ldd r25,Y+22
+ 983 0792 AF89      		ldd r26,Y+23
+ 984 0794 B88D      		ldd r27,Y+24
+ 985 0796 8987      		std Y+9,r24
+ 986 0798 9A87      		std Y+10,r25
+ 987 079a AB87      		std Y+11,r26
+ 988 079c BC87      		std Y+12,r27
+ 989 079e 1DBC      		out 0x2c+1,__zero_reg__
+ 990 07a0 1CBC      		out 0x2c,__zero_reg__
+ 991 07a2 1092 0000 		sts overflows+1,__zero_reg__
+ 992 07a6 1092 0000 		sts overflows,__zero_reg__
+ 993 07aa 8CB4      		in r8,0x2c
+ 994 07ac 9DB4      		in r9,0x2c+1
+ 995 07ae 0F2E      		mov __tmp_reg__,r31
+ 996 07b0 F3E4      		ldi r31,lo8(67)
+ 997 07b2 2F2E      		mov r2,r31
+ 998 07b4 312C      		mov r3,__zero_reg__
+ 999 07b6 F02D      		mov r31,__tmp_reg__
+ 1000 07b8 2C0E      		add r2,r28
+ 1001 07ba 3D1E      		adc r3,r29
+ 1002 07bc 88E0      		ldi r24,8
+ 1003 07be 280E      		add r2,r24
+ 1004 07c0 311C      		adc r3,__zero_reg__
+ 1005 07c2 E3E4      		ldi r30,lo8(67)
+ 1006 07c4 F0E0      		ldi r31,0
+ 1007 07c6 EC0F      		add r30,r28
+ 1008 07c8 FD1F      		adc r31,r29
+ 1009 07ca 3496      		adiw r30,4
+ 1010 07cc 6196      		adiw r28,79-62
+ 1011 07ce FFAF      		std Y+63,r31
+ 1012 07d0 EEAF      		std Y+62,r30
+ 1013 07d2 6197      		sbiw r28,79-62
+ 1014 07d4 5E01      		movw r10,r28
+GAS LISTING /tmp/ccQzOhHf.s 			page 19
+
+
+ 1015 07d6 F9E1      		ldi r31,25
+ 1016 07d8 AF0E      		add r10,r31
+ 1017 07da B11C      		adc r11,__zero_reg__
+ 1018               	.L34:
+ 1019 07dc A101      		movw r20,r2
+ 1020 07de 6196      		adiw r28,79-62
+ 1021 07e0 6EAD      		ldd r22,Y+62
+ 1022 07e2 7FAD      		ldd r23,Y+63
+ 1023 07e4 6197      		sbiw r28,79-62
+ 1024 07e6 CE01      		movw r24,r28
+ 1025 07e8 8D5B      		subi r24,-67
+ 1026 07ea 9F4F      		sbci r25,-1
+ 1027 07ec 0E94 0000 		call MPU_Get_Gyro_Rates
+ 1028 07f0 AE01      		movw r20,r28
+ 1029 07f2 4B5E      		subi r20,-21
+ 1030 07f4 5F4F      		sbci r21,-1
+ 1031 07f6 BE01      		movw r22,r28
+ 1032 07f8 635F      		subi r22,-13
+ 1033 07fa 7F4F      		sbci r23,-1
+ 1034 07fc CE01      		movw r24,r28
+ 1035 07fe 4196      		adiw r24,17
+ 1036 0800 0E94 0000 		call MPU_Get_Accel_Values
+ 1037 0804 AE01      		movw r20,r28
+ 1038 0806 4D5C      		subi r20,-51
+ 1039 0808 5F4F      		sbci r21,-1
+ 1040 080a BE01      		movw r22,r28
+ 1041 080c 615D      		subi r22,-47
+ 1042 080e 7F4F      		sbci r23,-1
+ 1043 0810 CE01      		movw r24,r28
+ 1044 0812 8B96      		adiw r24,43
+ 1045 0814 0E94 0000 		call MAG_getHeading
+ 1046 0818 2B96      		adiw r28,71-60
+ 1047 081a 8CAD      		ldd r24,Y+60
+ 1048 081c 9DAD      		ldd r25,Y+61
+ 1049 081e AEAD      		ldd r26,Y+62
+ 1050 0820 BFAD      		ldd r27,Y+63
+ 1051 0822 2B97      		sbiw r28,71-60
+ 1052 0824 B058      		subi r27,0x80
+ 1053 0826 2B96      		adiw r28,71-60
+ 1054 0828 8CAF      		std Y+60,r24
+ 1055 082a 9DAF      		std Y+61,r25
+ 1056 082c AEAF      		std Y+62,r26
+ 1057 082e BFAF      		std Y+63,r27
+ 1058 0830 2B97      		sbiw r28,71-60
+ 1059 0832 CE01      		movw r24,r28
+ 1060 0834 0D96      		adiw r24,13
+ 1061 0836 0E94 0000 		call normalize3DVector
+ 1062 083a CE01      		movw r24,r28
+ 1063 083c 8B96      		adiw r24,43
+ 1064 083e 0E94 0000 		call normalize3DVector
+ 1065 0842 8CB5      		in r24,0x2c
+ 1066 0844 9DB5      		in r25,0x2c+1
+ 1067 0846 8816      		cp r8,r24
+ 1068 0848 9906      		cpc r9,r25
+ 1069 084a 00F4      		brsh .L29
+ 1070 084c 8819      		sub r24,r8
+ 1071 084e 9909      		sbc r25,r9
+GAS LISTING /tmp/ccQzOhHf.s 			page 20
+
+
+ 1072 0850 00C0      		rjmp .L30
+ 1073               	.L29:
+ 1074 0852 0197      		sbiw r24,1
+ 1075 0854 8819      		sub r24,r8
+ 1076 0856 9909      		sbc r25,r9
+ 1077               	.L30:
+ 1078 0858 BC01      		movw r22,r24
+ 1079 085a 9923      		tst r25
+ 1080 085c 04F4      		brge .L31
+ 1081 085e 6627      		clr r22
+ 1082 0860 7727      		clr r23
+ 1083 0862 681B      		sub r22,r24
+ 1084 0864 790B      		sbc r23,r25
+ 1085               	.L31:
+ 1086 0866 8091 0000 		lds r24,overflows
+ 1087 086a 9091 0000 		lds r25,overflows+1
+ 1088 086e 681B      		sub r22,r24
+ 1089 0870 790B      		sbc r23,r25
+ 1090 0872 80E0      		ldi r24,0
+ 1091 0874 90E0      		ldi r25,0
+ 1092 0876 0E94 0000 		call __floatunsisf
+ 1093 087a 20E0      		ldi r18,0
+ 1094 087c 34E2      		ldi r19,lo8(36)
+ 1095 087e 44EF      		ldi r20,lo8(-12)
+ 1096 0880 57E4      		ldi r21,lo8(71)
+ 1097 0882 0E94 0000 		call __divsf3
+ 1098 0886 9B01      		movw r18,r22
+ 1099 0888 AC01      		movw r20,r24
+ 1100 088a 8CB4      		in r8,0x2c
+ 1101 088c 9DB4      		in r9,0x2c+1
+ 1102 088e 1092 0000 		sts overflows+1,__zero_reg__
+ 1103 0892 1092 0000 		sts overflows,__zero_reg__
+ 1104 0896 8E01      		movw r16,r28
+ 1105 0898 095C      		subi r16,-55
+ 1106 089a 1F4F      		sbci r17,-1
+ 1107 089c BE01      		movw r22,r28
+ 1108 089e 6D5B      		subi r22,-67
+ 1109 08a0 7F4F      		sbci r23,-1
+ 1110 08a2 CE01      		movw r24,r28
+ 1111 08a4 0196      		adiw r24,1
+ 1112 08a6 0E94 0000 		call fuse_withGyro
+ 1113 08aa 8E01      		movw r16,r28
+ 1114 08ac 035F      		subi r16,-13
+ 1115 08ae 1F4F      		sbci r17,-1
+ 1116 08b0 CE01      		movw r24,r28
+ 1117 08b2 C796      		adiw r24,55
+ 1118 08b4 6C01      		movw r12,r24
+ 1119 08b6 FE01      		movw r30,r28
+ 1120 08b8 3196      		adiw r30,1
+ 1121 08ba 7F01      		movw r14,r30
+ 1122               	.L33:
+ 1123 08bc F801      		movw r30,r16
+ 1124 08be 4190      		ld r4,Z+
+ 1125 08c0 5190      		ld r5,Z+
+ 1126 08c2 6190      		ld r6,Z+
+ 1127 08c4 7190      		ld r7,Z+
+ 1128 08c6 8F01      		movw r16,r30
+GAS LISTING /tmp/ccQzOhHf.s 			page 21
+
+
+ 1129 08c8 F601      		movw r30,r12
+ 1130 08ca 6191      		ld r22,Z+
+ 1131 08cc 7191      		ld r23,Z+
+ 1132 08ce 8191      		ld r24,Z+
+ 1133 08d0 9191      		ld r25,Z+
+ 1134 08d2 6F01      		movw r12,r30
+ 1135 08d4 20E0      		ldi r18,0
+ 1136 08d6 30E0      		ldi r19,0
+ 1137 08d8 40E0      		ldi r20,0
+ 1138 08da 5FE3      		ldi r21,lo8(63)
+ 1139 08dc 0E94 0000 		call __mulsf3
+ 1140 08e0 9B01      		movw r18,r22
+ 1141 08e2 AC01      		movw r20,r24
+ 1142 08e4 C301      		movw r24,r6
+ 1143 08e6 B201      		movw r22,r4
+ 1144 08e8 0E94 0000 		call __addsf3
+ 1145 08ec 20E0      		ldi r18,0
+ 1146 08ee 30E0      		ldi r19,0
+ 1147 08f0 40EC      		ldi r20,lo8(-64)
+ 1148 08f2 5FE3      		ldi r21,lo8(63)
+ 1149 08f4 0E94 0000 		call __divsf3
+ 1150 08f8 F701      		movw r30,r14
+ 1151 08fa 6193      		st Z+,r22
+ 1152 08fc 7193      		st Z+,r23
+ 1153 08fe 8193      		st Z+,r24
+ 1154 0900 9193      		st Z+,r25
+ 1155 0902 7F01      		movw r14,r30
+ 1156 0904 0A15      		cp r16,r10
+ 1157 0906 1B05      		cpc r17,r11
+ 1158 0908 01F4      		brne .L33
+ 1159 090a CE01      		movw r24,r28
+ 1160 090c 0196      		adiw r24,1
+ 1161 090e 0E94 0000 		call normalize3DVector
+ 1162 0912 C984      		ldd r12,Y+9
+ 1163 0914 DA84      		ldd r13,Y+10
+ 1164 0916 EB84      		ldd r14,Y+11
+ 1165 0918 FC84      		ldd r15,Y+12
+ 1166 091a 6981      		ldd r22,Y+1
+ 1167 091c 7A81      		ldd r23,Y+2
+ 1168 091e 8B81      		ldd r24,Y+3
+ 1169 0920 9C81      		ldd r25,Y+4
+ 1170 0922 A701      		movw r20,r14
+ 1171 0924 9601      		movw r18,r12
+ 1172 0926 0E94 0000 		call atan2
+ 1173 092a 20E0      		ldi r18,0
+ 1174 092c 30E0      		ldi r19,0
+ 1175 092e 44E3      		ldi r20,lo8(52)
+ 1176 0930 53E4      		ldi r21,lo8(67)
+ 1177 0932 0E94 0000 		call __mulsf3
+ 1178 0936 2BED      		ldi r18,lo8(-37)
+ 1179 0938 3FE0      		ldi r19,lo8(15)
+ 1180 093a 49E4      		ldi r20,lo8(73)
+ 1181 093c 50E4      		ldi r21,lo8(64)
+ 1182 093e 0E94 0000 		call __divsf3
+ 1183 0942 698F      		std Y+25,r22
+ 1184 0944 7A8F      		std Y+26,r23
+ 1185 0946 8B8F      		std Y+27,r24
+GAS LISTING /tmp/ccQzOhHf.s 			page 22
+
+
+ 1186 0948 9C8F      		std Y+28,r25
+ 1187 094a 6D81      		ldd r22,Y+5
+ 1188 094c 7E81      		ldd r23,Y+6
+ 1189 094e 8F81      		ldd r24,Y+7
+ 1190 0950 9885      		ldd r25,Y+8
+ 1191 0952 A701      		movw r20,r14
+ 1192 0954 9601      		movw r18,r12
+ 1193 0956 0E94 0000 		call atan2
+ 1194 095a 20E0      		ldi r18,0
+ 1195 095c 30E0      		ldi r19,0
+ 1196 095e 44E3      		ldi r20,lo8(52)
+ 1197 0960 53E4      		ldi r21,lo8(67)
+ 1198 0962 0E94 0000 		call __mulsf3
+ 1199 0966 2BED      		ldi r18,lo8(-37)
+ 1200 0968 3FE0      		ldi r19,lo8(15)
+ 1201 096a 49E4      		ldi r20,lo8(73)
+ 1202 096c 50E4      		ldi r21,lo8(64)
+ 1203 096e 0E94 0000 		call __divsf3
+ 1204 0972 6D8F      		std Y+29,r22
+ 1205 0974 7E8F      		std Y+30,r23
+ 1206 0976 8F8F      		std Y+31,r24
+ 1207 0978 98A3      		std Y+32,r25
+ 1208 097a C501      		movw r24,r10
+ 1209 097c 0E94 0000 		call lpf
+ 1210 0980 20E0      		ldi r18,0
+ 1211 0982 30E0      		ldi r19,0
+ 1212 0984 44E3      		ldi r20,lo8(52)
+ 1213 0986 53E4      		ldi r21,lo8(67)
+ 1214 0988 698D      		ldd r22,Y+25
+ 1215 098a 7A8D      		ldd r23,Y+26
+ 1216 098c 8B8D      		ldd r24,Y+27
+ 1217 098e 9C8D      		ldd r25,Y+28
+ 1218 0990 0E94 0000 		call __divsf3
+ 1219 0994 20E0      		ldi r18,0
+ 1220 0996 30E6      		ldi r19,lo8(96)
+ 1221 0998 4EEF      		ldi r20,lo8(-2)
+ 1222 099a 54E4      		ldi r21,lo8(68)
+ 1223 099c 0E94 0000 		call __mulsf3
+ 1224 09a0 20E0      		ldi r18,0
+ 1225 09a2 30EA      		ldi r19,lo8(-96)
+ 1226 09a4 46ED      		ldi r20,lo8(-42)
+ 1227 09a6 54E4      		ldi r21,lo8(68)
+ 1228 09a8 0E94 0000 		call __addsf3
+ 1229 09ac 0E94 0000 		call __fixunssfsi
+ 1230 09b0 6B01      		movw r12,r22
+ 1231 09b2 7C01      		movw r14,r24
+ 1232 09b4 7EA3      		std Y+38,r23
+ 1233 09b6 6DA3      		std Y+37,r22
+ 1234 09b8 20E0      		ldi r18,0
+ 1235 09ba 30E0      		ldi r19,0
+ 1236 09bc 44E3      		ldi r20,lo8(52)
+ 1237 09be 53E4      		ldi r21,lo8(67)
+ 1238 09c0 6D8D      		ldd r22,Y+29
+ 1239 09c2 7E8D      		ldd r23,Y+30
+ 1240 09c4 8F8D      		ldd r24,Y+31
+ 1241 09c6 98A1      		ldd r25,Y+32
+ 1242 09c8 0E94 0000 		call __divsf3
+GAS LISTING /tmp/ccQzOhHf.s 			page 23
+
+
+ 1243 09cc 2DEC      		ldi r18,lo8(-51)
+ 1244 09ce 3CEC      		ldi r19,lo8(-52)
+ 1245 09d0 4CEC      		ldi r20,lo8(-52)
+ 1246 09d2 5FE3      		ldi r21,lo8(63)
+ 1247 09d4 0E94 0000 		call __mulsf3
+ 1248 09d8 20E0      		ldi r18,0
+ 1249 09da 30E6      		ldi r19,lo8(96)
+ 1250 09dc 4EEF      		ldi r20,lo8(-2)
+ 1251 09de 54E4      		ldi r21,lo8(68)
+ 1252 09e0 0E94 0000 		call __mulsf3
+ 1253 09e4 20E0      		ldi r18,0
+ 1254 09e6 30EA      		ldi r19,lo8(-96)
+ 1255 09e8 46ED      		ldi r20,lo8(-42)
+ 1256 09ea 54E4      		ldi r21,lo8(68)
+ 1257 09ec 0E94 0000 		call __addsf3
+ 1258 09f0 0E94 0000 		call __fixunssfsi
+ 1259 09f4 78A7      		std Y+40,r23
+ 1260 09f6 6FA3      		std Y+39,r22
+ 1261 09f8 85EB      		ldi r24,lo8(-75)
+ 1262 09fa 96E0      		ldi r25,lo8(6)
+ 1263 09fc 9AA7      		std Y+42,r25
+ 1264 09fe 89A7      		std Y+41,r24
+ 1265 0a00 B601      		movw r22,r12
+ 1266 0a02 80E0      		ldi r24,0
+ 1267 0a04 0E94 0000 		call servoSet
+ 1268 0a08 6FA1      		ldd r22,Y+39
+ 1269 0a0a 78A5      		ldd r23,Y+40
+ 1270 0a0c 81E0      		ldi r24,lo8(1)
+ 1271 0a0e 0E94 0000 		call servoSet
+ 1272 0a12 CE01      		movw r24,r28
+ 1273 0a14 8596      		adiw r24,37
+ 1274 0a16 0E94 0000 		call IMU_simplot_int
+ 1275 0a1a 00C0      		rjmp .L34
+ 1276               	.L27:
+ 1277 0a1c 9798      		cbi 0x12,7
+ 1278 0a1e 80E0      		ldi r24,0
+ 1279 0a20 90E0      		ldi r25,0
+ 1280               	/* epilogue start */
+ 1281 0a22 C05B      		subi r28,-80
+ 1282 0a24 DF4F      		sbci r29,-1
+ 1283 0a26 0FB6      		in __tmp_reg__,__SREG__
+ 1284 0a28 F894      		cli
+ 1285 0a2a DEBF      		out __SP_H__,r29
+ 1286 0a2c 0FBE      		out __SREG__,__tmp_reg__
+ 1287 0a2e CDBF      		out __SP_L__,r28
+ 1288 0a30 DF91      		pop r29
+ 1289 0a32 CF91      		pop r28
+ 1290 0a34 1F91      		pop r17
+ 1291 0a36 0F91      		pop r16
+ 1292 0a38 FF90      		pop r15
+ 1293 0a3a EF90      		pop r14
+ 1294 0a3c DF90      		pop r13
+ 1295 0a3e CF90      		pop r12
+ 1296 0a40 BF90      		pop r11
+ 1297 0a42 AF90      		pop r10
+ 1298 0a44 9F90      		pop r9
+ 1299 0a46 8F90      		pop r8
+GAS LISTING /tmp/ccQzOhHf.s 			page 24
+
+
+ 1300 0a48 7F90      		pop r7
+ 1301 0a4a 6F90      		pop r6
+ 1302 0a4c 5F90      		pop r5
+ 1303 0a4e 4F90      		pop r4
+ 1304 0a50 3F90      		pop r3
+ 1305 0a52 2F90      		pop r2
+ 1306 0a54 0895      		ret
+ 1307               		.size	main, .-main
+ 1308               	.global	__vector_9
+ 1309               		.type	__vector_9, @function
+ 1310               	__vector_9:
+ 1311 0a56 1F92      		push r1
+ 1312 0a58 0F92      		push r0
+ 1313 0a5a 0FB6      		in r0,__SREG__
+ 1314 0a5c 0F92      		push r0
+ 1315 0a5e 1124      		clr __zero_reg__
+ 1316 0a60 8F93      		push r24
+ 1317 0a62 9F93      		push r25
+ 1318               	/* prologue: Signal */
+ 1319               	/* frame size = 0 */
+ 1320               	/* stack size = 5 */
+ 1321               	.L__stack_usage = 5
+ 1322 0a64 8091 0000 		lds r24,overflows
+ 1323 0a68 9091 0000 		lds r25,overflows+1
+ 1324 0a6c 0196      		adiw r24,1
+ 1325 0a6e 9093 0000 		sts overflows+1,r25
+ 1326 0a72 8093 0000 		sts overflows,r24
+ 1327               	/* epilogue start */
+ 1328 0a76 9F91      		pop r25
+ 1329 0a78 8F91      		pop r24
+ 1330 0a7a 0F90      		pop r0
+ 1331 0a7c 0FBE      		out __SREG__,r0
+ 1332 0a7e 0F90      		pop r0
+ 1333 0a80 1F90      		pop r1
+ 1334 0a82 1895      		reti
+ 1335               		.size	__vector_9, .-__vector_9
+ 1336               		.local	R.1863
+ 1337               		.comm	R.1863,4,1
+ 1338               	.global	overflows
+ 1339               		.section .bss
+ 1340               		.type	overflows, @object
+ 1341               		.size	overflows, 2
+ 1342               	overflows:
+ 1343 0000 0000      		.zero	2
+ 1344               		.local	samp_vect
+ 1345               		.comm	samp_vect,144,1
+ 1346               		.ident	"GCC: (GNU) 4.8.2"
+ 1347               	.global __do_copy_data
+ 1348               	.global __do_clear_bss
+GAS LISTING /tmp/ccQzOhHf.s 			page 25
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 Test_Full.c
+     /tmp/ccQzOhHf.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccQzOhHf.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccQzOhHf.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccQzOhHf.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccQzOhHf.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccQzOhHf.s:13     .text:0000000000000000 normalize3DVector
+                             .bss:0000000000000002 R.1863
+     /tmp/ccQzOhHf.s:158    .text:000000000000012a lpf
+     /tmp/ccQzOhHf.s:1337   .bss:0000000000000006 samp_vect
+     /tmp/ccQzOhHf.s:361    .text:00000000000002a8 squared
+     /tmp/ccQzOhHf.s:377    .text:00000000000002b2 fuse_withGyro
+     /tmp/ccQzOhHf.s:831    .text:0000000000000662 main
+     /tmp/ccQzOhHf.s:1342   .bss:0000000000000000 overflows
+     /tmp/ccQzOhHf.s:1310   .text:0000000000000a56 __vector_9
+
+UNDEFINED SYMBOLS
+__mulsf3
+__addsf3
+__divsf3
+sqrt
+__ltsf2
+__gesf2
+__subsf3
+__floatsisf
+atan2
+cos
+sin
+tan
+__floatunsisf
+__fixunssfsi
+USART_init
+TWI_init_master
+servoResetPos
+servoStart
+print_UART
+MPU_testConnection
+MPU_initialize
+MAG_testConnection
+MAG_initialize
+MPU_Get_Accel_Values
+MAG_getHeading
+MPU_Get_Gyro_Rates
+servoSet
+IMU_simplot_int
+__do_copy_data
+__do_clear_bss

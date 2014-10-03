@@ -1,0 +1,613 @@
+GAS LISTING /tmp/cc6jg0PZ.s 			page 1
+
+
+   1               		.file	"twi_mini.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.text
+   8               	.global	TWI_init_master
+   9               		.type	TWI_init_master, @function
+  10               	TWI_init_master:
+  11               	/* prologue: function */
+  12               	/* frame size = 0 */
+  13               	/* stack size = 0 */
+  14               	.L__stack_usage = 0
+  15 0000 81B1      		in r24,0x1
+  16 0002 11B8      		out 0x1,__zero_reg__
+  17 0004 80E2      		ldi r24,lo8(32)
+  18 0006 80B9      		out 0,r24
+  19 0008 0895      		ret
+  20               		.size	TWI_init_master, .-TWI_init_master
+  21               	.global	TWI_stop
+  22               		.type	TWI_stop, @function
+  23               	TWI_stop:
+  24               	/* prologue: function */
+  25               	/* frame size = 0 */
+  26               	/* stack size = 0 */
+  27               	.L__stack_usage = 0
+  28 000a 84E9      		ldi r24,lo8(-108)
+  29 000c 86BF      		out 0x36,r24
+  30               	.L4:
+  31 000e 06B6      		in __tmp_reg__,0x36
+  32 0010 04FE      		sbrs __tmp_reg__,4
+  33 0012 00C0      		rjmp .L4
+  34               	/* epilogue start */
+  35 0014 0895      		ret
+  36               		.size	TWI_stop, .-TWI_stop
+  37               		.section	.rodata.str1.1,"aMS",@progbits,1
+  38               	.LC0:
+  39 0000 6572 726F 		.string	"error= %x "
+  39      723D 2025 
+  39      7820 00
+  40               		.text
+  41               	.global	TWI_error
+  42               		.type	TWI_error, @function
+  43               	TWI_error:
+  44               	/* prologue: function */
+  45               	/* frame size = 0 */
+  46               	/* stack size = 0 */
+  47               	.L__stack_usage = 0
+  48 0016 1F92      		push __zero_reg__
+  49 0018 8F93      		push r24
+  50 001a 80E0      		ldi r24,lo8(.LC0)
+  51 001c 90E0      		ldi r25,hi8(.LC0)
+  52 001e 9F93      		push r25
+  53 0020 8F93      		push r24
+  54 0022 0E94 0000 		call print_UART
+  55 0026 0F90      		pop __tmp_reg__
+GAS LISTING /tmp/cc6jg0PZ.s 			page 2
+
+
+  56 0028 0F90      		pop __tmp_reg__
+  57 002a 0F90      		pop __tmp_reg__
+  58 002c 0F90      		pop __tmp_reg__
+  59 002e 81E0      		ldi r24,lo8(1)
+  60 0030 0895      		ret
+  61               		.size	TWI_error, .-TWI_error
+  62               	.global	TWI_start
+  63               		.type	TWI_start, @function
+  64               	TWI_start:
+  65               	/* prologue: function */
+  66               	/* frame size = 0 */
+  67               	/* stack size = 0 */
+  68               	.L__stack_usage = 0
+  69 0032 84EA      		ldi r24,lo8(-92)
+  70 0034 86BF      		out 0x36,r24
+  71               	.L8:
+  72 0036 06B6      		in __tmp_reg__,0x36
+  73 0038 07FE      		sbrs __tmp_reg__,7
+  74 003a 00C0      		rjmp .L8
+  75 003c 81B1      		in r24,0x1
+  76 003e 887F      		andi r24,lo8(-8)
+  77 0040 8830      		cpi r24,lo8(8)
+  78 0042 01F0      		breq .L10
+  79 0044 81B1      		in r24,0x1
+  80 0046 887F      		andi r24,lo8(-8)
+  81 0048 8031      		cpi r24,lo8(16)
+  82 004a 01F0      		breq .L11
+  83 004c 81B1      		in r24,0x1
+  84 004e 887F      		andi r24,lo8(-8)
+  85 0050 0E94 0000 		call TWI_error
+  86 0054 81E0      		ldi r24,lo8(1)
+  87 0056 0895      		ret
+  88               	.L10:
+  89 0058 80E0      		ldi r24,0
+  90 005a 0895      		ret
+  91               	.L11:
+  92 005c 80E0      		ldi r24,0
+  93 005e 0895      		ret
+  94               		.size	TWI_start, .-TWI_start
+  95               	.global	TWI_write_address
+  96               		.type	TWI_write_address, @function
+  97               	TWI_write_address:
+  98               	/* prologue: function */
+  99               	/* frame size = 0 */
+ 100               	/* stack size = 0 */
+ 101               	.L__stack_usage = 0
+ 102 0060 83B9      		out 0x3,r24
+ 103 0062 84E8      		ldi r24,lo8(-124)
+ 104 0064 86BF      		out 0x36,r24
+ 105               	.L14:
+ 106 0066 06B6      		in __tmp_reg__,0x36
+ 107 0068 07FE      		sbrs __tmp_reg__,7
+ 108 006a 00C0      		rjmp .L14
+ 109 006c 81B1      		in r24,0x1
+ 110 006e 887F      		andi r24,lo8(-8)
+ 111 0070 8034      		cpi r24,lo8(64)
+ 112 0072 01F0      		breq .L16
+GAS LISTING /tmp/cc6jg0PZ.s 			page 3
+
+
+ 113 0074 81B1      		in r24,0x1
+ 114 0076 887F      		andi r24,lo8(-8)
+ 115 0078 8831      		cpi r24,lo8(24)
+ 116 007a 01F0      		breq .L17
+ 117 007c 81B1      		in r24,0x1
+ 118 007e 887F      		andi r24,lo8(-8)
+ 119 0080 0E94 0000 		call TWI_error
+ 120 0084 81E0      		ldi r24,lo8(1)
+ 121 0086 0895      		ret
+ 122               	.L16:
+ 123 0088 80E0      		ldi r24,0
+ 124 008a 0895      		ret
+ 125               	.L17:
+ 126 008c 80E0      		ldi r24,0
+ 127 008e 0895      		ret
+ 128               		.size	TWI_write_address, .-TWI_write_address
+ 129               	.global	TWI_write_byte
+ 130               		.type	TWI_write_byte, @function
+ 131               	TWI_write_byte:
+ 132               	/* prologue: function */
+ 133               	/* frame size = 0 */
+ 134               	/* stack size = 0 */
+ 135               	.L__stack_usage = 0
+ 136 0090 83B9      		out 0x3,r24
+ 137 0092 84E8      		ldi r24,lo8(-124)
+ 138 0094 86BF      		out 0x36,r24
+ 139               	.L20:
+ 140 0096 06B6      		in __tmp_reg__,0x36
+ 141 0098 07FE      		sbrs __tmp_reg__,7
+ 142 009a 00C0      		rjmp .L20
+ 143 009c 81B1      		in r24,0x1
+ 144 009e 887F      		andi r24,lo8(-8)
+ 145 00a0 8035      		cpi r24,lo8(80)
+ 146 00a2 01F0      		breq .L22
+ 147 00a4 81B1      		in r24,0x1
+ 148 00a6 887F      		andi r24,lo8(-8)
+ 149 00a8 8832      		cpi r24,lo8(40)
+ 150 00aa 01F0      		breq .L23
+ 151 00ac 81B1      		in r24,0x1
+ 152 00ae 887F      		andi r24,lo8(-8)
+ 153 00b0 0E94 0000 		call TWI_error
+ 154 00b4 81E0      		ldi r24,lo8(1)
+ 155 00b6 0895      		ret
+ 156               	.L22:
+ 157 00b8 80E0      		ldi r24,0
+ 158 00ba 0895      		ret
+ 159               	.L23:
+ 160 00bc 80E0      		ldi r24,0
+ 161 00be 0895      		ret
+ 162               		.size	TWI_write_byte, .-TWI_write_byte
+ 163               	.global	TWI_write_bytes
+ 164               		.type	TWI_write_bytes, @function
+ 165               	TWI_write_bytes:
+ 166 00c0 EF92      		push r14
+ 167 00c2 FF92      		push r15
+ 168 00c4 0F93      		push r16
+ 169 00c6 1F93      		push r17
+GAS LISTING /tmp/cc6jg0PZ.s 			page 4
+
+
+ 170 00c8 CF93      		push r28
+ 171 00ca DF93      		push r29
+ 172               	/* prologue: function */
+ 173               	/* frame size = 0 */
+ 174               	/* stack size = 6 */
+ 175               	.L__stack_usage = 6
+ 176 00cc C82F      		mov r28,r24
+ 177 00ce D62F      		mov r29,r22
+ 178 00d0 F42E      		mov r15,r20
+ 179 00d2 E22E      		mov r14,r18
+ 180 00d4 132F      		mov r17,r19
+ 181 00d6 0E94 0000 		call TWI_start
+ 182 00da 8111      		cpse r24,__zero_reg__
+ 183 00dc 00C0      		rjmp .L28
+ 184 00de 8C2F      		mov r24,r28
+ 185 00e0 880F      		lsl r24
+ 186 00e2 0E94 0000 		call TWI_write_address
+ 187 00e6 8111      		cpse r24,__zero_reg__
+ 188 00e8 00C0      		rjmp .L29
+ 189 00ea 8D2F      		mov r24,r29
+ 190 00ec 0E94 0000 		call TWI_write_byte
+ 191 00f0 082F      		mov r16,r24
+ 192 00f2 8111      		cpse r24,__zero_reg__
+ 193 00f4 00C0      		rjmp .L30
+ 194 00f6 FF20      		tst r15
+ 195 00f8 01F0      		breq .L26
+ 196 00fa CE2D      		mov r28,r14
+ 197 00fc D12F      		mov r29,r17
+ 198 00fe 10E0      		ldi r17,0
+ 199               	.L27:
+ 200 0100 8991      		ld r24,Y+
+ 201 0102 0E94 0000 		call TWI_write_byte
+ 202 0106 8111      		cpse r24,__zero_reg__
+ 203 0108 00C0      		rjmp .L31
+ 204 010a 1F5F      		subi r17,lo8(-(1))
+ 205 010c 1F11      		cpse r17,r15
+ 206 010e 00C0      		rjmp .L27
+ 207               	.L26:
+ 208 0110 0E94 0000 		call TWI_stop
+ 209 0114 00C0      		rjmp .L25
+ 210               	.L28:
+ 211 0116 01E0      		ldi r16,lo8(1)
+ 212 0118 00C0      		rjmp .L25
+ 213               	.L29:
+ 214 011a 01E0      		ldi r16,lo8(1)
+ 215 011c 00C0      		rjmp .L25
+ 216               	.L30:
+ 217 011e 01E0      		ldi r16,lo8(1)
+ 218 0120 00C0      		rjmp .L25
+ 219               	.L31:
+ 220 0122 01E0      		ldi r16,lo8(1)
+ 221               	.L25:
+ 222 0124 802F      		mov r24,r16
+ 223               	/* epilogue start */
+ 224 0126 DF91      		pop r29
+ 225 0128 CF91      		pop r28
+ 226 012a 1F91      		pop r17
+GAS LISTING /tmp/cc6jg0PZ.s 			page 5
+
+
+ 227 012c 0F91      		pop r16
+ 228 012e FF90      		pop r15
+ 229 0130 EF90      		pop r14
+ 230 0132 0895      		ret
+ 231               		.size	TWI_write_bytes, .-TWI_write_bytes
+ 232               	.global	TWI_read_byte
+ 233               		.type	TWI_read_byte, @function
+ 234               	TWI_read_byte:
+ 235 0134 CF93      		push r28
+ 236               	/* prologue: function */
+ 237               	/* frame size = 0 */
+ 238               	/* stack size = 1 */
+ 239               	.L__stack_usage = 1
+ 240 0136 20E4      		ldi r18,lo8(64)
+ 241 0138 829F      		mul r24,r18
+ 242 013a C001      		movw r24,r0
+ 243 013c 1124      		clr __zero_reg__
+ 244 013e 8468      		ori r24,lo8(-124)
+ 245 0140 86BF      		out 0x36,r24
+ 246               	.L34:
+ 247 0142 06B6      		in __tmp_reg__,0x36
+ 248 0144 07FE      		sbrs __tmp_reg__,7
+ 249 0146 00C0      		rjmp .L34
+ 250 0148 C3B1      		in r28,0x3
+ 251 014a 81B1      		in r24,0x1
+ 252 014c 887F      		andi r24,lo8(-8)
+ 253 014e 8035      		cpi r24,lo8(80)
+ 254 0150 01F0      		breq .L35
+ 255 0152 81B1      		in r24,0x1
+ 256 0154 887F      		andi r24,lo8(-8)
+ 257 0156 8835      		cpi r24,lo8(88)
+ 258 0158 01F0      		breq .L35
+ 259 015a 81B1      		in r24,0x1
+ 260 015c 887F      		andi r24,lo8(-8)
+ 261 015e 0E94 0000 		call TWI_error
+ 262               	.L35:
+ 263 0162 8C2F      		mov r24,r28
+ 264               	/* epilogue start */
+ 265 0164 CF91      		pop r28
+ 266 0166 0895      		ret
+ 267               		.size	TWI_read_byte, .-TWI_read_byte
+ 268               	.global	TWI_read_bytes
+ 269               		.type	TWI_read_bytes, @function
+ 270               	TWI_read_bytes:
+ 271 0168 CF92      		push r12
+ 272 016a DF92      		push r13
+ 273 016c EF92      		push r14
+ 274 016e FF92      		push r15
+ 275 0170 0F93      		push r16
+ 276 0172 1F93      		push r17
+ 277 0174 CF93      		push r28
+ 278 0176 DF93      		push r29
+ 279               	/* prologue: function */
+ 280               	/* frame size = 0 */
+ 281               	/* stack size = 8 */
+ 282               	.L__stack_usage = 8
+ 283 0178 C82F      		mov r28,r24
+GAS LISTING /tmp/cc6jg0PZ.s 			page 6
+
+
+ 284 017a 062F      		mov r16,r22
+ 285 017c D42E      		mov r13,r20
+ 286 017e E22E      		mov r14,r18
+ 287 0180 F32E      		mov r15,r19
+ 288 0182 0E94 0000 		call TWI_start
+ 289 0186 182F      		mov r17,r24
+ 290 0188 8111      		cpse r24,__zero_reg__
+ 291 018a 00C0      		rjmp .L42
+ 292 018c D0E0      		ldi r29,0
+ 293 018e CC0F      		lsl r28
+ 294 0190 DD1F      		rol r29
+ 295 0192 8C2F      		mov r24,r28
+ 296 0194 0E94 0000 		call TWI_write_address
+ 297 0198 C82E      		mov r12,r24
+ 298 019a 8111      		cpse r24,__zero_reg__
+ 299 019c 00C0      		rjmp .L37
+ 300 019e 802F      		mov r24,r16
+ 301 01a0 0E94 0000 		call TWI_write_byte
+ 302 01a4 182F      		mov r17,r24
+ 303 01a6 8111      		cpse r24,__zero_reg__
+ 304 01a8 00C0      		rjmp .L43
+ 305 01aa 0E94 0000 		call TWI_start
+ 306 01ae 082F      		mov r16,r24
+ 307 01b0 8111      		cpse r24,__zero_reg__
+ 308 01b2 00C0      		rjmp .L37
+ 309 01b4 8C2F      		mov r24,r28
+ 310 01b6 8160      		ori r24,lo8(1)
+ 311 01b8 0E94 0000 		call TWI_write_address
+ 312 01bc 8111      		cpse r24,__zero_reg__
+ 313 01be 00C0      		rjmp .L44
+ 314 01c0 DD20      		tst r13
+ 315 01c2 01F0      		breq .L38
+ 316 01c4 0E2D      		mov r16,r14
+ 317 01c6 1F2D      		mov r17,r15
+ 318 01c8 C0E0      		ldi r28,0
+ 319 01ca D0E0      		ldi r29,0
+ 320 01cc ED2C      		mov r14,r13
+ 321 01ce F12C      		mov r15,__zero_reg__
+ 322 01d0 81E0      		ldi r24,1
+ 323 01d2 E81A      		sub r14,r24
+ 324 01d4 F108      		sbc r15,__zero_reg__
+ 325               	.L41:
+ 326 01d6 CE15      		cp r28,r14
+ 327 01d8 DF05      		cpc r29,r15
+ 328 01da 01F0      		breq .L39
+ 329 01dc 81E0      		ldi r24,lo8(1)
+ 330 01de 0E94 0000 		call TWI_read_byte
+ 331 01e2 F801      		movw r30,r16
+ 332 01e4 8083      		st Z,r24
+ 333 01e6 00C0      		rjmp .L40
+ 334               	.L39:
+ 335 01e8 80E0      		ldi r24,0
+ 336 01ea 0E94 0000 		call TWI_read_byte
+ 337 01ee F801      		movw r30,r16
+ 338 01f0 8083      		st Z,r24
+ 339               	.L40:
+ 340 01f2 2196      		adiw r28,1
+GAS LISTING /tmp/cc6jg0PZ.s 			page 7
+
+
+ 341 01f4 0F5F      		subi r16,-1
+ 342 01f6 1F4F      		sbci r17,-1
+ 343 01f8 CD15      		cp r28,r13
+ 344 01fa 00F0      		brlo .L41
+ 345               	.L38:
+ 346 01fc 0E94 0000 		call TWI_stop
+ 347 0200 1D2D      		mov r17,r13
+ 348 0202 00C0      		rjmp .L37
+ 349               	.L42:
+ 350 0204 10E0      		ldi r17,0
+ 351 0206 00C0      		rjmp .L37
+ 352               	.L43:
+ 353 0208 1C2D      		mov r17,r12
+ 354 020a 00C0      		rjmp .L37
+ 355               	.L44:
+ 356 020c 102F      		mov r17,r16
+ 357               	.L37:
+ 358 020e 812F      		mov r24,r17
+ 359               	/* epilogue start */
+ 360 0210 DF91      		pop r29
+ 361 0212 CF91      		pop r28
+ 362 0214 1F91      		pop r17
+ 363 0216 0F91      		pop r16
+ 364 0218 FF90      		pop r15
+ 365 021a EF90      		pop r14
+ 366 021c DF90      		pop r13
+ 367 021e CF90      		pop r12
+ 368 0220 0895      		ret
+ 369               		.size	TWI_read_bytes, .-TWI_read_bytes
+ 370               	.global	TWI_write_bits
+ 371               		.type	TWI_write_bits, @function
+ 372               	TWI_write_bits:
+ 373 0222 DF92      		push r13
+ 374 0224 EF92      		push r14
+ 375 0226 FF92      		push r15
+ 376 0228 0F93      		push r16
+ 377 022a 1F93      		push r17
+ 378 022c CF93      		push r28
+ 379 022e DF93      		push r29
+ 380 0230 1F92      		push __zero_reg__
+ 381 0232 CDB7      		in r28,__SP_L__
+ 382 0234 DEB7      		in r29,__SP_H__
+ 383               	/* prologue: function */
+ 384               	/* frame size = 1 */
+ 385               	/* stack size = 8 */
+ 386               	.L__stack_usage = 8
+ 387 0236 F82E      		mov r15,r24
+ 388 0238 E62E      		mov r14,r22
+ 389 023a D42E      		mov r13,r20
+ 390 023c 122F      		mov r17,r18
+ 391 023e 1982      		std Y+1,__zero_reg__
+ 392 0240 9E01      		movw r18,r28
+ 393 0242 2F5F      		subi r18,-1
+ 394 0244 3F4F      		sbci r19,-1
+ 395 0246 41E0      		ldi r20,lo8(1)
+ 396 0248 0E94 0000 		call TWI_read_bytes
+ 397 024c 8823      		tst r24
+GAS LISTING /tmp/cc6jg0PZ.s 			page 8
+
+
+ 398 024e 01F0      		breq .L46
+ 399 0250 4D2D      		mov r20,r13
+ 400 0252 50E0      		ldi r21,0
+ 401 0254 212F      		mov r18,r17
+ 402 0256 30E0      		ldi r19,0
+ 403 0258 602F      		mov r22,r16
+ 404 025a 70E0      		ldi r23,0
+ 405 025c A8E0      		ldi r26,lo8(8)
+ 406 025e B0E0      		ldi r27,0
+ 407 0260 CD01      		movw r24,r26
+ 408 0262 821B      		sub r24,r18
+ 409 0264 930B      		sbc r25,r19
+ 410 0266 00C0      		rjmp 2f
+ 411               		1:
+ 412 0268 660F      		lsl r22
+ 413 026a 771F      		rol r23
+ 414               		2:
+ 415 026c 8A95      		dec r24
+ 416 026e 02F4      		brpl 1b
+ 417 0270 7727      		clr r23
+ 418 0272 87E0      		ldi r24,lo8(7)
+ 419 0274 90E0      		ldi r25,0
+ 420 0276 841B      		sub r24,r20
+ 421 0278 950B      		sbc r25,r21
+ 422 027a 8B01      		movw r16,r22
+ 423 027c 00C0      		rjmp 2f
+ 424               		1:
+ 425 027e 1595      		asr r17
+ 426 0280 0795      		ror r16
+ 427               		2:
+ 428 0282 8A95      		dec r24
+ 429 0284 02F4      		brpl 1b
+ 430 0286 A41B      		sub r26,r20
+ 431 0288 B50B      		sbc r27,r21
+ 432 028a 2A0F      		add r18,r26
+ 433 028c 3B1F      		adc r19,r27
+ 434 028e 2150      		subi r18,1
+ 435 0290 3109      		sbc r19,__zero_reg__
+ 436 0292 EFEF      		ldi r30,lo8(-1)
+ 437 0294 F0E0      		ldi r31,0
+ 438 0296 CF01      		movw r24,r30
+ 439 0298 00C0      		rjmp 2f
+ 440               		1:
+ 441 029a 9595      		asr r25
+ 442 029c 8795      		ror r24
+ 443               		2:
+ 444 029e 2A95      		dec r18
+ 445 02a0 02F4      		brpl 1b
+ 446 02a2 4F5F      		subi r20,-1
+ 447 02a4 5F4F      		sbci r21,-1
+ 448 02a6 00C0      		rjmp 2f
+ 449               		1:
+ 450 02a8 EE0F      		lsl r30
+ 451 02aa FF1F      		rol r31
+ 452               		2:
+ 453 02ac 4A95      		dec r20
+ 454 02ae 02F4      		brpl 1b
+GAS LISTING /tmp/cc6jg0PZ.s 			page 9
+
+
+ 455 02b0 E82B      		or r30,r24
+ 456 02b2 8981      		ldd r24,Y+1
+ 457 02b4 E823      		and r30,r24
+ 458 02b6 0E2B      		or r16,r30
+ 459 02b8 0983      		std Y+1,r16
+ 460 02ba 9E01      		movw r18,r28
+ 461 02bc 2F5F      		subi r18,-1
+ 462 02be 3F4F      		sbci r19,-1
+ 463 02c0 41E0      		ldi r20,lo8(1)
+ 464 02c2 6E2D      		mov r22,r14
+ 465 02c4 8F2D      		mov r24,r15
+ 466 02c6 0E94 0000 		call TWI_write_bytes
+ 467               	.L46:
+ 468               	/* epilogue start */
+ 469 02ca 0F90      		pop __tmp_reg__
+ 470 02cc DF91      		pop r29
+ 471 02ce CF91      		pop r28
+ 472 02d0 1F91      		pop r17
+ 473 02d2 0F91      		pop r16
+ 474 02d4 FF90      		pop r15
+ 475 02d6 EF90      		pop r14
+ 476 02d8 DF90      		pop r13
+ 477 02da 0895      		ret
+ 478               		.size	TWI_write_bits, .-TWI_write_bits
+ 479               	.global	TWI_write_bit
+ 480               		.type	TWI_write_bit, @function
+ 481               	TWI_write_bit:
+ 482 02dc EF92      		push r14
+ 483 02de FF92      		push r15
+ 484 02e0 0F93      		push r16
+ 485 02e2 1F93      		push r17
+ 486 02e4 CF93      		push r28
+ 487 02e6 DF93      		push r29
+ 488 02e8 1F92      		push __zero_reg__
+ 489 02ea CDB7      		in r28,__SP_L__
+ 490 02ec DEB7      		in r29,__SP_H__
+ 491               	/* prologue: function */
+ 492               	/* frame size = 1 */
+ 493               	/* stack size = 7 */
+ 494               	.L__stack_usage = 7
+ 495 02ee 182F      		mov r17,r24
+ 496 02f0 062F      		mov r16,r22
+ 497 02f2 F42E      		mov r15,r20
+ 498 02f4 E22E      		mov r14,r18
+ 499 02f6 9E01      		movw r18,r28
+ 500 02f8 2F5F      		subi r18,-1
+ 501 02fa 3F4F      		sbci r19,-1
+ 502 02fc 41E0      		ldi r20,lo8(1)
+ 503 02fe 0E94 0000 		call TWI_read_bytes
+ 504 0302 8823      		tst r24
+ 505 0304 01F0      		breq .L48
+ 506 0306 EE20      		tst r14
+ 507 0308 01F0      		breq .L49
+ 508 030a 21E0      		ldi r18,lo8(1)
+ 509 030c 30E0      		ldi r19,0
+ 510 030e A901      		movw r20,r18
+ 511 0310 00C0      		rjmp 2f
+GAS LISTING /tmp/cc6jg0PZ.s 			page 10
+
+
+ 512               		1:
+ 513 0312 440F      		lsl r20
+ 514 0314 551F      		rol r21
+ 515               		2:
+ 516 0316 FA94      		dec r15
+ 517 0318 02F4      		brpl 1b
+ 518 031a 8981      		ldd r24,Y+1
+ 519 031c 482B      		or r20,r24
+ 520 031e 00C0      		rjmp .L50
+ 521               	.L49:
+ 522 0320 21E0      		ldi r18,lo8(1)
+ 523 0322 30E0      		ldi r19,0
+ 524 0324 A901      		movw r20,r18
+ 525 0326 00C0      		rjmp 2f
+ 526               		1:
+ 527 0328 440F      		lsl r20
+ 528 032a 551F      		rol r21
+ 529               		2:
+ 530 032c FA94      		dec r15
+ 531 032e 02F4      		brpl 1b
+ 532 0330 4095      		com r20
+ 533 0332 8981      		ldd r24,Y+1
+ 534 0334 4823      		and r20,r24
+ 535               	.L50:
+ 536 0336 4983      		std Y+1,r20
+ 537 0338 9E01      		movw r18,r28
+ 538 033a 2F5F      		subi r18,-1
+ 539 033c 3F4F      		sbci r19,-1
+ 540 033e 41E0      		ldi r20,lo8(1)
+ 541 0340 602F      		mov r22,r16
+ 542 0342 812F      		mov r24,r17
+ 543 0344 0E94 0000 		call TWI_write_bytes
+ 544               	.L48:
+ 545               	/* epilogue start */
+ 546 0348 0F90      		pop __tmp_reg__
+ 547 034a DF91      		pop r29
+ 548 034c CF91      		pop r28
+ 549 034e 1F91      		pop r17
+ 550 0350 0F91      		pop r16
+ 551 0352 FF90      		pop r15
+ 552 0354 EF90      		pop r14
+ 553 0356 0895      		ret
+ 554               		.size	TWI_write_bit, .-TWI_write_bit
+ 555               		.ident	"GCC: (GNU) 4.8.2"
+ 556               	.global __do_copy_data
+GAS LISTING /tmp/cc6jg0PZ.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 twi_mini.c
+     /tmp/cc6jg0PZ.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/cc6jg0PZ.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/cc6jg0PZ.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/cc6jg0PZ.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/cc6jg0PZ.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/cc6jg0PZ.s:10     .text:0000000000000000 TWI_init_master
+     /tmp/cc6jg0PZ.s:23     .text:000000000000000a TWI_stop
+     /tmp/cc6jg0PZ.s:43     .text:0000000000000016 TWI_error
+     /tmp/cc6jg0PZ.s:64     .text:0000000000000032 TWI_start
+     /tmp/cc6jg0PZ.s:97     .text:0000000000000060 TWI_write_address
+     /tmp/cc6jg0PZ.s:131    .text:0000000000000090 TWI_write_byte
+     /tmp/cc6jg0PZ.s:165    .text:00000000000000c0 TWI_write_bytes
+     /tmp/cc6jg0PZ.s:234    .text:0000000000000134 TWI_read_byte
+     /tmp/cc6jg0PZ.s:270    .text:0000000000000168 TWI_read_bytes
+     /tmp/cc6jg0PZ.s:372    .text:0000000000000222 TWI_write_bits
+     /tmp/cc6jg0PZ.s:481    .text:00000000000002dc TWI_write_bit
+
+UNDEFINED SYMBOLS
+print_UART
+__do_copy_data

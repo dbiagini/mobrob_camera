@@ -1,0 +1,253 @@
+GAS LISTING /tmp/ccWPMFit.s 			page 1
+
+
+   1               		.file	"HMC5883l.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.text
+   8               	.global	MAG_initialize
+   9               		.type	MAG_initialize, @function
+  10               	MAG_initialize:
+  11 0000 CF93      		push r28
+  12 0002 DF93      		push r29
+  13 0004 1F92      		push __zero_reg__
+  14 0006 CDB7      		in r28,__SP_L__
+  15 0008 DEB7      		in r29,__SP_H__
+  16               	/* prologue: function */
+  17               	/* frame size = 1 */
+  18               	/* stack size = 3 */
+  19               	.L__stack_usage = 3
+  20 000a 80E7      		ldi r24,lo8(112)
+  21 000c 8983      		std Y+1,r24
+  22 000e 9E01      		movw r18,r28
+  23 0010 2F5F      		subi r18,-1
+  24 0012 3F4F      		sbci r19,-1
+  25 0014 41E0      		ldi r20,lo8(1)
+  26 0016 60E0      		ldi r22,0
+  27 0018 8EE1      		ldi r24,lo8(30)
+  28 001a 0E94 0000 		call TWI_write_bytes
+  29 001e 80E2      		ldi r24,lo8(32)
+  30 0020 8983      		std Y+1,r24
+  31 0022 9E01      		movw r18,r28
+  32 0024 2F5F      		subi r18,-1
+  33 0026 3F4F      		sbci r19,-1
+  34 0028 41E0      		ldi r20,lo8(1)
+  35 002a 61E0      		ldi r22,lo8(1)
+  36 002c 8EE1      		ldi r24,lo8(30)
+  37 002e 0E94 0000 		call TWI_write_bytes
+  38 0032 81E0      		ldi r24,lo8(1)
+  39 0034 8983      		std Y+1,r24
+  40 0036 9E01      		movw r18,r28
+  41 0038 2F5F      		subi r18,-1
+  42 003a 3F4F      		sbci r19,-1
+  43 003c 41E0      		ldi r20,lo8(1)
+  44 003e 62E0      		ldi r22,lo8(2)
+  45 0040 8EE1      		ldi r24,lo8(30)
+  46 0042 0E94 0000 		call TWI_write_bytes
+  47               	/* epilogue start */
+  48 0046 0F90      		pop __tmp_reg__
+  49 0048 DF91      		pop r29
+  50 004a CF91      		pop r28
+  51 004c 0895      		ret
+  52               		.size	MAG_initialize, .-MAG_initialize
+  53               	.global	MAG_testConnection
+  54               		.type	MAG_testConnection, @function
+  55               	MAG_testConnection:
+  56               	/* prologue: function */
+  57               	/* frame size = 0 */
+GAS LISTING /tmp/ccWPMFit.s 			page 2
+
+
+  58               	/* stack size = 0 */
+  59               	.L__stack_usage = 0
+  60 004e 20E0      		ldi r18,lo8(buffer)
+  61 0050 30E0      		ldi r19,hi8(buffer)
+  62 0052 43E0      		ldi r20,lo8(3)
+  63 0054 6AE0      		ldi r22,lo8(10)
+  64 0056 8EE1      		ldi r24,lo8(30)
+  65 0058 0E94 0000 		call TWI_read_bytes
+  66 005c 8091 0000 		lds r24,buffer
+  67 0060 8834      		cpi r24,lo8(72)
+  68 0062 01F4      		brne .L5
+  69 0064 8091 0000 		lds r24,buffer+1
+  70 0068 8433      		cpi r24,lo8(52)
+  71 006a 01F4      		brne .L6
+  72 006c 81E0      		ldi r24,lo8(1)
+  73 006e 90E0      		ldi r25,0
+  74 0070 2091 0000 		lds r18,buffer+2
+  75 0074 2333      		cpi r18,lo8(51)
+  76 0076 01F4      		brne .L3
+  77 0078 80E0      		ldi r24,0
+  78 007a 0895      		ret
+  79               	.L5:
+  80 007c 81E0      		ldi r24,lo8(1)
+  81 007e 90E0      		ldi r25,0
+  82 0080 0895      		ret
+  83               	.L6:
+  84 0082 81E0      		ldi r24,lo8(1)
+  85 0084 90E0      		ldi r25,0
+  86               	.L3:
+  87 0086 0895      		ret
+  88               		.size	MAG_testConnection, .-MAG_testConnection
+  89               	.global	__floatsisf
+  90               	.global	__divsf3
+  91               	.global	MAG_getHeading
+  92               		.type	MAG_getHeading, @function
+  93               	MAG_getHeading:
+  94 0088 CF92      		push r12
+  95 008a DF92      		push r13
+  96 008c EF92      		push r14
+  97 008e FF92      		push r15
+  98 0090 0F93      		push r16
+  99 0092 1F93      		push r17
+ 100 0094 CF93      		push r28
+ 101 0096 DF93      		push r29
+ 102 0098 1F92      		push __zero_reg__
+ 103 009a CDB7      		in r28,__SP_L__
+ 104 009c DEB7      		in r29,__SP_H__
+ 105               	/* prologue: function */
+ 106               	/* frame size = 1 */
+ 107               	/* stack size = 9 */
+ 108               	.L__stack_usage = 9
+ 109 009e 6C01      		movw r12,r24
+ 110 00a0 7B01      		movw r14,r22
+ 111 00a2 8A01      		movw r16,r20
+ 112 00a4 81E0      		ldi r24,lo8(1)
+ 113 00a6 8983      		std Y+1,r24
+ 114 00a8 20E0      		ldi r18,lo8(buffer)
+GAS LISTING /tmp/ccWPMFit.s 			page 3
+
+
+ 115 00aa 30E0      		ldi r19,hi8(buffer)
+ 116 00ac 46E0      		ldi r20,lo8(6)
+ 117 00ae 63E0      		ldi r22,lo8(3)
+ 118 00b0 8EE1      		ldi r24,lo8(30)
+ 119 00b2 0E94 0000 		call TWI_read_bytes
+ 120 00b6 9E01      		movw r18,r28
+ 121 00b8 2F5F      		subi r18,-1
+ 122 00ba 3F4F      		sbci r19,-1
+ 123 00bc 41E0      		ldi r20,lo8(1)
+ 124 00be 62E0      		ldi r22,lo8(2)
+ 125 00c0 8EE1      		ldi r24,lo8(30)
+ 126 00c2 0E94 0000 		call TWI_write_bytes
+ 127 00c6 6091 0000 		lds r22,buffer
+ 128 00ca 70E0      		ldi r23,0
+ 129 00cc 762F      		mov r23,r22
+ 130 00ce 6627      		clr r22
+ 131 00d0 8091 0000 		lds r24,buffer+1
+ 132 00d4 682B      		or r22,r24
+ 133 00d6 8827      		clr r24
+ 134 00d8 77FD      		sbrc r23,7
+ 135 00da 8095      		com r24
+ 136 00dc 982F      		mov r25,r24
+ 137 00de 0E94 0000 		call __floatsisf
+ 138 00e2 20E0      		ldi r18,0
+ 139 00e4 30E4      		ldi r19,lo8(64)
+ 140 00e6 48E8      		ldi r20,lo8(-120)
+ 141 00e8 54E4      		ldi r21,lo8(68)
+ 142 00ea 0E94 0000 		call __divsf3
+ 143 00ee F601      		movw r30,r12
+ 144 00f0 6083      		st Z,r22
+ 145 00f2 7183      		std Z+1,r23
+ 146 00f4 8283      		std Z+2,r24
+ 147 00f6 9383      		std Z+3,r25
+ 148 00f8 6091 0000 		lds r22,buffer+4
+ 149 00fc 70E0      		ldi r23,0
+ 150 00fe 762F      		mov r23,r22
+ 151 0100 6627      		clr r22
+ 152 0102 8091 0000 		lds r24,buffer+5
+ 153 0106 682B      		or r22,r24
+ 154 0108 8827      		clr r24
+ 155 010a 77FD      		sbrc r23,7
+ 156 010c 8095      		com r24
+ 157 010e 982F      		mov r25,r24
+ 158 0110 0E94 0000 		call __floatsisf
+ 159 0114 20E0      		ldi r18,0
+ 160 0116 30E4      		ldi r19,lo8(64)
+ 161 0118 48E8      		ldi r20,lo8(-120)
+ 162 011a 54E4      		ldi r21,lo8(68)
+ 163 011c 0E94 0000 		call __divsf3
+ 164 0120 F701      		movw r30,r14
+ 165 0122 6083      		st Z,r22
+ 166 0124 7183      		std Z+1,r23
+ 167 0126 8283      		std Z+2,r24
+ 168 0128 9383      		std Z+3,r25
+ 169 012a 6091 0000 		lds r22,buffer+2
+ 170 012e 70E0      		ldi r23,0
+ 171 0130 762F      		mov r23,r22
+GAS LISTING /tmp/ccWPMFit.s 			page 4
+
+
+ 172 0132 6627      		clr r22
+ 173 0134 8091 0000 		lds r24,buffer+3
+ 174 0138 682B      		or r22,r24
+ 175 013a 8827      		clr r24
+ 176 013c 77FD      		sbrc r23,7
+ 177 013e 8095      		com r24
+ 178 0140 982F      		mov r25,r24
+ 179 0142 0E94 0000 		call __floatsisf
+ 180 0146 20E0      		ldi r18,0
+ 181 0148 30E4      		ldi r19,lo8(64)
+ 182 014a 48E8      		ldi r20,lo8(-120)
+ 183 014c 54E4      		ldi r21,lo8(68)
+ 184 014e 0E94 0000 		call __divsf3
+ 185 0152 F801      		movw r30,r16
+ 186 0154 6083      		st Z,r22
+ 187 0156 7183      		std Z+1,r23
+ 188 0158 8283      		std Z+2,r24
+ 189 015a 9383      		std Z+3,r25
+ 190               	/* epilogue start */
+ 191 015c 0F90      		pop __tmp_reg__
+ 192 015e DF91      		pop r29
+ 193 0160 CF91      		pop r28
+ 194 0162 1F91      		pop r17
+ 195 0164 0F91      		pop r16
+ 196 0166 FF90      		pop r15
+ 197 0168 EF90      		pop r14
+ 198 016a DF90      		pop r13
+ 199 016c CF90      		pop r12
+ 200 016e 0895      		ret
+ 201               		.size	MAG_getHeading, .-MAG_getHeading
+ 202               	.global	counts_per_milligauss
+ 203               		.section	.rodata
+ 204               		.type	counts_per_milligauss, @object
+ 205               		.size	counts_per_milligauss, 16
+ 206               	counts_per_milligauss:
+ 207 0000 5A05      		.word	1370
+ 208 0002 4204      		.word	1090
+ 209 0004 3403      		.word	820
+ 210 0006 9402      		.word	660
+ 211 0008 B801      		.word	440
+ 212 000a 8601      		.word	390
+ 213 000c 4A01      		.word	330
+ 214 000e E600      		.word	230
+ 215               		.comm	buffer,6,1
+ 216               		.ident	"GCC: (GNU) 4.8.2"
+ 217               	.global __do_copy_data
+ 218               	.global __do_clear_bss
+GAS LISTING /tmp/ccWPMFit.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 HMC5883l.c
+     /tmp/ccWPMFit.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccWPMFit.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccWPMFit.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccWPMFit.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccWPMFit.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccWPMFit.s:10     .text:0000000000000000 MAG_initialize
+     /tmp/ccWPMFit.s:55     .text:000000000000004e MAG_testConnection
+                            *COM*:0000000000000006 buffer
+     /tmp/ccWPMFit.s:93     .text:0000000000000088 MAG_getHeading
+     /tmp/ccWPMFit.s:206    .rodata:0000000000000000 counts_per_milligauss
+
+UNDEFINED SYMBOLS
+TWI_write_bytes
+TWI_read_bytes
+__floatsisf
+__divsf3
+__do_copy_data
+__do_clear_bss

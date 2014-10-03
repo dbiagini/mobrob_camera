@@ -1,0 +1,64 @@
+#
+# $Id: Makefile,v 1.1 2002/12/18 22:35:38 joerg_wunsch Exp $
+#
+CC= avr-gcc
+MCU=atmega32
+ISPMCU=m32
+#MCU=atmega16
+#MCU=atmega32
+#MCU=atmega163
+#MCU=atmega323
+#MCU=atmega64
+#MCU=atmega128
+
+#-ffreestanding
+CFLAGS=  -O -Wall  -mmcu=$(MCU) -Wa,-ahlms=$(<:.c=.lst)
+
+
+ISPEXE = c:\Program Files\PonyProg2000\ponyprog2000.exe
+CFGEXE = ./konfig2
+TRG = avr
+
+.SUFFIXES: .s .bin .out .hex .srec
+
+.c.s:
+	$(CC) $(CFLAGS) -S $<
+
+.S.o:
+	$(CC) $(ASFLAGS) -c $<
+
+.o.out:
+	$(CC) $(CFLAGS) -o $@ $<
+
+.out.bin:
+	avr-objcopy -O binary $< $@
+
+.out.hex:
+	avr-objcopy -O ihex $< $@
+
+.out.srec:
+	avr-objcopy -O srec $< $@
+
+all:	avr.bin
+#	$(CFGEXE) main.cfg avr.eep 
+OBJS=twi_mini.o serial.o MPU6050.o Test_Mpu.o acc_plot.o HMC5883l.o -lm
+avr.out: $(OBJS)
+	$(CC) -o avr.out $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS)
+	
+
+clean:
+	rm -f *~ *.out *.bin *.hex *.srec *.s *.o *core
+
+cleanpre:
+	rm -f *~ *.out *.srec *.s *.o *core
+	-Wa,-a=prototyp.lst
+#  WRITE-DATA \n VERIFY-PROG \n VERIFY-DATA\n
+isp: $(TRG).hex
+#	$(CFGEXE) main.cfg avr.eep 
+	echo -e "SELECTDEVICE $(MCU)\nLOAD-PROG $(TRG).hex\n WRITE-PROG\n" >isp.e2s
+	avrdude -c avrispmkII -P usb -p $(ISPMCU) -U flash:w:avr.hex:i -B 10
+#	-U eeprom:w:avr.eep:r
+
+lock: $(TRG).hex
+	avrdude -c avrispmkII -P usb -p $(ISPMCU) -U lfuse:w:0x34:m -U hfuse:w:0xd9:m -U lock:w:0x3f:m -B 100
+#  -U efuse:w:0xff:m

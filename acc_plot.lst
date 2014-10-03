@@ -1,0 +1,428 @@
+GAS LISTING /tmp/ccB5wkan.s 			page 1
+
+
+   1               		.file	"acc_plot.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.section	.rodata.str1.1,"aMS",@progbits,1
+   8               	.LC0:
+   9 0000 2566 00   		.string	"%f"
+  10               	.LC1:
+  11 0003 2C00      		.string	","
+  12               	.LC2:
+  13 0005 0D0A 00   		.string	"\r\n"
+  14               		.text
+  15               	.global	IMU_print
+  16               		.type	IMU_print, @function
+  17               	IMU_print:
+  18 0000 CF92      		push r12
+  19 0002 DF92      		push r13
+  20 0004 EF92      		push r14
+  21 0006 FF92      		push r15
+  22 0008 0F93      		push r16
+  23 000a 1F93      		push r17
+  24 000c CF93      		push r28
+  25 000e DF93      		push r29
+  26               	/* prologue: function */
+  27               	/* frame size = 0 */
+  28               	/* stack size = 8 */
+  29               	.L__stack_usage = 8
+  30 0010 6B01      		movw r12,r22
+  31 0012 7A01      		movw r14,r20
+  32 0014 9F93      		push r25
+  33 0016 8F93      		push r24
+  34 0018 C0E0      		ldi r28,lo8(.LC0)
+  35 001a D0E0      		ldi r29,hi8(.LC0)
+  36 001c DF93      		push r29
+  37 001e CF93      		push r28
+  38 0020 0E94 0000 		call print_UART
+  39 0024 00E0      		ldi r16,lo8(.LC1)
+  40 0026 10E0      		ldi r17,hi8(.LC1)
+  41 0028 1F93      		push r17
+  42 002a 0F93      		push r16
+  43 002c 0E94 0000 		call print_UART
+  44 0030 F601      		movw r30,r12
+  45 0032 8381      		ldd r24,Z+3
+  46 0034 8F93      		push r24
+  47 0036 8281      		ldd r24,Z+2
+  48 0038 8F93      		push r24
+  49 003a 8181      		ldd r24,Z+1
+  50 003c 8F93      		push r24
+  51 003e 8081      		ld r24,Z
+  52 0040 8F93      		push r24
+  53 0042 DF93      		push r29
+  54 0044 CF93      		push r28
+  55 0046 0E94 0000 		call print_UART
+  56 004a 1F93      		push r17
+  57 004c 0F93      		push r16
+GAS LISTING /tmp/ccB5wkan.s 			page 2
+
+
+  58 004e 0E94 0000 		call print_UART
+  59 0052 F701      		movw r30,r14
+  60 0054 8381      		ldd r24,Z+3
+  61 0056 8F93      		push r24
+  62 0058 8281      		ldd r24,Z+2
+  63 005a 8F93      		push r24
+  64 005c 8181      		ldd r24,Z+1
+  65 005e 8F93      		push r24
+  66 0060 8081      		ld r24,Z
+  67 0062 8F93      		push r24
+  68 0064 DF93      		push r29
+  69 0066 CF93      		push r28
+  70 0068 0E94 0000 		call print_UART
+  71 006c 1F93      		push r17
+  72 006e 0F93      		push r16
+  73 0070 0E94 0000 		call print_UART
+  74 0074 F601      		movw r30,r12
+  75 0076 8781      		ldd r24,Z+7
+  76 0078 8F93      		push r24
+  77 007a 8681      		ldd r24,Z+6
+  78 007c 8F93      		push r24
+  79 007e 8581      		ldd r24,Z+5
+  80 0080 8F93      		push r24
+  81 0082 8481      		ldd r24,Z+4
+  82 0084 8F93      		push r24
+  83 0086 DF93      		push r29
+  84 0088 CF93      		push r28
+  85 008a 0E94 0000 		call print_UART
+  86 008e 1F93      		push r17
+  87 0090 0F93      		push r16
+  88 0092 0E94 0000 		call print_UART
+  89 0096 F701      		movw r30,r14
+  90 0098 8781      		ldd r24,Z+7
+  91 009a 8F93      		push r24
+  92 009c 8681      		ldd r24,Z+6
+  93 009e 8F93      		push r24
+  94 00a0 8581      		ldd r24,Z+5
+  95 00a2 8F93      		push r24
+  96 00a4 8481      		ldd r24,Z+4
+  97 00a6 8F93      		push r24
+  98 00a8 DF93      		push r29
+  99 00aa CF93      		push r28
+ 100 00ac 0E94 0000 		call print_UART
+ 101 00b0 EDB7      		in r30,__SP_L__
+ 102 00b2 FEB7      		in r31,__SP_H__
+ 103 00b4 B496      		adiw r30,36
+ 104 00b6 0FB6      		in __tmp_reg__,__SREG__
+ 105 00b8 F894      		cli
+ 106 00ba FEBF      		out __SP_H__,r31
+ 107 00bc 0FBE      		out __SREG__,__tmp_reg__
+ 108 00be EDBF      		out __SP_L__,r30
+ 109 00c0 1F93      		push r17
+ 110 00c2 0F93      		push r16
+ 111 00c4 0E94 0000 		call print_UART
+ 112 00c8 F601      		movw r30,r12
+ 113 00ca 8385      		ldd r24,Z+11
+ 114 00cc 8F93      		push r24
+GAS LISTING /tmp/ccB5wkan.s 			page 3
+
+
+ 115 00ce 8285      		ldd r24,Z+10
+ 116 00d0 8F93      		push r24
+ 117 00d2 8185      		ldd r24,Z+9
+ 118 00d4 8F93      		push r24
+ 119 00d6 8085      		ldd r24,Z+8
+ 120 00d8 8F93      		push r24
+ 121 00da DF93      		push r29
+ 122 00dc CF93      		push r28
+ 123 00de 0E94 0000 		call print_UART
+ 124 00e2 1F93      		push r17
+ 125 00e4 0F93      		push r16
+ 126 00e6 0E94 0000 		call print_UART
+ 127 00ea F701      		movw r30,r14
+ 128 00ec 8385      		ldd r24,Z+11
+ 129 00ee 8F93      		push r24
+ 130 00f0 8285      		ldd r24,Z+10
+ 131 00f2 8F93      		push r24
+ 132 00f4 8185      		ldd r24,Z+9
+ 133 00f6 8F93      		push r24
+ 134 00f8 8085      		ldd r24,Z+8
+ 135 00fa 8F93      		push r24
+ 136 00fc DF93      		push r29
+ 137 00fe CF93      		push r28
+ 138 0100 0E94 0000 		call print_UART
+ 139 0104 80E0      		ldi r24,lo8(.LC2)
+ 140 0106 90E0      		ldi r25,hi8(.LC2)
+ 141 0108 9F93      		push r25
+ 142 010a 8F93      		push r24
+ 143 010c 0E94 0000 		call print_UART
+ 144 0110 EDB7      		in r30,__SP_L__
+ 145 0112 FEB7      		in r31,__SP_H__
+ 146 0114 7296      		adiw r30,18
+ 147 0116 0FB6      		in __tmp_reg__,__SREG__
+ 148 0118 F894      		cli
+ 149 011a FEBF      		out __SP_H__,r31
+ 150 011c 0FBE      		out __SREG__,__tmp_reg__
+ 151 011e EDBF      		out __SP_L__,r30
+ 152               	/* epilogue start */
+ 153 0120 DF91      		pop r29
+ 154 0122 CF91      		pop r28
+ 155 0124 1F91      		pop r17
+ 156 0126 0F91      		pop r16
+ 157 0128 FF90      		pop r15
+ 158 012a EF90      		pop r14
+ 159 012c DF90      		pop r13
+ 160 012e CF90      		pop r12
+ 161 0130 0895      		ret
+ 162               		.size	IMU_print, .-IMU_print
+ 163               		.section	.rodata.str1.1
+ 164               	.LC3:
+ 165 0008 2058 3D20 		.string	" X= %f"
+ 165      2566 00
+ 166               	.LC4:
+ 167 000f 2059 3D20 		.string	" Y= %f"
+ 167      2566 00
+ 168               	.LC5:
+ 169 0016 205A 3D20 		.string	" Z= %f"
+GAS LISTING /tmp/ccB5wkan.s 			page 4
+
+
+ 169      2566 00
+ 170               		.text
+ 171               	.global	IMU_print_SerialAcc
+ 172               		.type	IMU_print_SerialAcc, @function
+ 173               	IMU_print_SerialAcc:
+ 174 0132 CF93      		push r28
+ 175 0134 DF93      		push r29
+ 176               	/* prologue: function */
+ 177               	/* frame size = 0 */
+ 178               	/* stack size = 2 */
+ 179               	.L__stack_usage = 2
+ 180 0136 EA01      		movw r28,r20
+ 181 0138 9F93      		push r25
+ 182 013a 8F93      		push r24
+ 183 013c 7F93      		push r23
+ 184 013e 6F93      		push r22
+ 185 0140 80E0      		ldi r24,lo8(.LC0)
+ 186 0142 90E0      		ldi r25,hi8(.LC0)
+ 187 0144 9F93      		push r25
+ 188 0146 8F93      		push r24
+ 189 0148 0E94 0000 		call print_UART
+ 190 014c 80E0      		ldi r24,lo8(.LC1)
+ 191 014e 90E0      		ldi r25,hi8(.LC1)
+ 192 0150 9F93      		push r25
+ 193 0152 8F93      		push r24
+ 194 0154 0E94 0000 		call print_UART
+ 195 0158 8B81      		ldd r24,Y+3
+ 196 015a 8F93      		push r24
+ 197 015c 8A81      		ldd r24,Y+2
+ 198 015e 8F93      		push r24
+ 199 0160 8981      		ldd r24,Y+1
+ 200 0162 8F93      		push r24
+ 201 0164 8881      		ld r24,Y
+ 202 0166 8F93      		push r24
+ 203 0168 80E0      		ldi r24,lo8(.LC3)
+ 204 016a 90E0      		ldi r25,hi8(.LC3)
+ 205 016c 9F93      		push r25
+ 206 016e 8F93      		push r24
+ 207 0170 0E94 0000 		call print_UART
+ 208 0174 8F81      		ldd r24,Y+7
+ 209 0176 8F93      		push r24
+ 210 0178 8E81      		ldd r24,Y+6
+ 211 017a 8F93      		push r24
+ 212 017c 8D81      		ldd r24,Y+5
+ 213 017e 8F93      		push r24
+ 214 0180 8C81      		ldd r24,Y+4
+ 215 0182 8F93      		push r24
+ 216 0184 80E0      		ldi r24,lo8(.LC4)
+ 217 0186 90E0      		ldi r25,hi8(.LC4)
+ 218 0188 9F93      		push r25
+ 219 018a 8F93      		push r24
+ 220 018c 0E94 0000 		call print_UART
+ 221 0190 8B85      		ldd r24,Y+11
+ 222 0192 8F93      		push r24
+ 223 0194 8A85      		ldd r24,Y+10
+ 224 0196 8F93      		push r24
+ 225 0198 8985      		ldd r24,Y+9
+GAS LISTING /tmp/ccB5wkan.s 			page 5
+
+
+ 226 019a 8F93      		push r24
+ 227 019c 8885      		ldd r24,Y+8
+ 228 019e 8F93      		push r24
+ 229 01a0 80E0      		ldi r24,lo8(.LC5)
+ 230 01a2 90E0      		ldi r25,hi8(.LC5)
+ 231 01a4 9F93      		push r25
+ 232 01a6 8F93      		push r24
+ 233 01a8 0E94 0000 		call print_UART
+ 234 01ac 80E0      		ldi r24,lo8(.LC2)
+ 235 01ae 90E0      		ldi r25,hi8(.LC2)
+ 236 01b0 9F93      		push r25
+ 237 01b2 8F93      		push r24
+ 238 01b4 0E94 0000 		call print_UART
+ 239 01b8 8DB7      		in r24,__SP_L__
+ 240 01ba 9EB7      		in r25,__SP_H__
+ 241 01bc 4C96      		adiw r24,28
+ 242 01be 0FB6      		in __tmp_reg__,__SREG__
+ 243 01c0 F894      		cli
+ 244 01c2 9EBF      		out __SP_H__,r25
+ 245 01c4 0FBE      		out __SREG__,__tmp_reg__
+ 246 01c6 8DBF      		out __SP_L__,r24
+ 247               	/* epilogue start */
+ 248 01c8 DF91      		pop r29
+ 249 01ca CF91      		pop r28
+ 250 01cc 0895      		ret
+ 251               		.size	IMU_print_SerialAcc, .-IMU_print_SerialAcc
+ 252               		.section	.rodata.str1.1
+ 253               	.LC6:
+ 254 001d 2566 2000 		.string	"%f "
+ 255               		.text
+ 256               	.global	IMU_simplot
+ 257               		.type	IMU_simplot, @function
+ 258               	IMU_simplot:
+ 259 01ce 0F93      		push r16
+ 260 01d0 1F93      		push r17
+ 261 01d2 CF93      		push r28
+ 262 01d4 DF93      		push r29
+ 263               	/* prologue: function */
+ 264               	/* frame size = 0 */
+ 265               	/* stack size = 4 */
+ 266               	.L__stack_usage = 4
+ 267 01d6 EC01      		movw r28,r24
+ 268 01d8 8B81      		ldd r24,Y+3
+ 269 01da 8F93      		push r24
+ 270 01dc 8A81      		ldd r24,Y+2
+ 271 01de 8F93      		push r24
+ 272 01e0 8981      		ldd r24,Y+1
+ 273 01e2 8F93      		push r24
+ 274 01e4 8881      		ld r24,Y
+ 275 01e6 8F93      		push r24
+ 276 01e8 00E0      		ldi r16,lo8(.LC6)
+ 277 01ea 10E0      		ldi r17,hi8(.LC6)
+ 278 01ec 1F93      		push r17
+ 279 01ee 0F93      		push r16
+ 280 01f0 0E94 0000 		call print_UART
+ 281 01f4 8F81      		ldd r24,Y+7
+ 282 01f6 8F93      		push r24
+GAS LISTING /tmp/ccB5wkan.s 			page 6
+
+
+ 283 01f8 8E81      		ldd r24,Y+6
+ 284 01fa 8F93      		push r24
+ 285 01fc 8D81      		ldd r24,Y+5
+ 286 01fe 8F93      		push r24
+ 287 0200 8C81      		ldd r24,Y+4
+ 288 0202 8F93      		push r24
+ 289 0204 1F93      		push r17
+ 290 0206 0F93      		push r16
+ 291 0208 0E94 0000 		call print_UART
+ 292 020c 8B85      		ldd r24,Y+11
+ 293 020e 8F93      		push r24
+ 294 0210 8A85      		ldd r24,Y+10
+ 295 0212 8F93      		push r24
+ 296 0214 8985      		ldd r24,Y+9
+ 297 0216 8F93      		push r24
+ 298 0218 8885      		ldd r24,Y+8
+ 299 021a 8F93      		push r24
+ 300 021c 1F93      		push r17
+ 301 021e 0F93      		push r16
+ 302 0220 0E94 0000 		call print_UART
+ 303 0224 80E0      		ldi r24,lo8(.LC2)
+ 304 0226 90E0      		ldi r25,hi8(.LC2)
+ 305 0228 9F93      		push r25
+ 306 022a 8F93      		push r24
+ 307 022c 0E94 0000 		call print_UART
+ 308 0230 8DB7      		in r24,__SP_L__
+ 309 0232 9EB7      		in r25,__SP_H__
+ 310 0234 4496      		adiw r24,20
+ 311 0236 0FB6      		in __tmp_reg__,__SREG__
+ 312 0238 F894      		cli
+ 313 023a 9EBF      		out __SP_H__,r25
+ 314 023c 0FBE      		out __SREG__,__tmp_reg__
+ 315 023e 8DBF      		out __SP_L__,r24
+ 316               	/* epilogue start */
+ 317 0240 DF91      		pop r29
+ 318 0242 CF91      		pop r28
+ 319 0244 1F91      		pop r17
+ 320 0246 0F91      		pop r16
+ 321 0248 0895      		ret
+ 322               		.size	IMU_simplot, .-IMU_simplot
+ 323               		.section	.rodata.str1.1
+ 324               	.LC7:
+ 325 0021 2564 2000 		.string	"%d "
+ 326               		.text
+ 327               	.global	IMU_simplot_int
+ 328               		.type	IMU_simplot_int, @function
+ 329               	IMU_simplot_int:
+ 330 024a 0F93      		push r16
+ 331 024c 1F93      		push r17
+ 332 024e CF93      		push r28
+ 333 0250 DF93      		push r29
+ 334               	/* prologue: function */
+ 335               	/* frame size = 0 */
+ 336               	/* stack size = 4 */
+ 337               	.L__stack_usage = 4
+ 338 0252 8C01      		movw r16,r24
+ 339 0254 FC01      		movw r30,r24
+GAS LISTING /tmp/ccB5wkan.s 			page 7
+
+
+ 340 0256 8181      		ldd r24,Z+1
+ 341 0258 8F93      		push r24
+ 342 025a 8081      		ld r24,Z
+ 343 025c 8F93      		push r24
+ 344 025e C0E0      		ldi r28,lo8(.LC7)
+ 345 0260 D0E0      		ldi r29,hi8(.LC7)
+ 346 0262 DF93      		push r29
+ 347 0264 CF93      		push r28
+ 348 0266 0E94 0000 		call print_UART
+ 349 026a F801      		movw r30,r16
+ 350 026c 8381      		ldd r24,Z+3
+ 351 026e 8F93      		push r24
+ 352 0270 8281      		ldd r24,Z+2
+ 353 0272 8F93      		push r24
+ 354 0274 DF93      		push r29
+ 355 0276 CF93      		push r28
+ 356 0278 0E94 0000 		call print_UART
+ 357 027c F801      		movw r30,r16
+ 358 027e 8581      		ldd r24,Z+5
+ 359 0280 8F93      		push r24
+ 360 0282 8481      		ldd r24,Z+4
+ 361 0284 8F93      		push r24
+ 362 0286 DF93      		push r29
+ 363 0288 CF93      		push r28
+ 364 028a 0E94 0000 		call print_UART
+ 365 028e 80E0      		ldi r24,lo8(.LC2)
+ 366 0290 90E0      		ldi r25,hi8(.LC2)
+ 367 0292 9F93      		push r25
+ 368 0294 8F93      		push r24
+ 369 0296 0E94 0000 		call print_UART
+ 370 029a EDB7      		in r30,__SP_L__
+ 371 029c FEB7      		in r31,__SP_H__
+ 372 029e 3E96      		adiw r30,14
+ 373 02a0 0FB6      		in __tmp_reg__,__SREG__
+ 374 02a2 F894      		cli
+ 375 02a4 FEBF      		out __SP_H__,r31
+ 376 02a6 0FBE      		out __SREG__,__tmp_reg__
+ 377 02a8 EDBF      		out __SP_L__,r30
+ 378               	/* epilogue start */
+ 379 02aa DF91      		pop r29
+ 380 02ac CF91      		pop r28
+ 381 02ae 1F91      		pop r17
+ 382 02b0 0F91      		pop r16
+ 383 02b2 0895      		ret
+ 384               		.size	IMU_simplot_int, .-IMU_simplot_int
+ 385               		.ident	"GCC: (GNU) 4.8.2"
+ 386               	.global __do_copy_data
+GAS LISTING /tmp/ccB5wkan.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 acc_plot.c
+     /tmp/ccB5wkan.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccB5wkan.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccB5wkan.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccB5wkan.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccB5wkan.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccB5wkan.s:17     .text:0000000000000000 IMU_print
+     /tmp/ccB5wkan.s:173    .text:0000000000000132 IMU_print_SerialAcc
+     /tmp/ccB5wkan.s:258    .text:00000000000001ce IMU_simplot
+     /tmp/ccB5wkan.s:329    .text:000000000000024a IMU_simplot_int
+
+UNDEFINED SYMBOLS
+print_UART
+__do_copy_data
